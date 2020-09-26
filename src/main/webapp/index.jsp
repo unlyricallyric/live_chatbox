@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    First Commit
+    First Commit Deploy <a href="MessageServlet">Call the servlet</a>
 </body>
 </html>
