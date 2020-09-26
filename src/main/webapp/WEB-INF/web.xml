@@ -6,11 +6,11 @@
 
     <servlet>
         <servlet-name>MessageServlet</servlet-name>
-        <servlet-class>MessageServlet</servlet-class>
+        <servlet-class>com.message.servlet.MessageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
-        <url-pattern>/MessageServlet</url-pattern>
+        <url-pattern>/com/message/servlet/MessageServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

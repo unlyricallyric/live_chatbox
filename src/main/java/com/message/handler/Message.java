@@ -1,4 +1,4 @@
-package messageHandler;
+package com.message.handler;
 
 import java.util.Date;
 import java.util.HashMap;
