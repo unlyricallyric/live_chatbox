@@ -13,15 +13,16 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String fName = request.getParameter("f_name");
-        String lName = request.getParameter("l_name");
+        String user_name = "Anonymous";
 
-        /*PrintWriter out = response.getWriter();
-        out.println("Hello, "+fName + " " +lName);*/
+        //String user_name = request.getParameter("user_name");
+
+        if(!request.getParameter("user_name").isEmpty()){
+            user_name = request.getParameter("user_name");
+        }
 
         String url = "/index.jsp";
-        request.setAttribute("first_name", fName);
-        request.setAttribute("last_name", lName);
+        request.setAttribute("user_name", user_name);
 
         getServletContext()
                 .getRequestDispatcher(url)
