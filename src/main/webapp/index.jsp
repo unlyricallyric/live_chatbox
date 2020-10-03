@@ -13,23 +13,21 @@
 </head>
 <body>
     <div class="chatbox" style="width: 50%;margin: auto">
-        <h2 style="margin: auto">Chat Messages</h2>
+        <h2 style="width:30%;margin: auto">Chat Messages</h2>
         <h3>Hello,
-            <%--<%= request.getParameter("f_name")%>
-            <%= request.getParameter("l_name")%>--%>
             ${first_name}
             ${last_name}
         </h3>
-        <form action="com/message/servlet/MessageServlet">
+        <form action="MessageServlet">
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                Please enter your message here:
+                <textarea class="form-control" name="message" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <a href="com/message/servlet/MessageServlet">Call the servlet</a>
+        <a href="MessageServlet">Call the servlet</a>
 
-
+        <h1>Here is the message callback: ${message}</h1>
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Well done!</h4>
             <p>Aww yeah, you successfully read this important alert message.</p>
