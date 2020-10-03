@@ -16,6 +16,7 @@ public class MessageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String message = request.getParameter("message");
+        String user_name = request.getParameter("user_name");
 
         /*try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
@@ -33,6 +34,7 @@ public class MessageServlet extends HttpServlet {
 
         String url = "/index.jsp";
         request.setAttribute("message", message);
+        request.setAttribute("user_name", user_name);
 
         getServletContext()
                 .getRequestDispatcher(url)
