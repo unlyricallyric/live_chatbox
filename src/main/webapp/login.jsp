@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="com/message/servlet/LoginServlet" method="GET" style="width: 20%;margin: auto">
+<form action="LoginServlet" method="GET" style="width: 20%;margin: auto">
     <div class="form-row">
         <div class="col">
             <input type="text" name="f_name" class="form-control" placeholder="First name">
