@@ -12,14 +12,17 @@
     <title>Title</title>
 </head>
 <body>
-<form action="LoginServlet" method="GET" style="width: 20%;margin: auto">
+<form action="LoginServlet" method="get" style="width: 20%;margin: auto">
     <div class="form-row">
         <div class="col">
+            <input type="text" name="user_name" class="form-control" placeholder="Please enter your name: ">
+        </div>
+        <%--<div class="col">
             <input type="text" name="f_name" class="form-control" placeholder="First name">
         </div>
         <div class="col">
             <input type="text" name="l_name" class="form-control" placeholder="Last name">
-        </div>
+        </div>--%>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
