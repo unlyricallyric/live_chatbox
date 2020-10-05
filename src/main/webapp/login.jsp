@@ -17,12 +17,6 @@
         <div class="col">
             <input type="text" name="user_name" class="form-control" placeholder="Please enter your name: ">
         </div>
-        <%--<div class="col">
-            <input type="text" name="f_name" class="form-control" placeholder="First name">
-        </div>
-        <div class="col">
-            <input type="text" name="l_name" class="form-control" placeholder="Last name">
-        </div>--%>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
