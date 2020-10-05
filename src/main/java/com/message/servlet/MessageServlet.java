@@ -18,20 +18,6 @@ public class MessageServlet extends HttpServlet {
         String message = request.getParameter("message");
         String user_name = request.getParameter("user_name");
 
-        /*try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HelloWorldServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Message: " + message + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } catch (IOException exception){
-            exception.getMessage();
-        }*/
-
         String url = "/index.jsp";
         request.setAttribute("message", message);
         request.setAttribute("user_name", user_name);
