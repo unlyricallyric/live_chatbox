@@ -15,7 +15,7 @@
 <body>
     <%
         PrintWriter pout = response.getWriter();
-        pout.println(session.getId());
+        //pout.println(session.getId());
     %>
 
     <div class="chatbox" style="width: 50%;margin: auto">
