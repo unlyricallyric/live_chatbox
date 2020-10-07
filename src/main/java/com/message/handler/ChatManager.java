@@ -1,9 +1,9 @@
 package com.message.handler;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -20,19 +20,39 @@ public class ChatManager {
     }*/
 
     //local DB, save data in memory
-    private static HashMap<LocalTime, Message> DB = new HashMap<>();
+    private static HashMap<LocalDateTime, Message> DB = new HashMap<>();
+    private static HashMap<String, String> test_db = new HashMap<>();
 
-    private void PostMessage(String user, String message){
-        Message m = new Message(new User(user), message);
+    public static void postTestMessage(String msg1, String msg2){
+        test_db.put(msg1, msg2);
+    }
+
+    public static HashMap<String, String> listTestMessage(){
+        return test_db;
+    }
+
+    public static void postMessage(String user_name, String message){
+        Message m = new Message(new User(user_name), message);
         DB.put(m.getDate(), m);
     }
 
-    private HashMap<LocalTime, Message> ListMessages(Date... date){
-        //TODO get messages within date range
+    public static HashMap<LocalDateTime, Message> ListMessages(){
         return DB;
     }
 
-    private void ClearChat(Date... date){
+    public static HashMap<LocalDateTime, Message> ListMessages(LocalDateTime start, LocalDateTime end){
+        HashMap<LocalDateTime, Message> msgRange_DB = new HashMap<>();
+
+        for(LocalDateTime date : DB.keySet()){
+            if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
+                msgRange_DB.put(date,DB.get(date));
+            }
+        }
+
+        return msgRange_DB;
+    }
+
+    private void clearChat(){
         DB.clear();
     }
 
