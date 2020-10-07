@@ -1,5 +1,6 @@
 package com.message.handler;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -19,7 +20,7 @@ public class ChatManager {
     }*/
 
     //local DB, save data in memory
-    private static HashMap<LocalTime, Message> DB = new HashMap<>();
+    private static HashMap<LocalDateTime, Message> DB = new HashMap<>();
     private static HashMap<String, String> test_db = new HashMap<>();
 
     public static void postTestMessage(String msg1, String msg2){
@@ -35,12 +36,23 @@ public class ChatManager {
         DB.put(m.getDate(), m);
     }
 
-    public HashMap<LocalTime, Message> ListMessages(Date... date){
-        //TODO get messages within date range
+    public static HashMap<LocalDateTime, Message> ListMessages(){
         return DB;
     }
 
-    private void clearChat(Date... date){
+    public static HashMap<LocalDateTime, Message> ListMessages(LocalDateTime start, LocalDateTime end){
+        HashMap<LocalDateTime, Message> msgRange_DB = new HashMap<>();
+
+        for(LocalDateTime date : DB.keySet()){
+            if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
+                msgRange_DB.put(date,DB.get(date));
+            }
+        }
+
+        return msgRange_DB;
+    }
+
+    private void clearChat(){
         DB.clear();
     }
 
