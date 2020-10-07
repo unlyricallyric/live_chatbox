@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
-class Message {
+public class Message {
 
     private String userName;
     private String message;
