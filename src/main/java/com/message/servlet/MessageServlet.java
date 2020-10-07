@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashMap;
 
@@ -24,20 +25,25 @@ public class MessageServlet extends HttpServlet {
         String user_name = request.getParameter("user_name");
 
         //For testing outcome
-        /*ChatManager.postMessage(user_name, message);
+        ChatManager.postMessage(user_name, message);
 
-        HashMap<String, String> new_db;
+        HashMap<LocalDateTime, Message> msg_db;
 
         ChatManager.postTestMessage(user_name, message);
 
-        new_db = ChatManager.listTestMessage();
+        msg_db = ChatManager.ListMessages();
 
-        PrintWriter out = response.getWriter();
-        out.println(new_db.get(user_name));*/
+        /*PrintWriter out = response.getWriter();
+        out.println(msg_db);
+
+        for (LocalDateTime i : msg_db.keySet()){
+            out.println(msg_db.get(i).getDate());
+            out.println(msg_db.get(i).getMessage());
+            out.println(msg_db.get(i).getUsername());
+        }*/
 
         String url = "/index.jsp";
-        request.setAttribute("message", message);
-        request.setAttribute("user_name", user_name);
+        request.setAttribute("msg_db", msg_db);
 
         getServletContext()
                 .getRequestDispatcher(url)
