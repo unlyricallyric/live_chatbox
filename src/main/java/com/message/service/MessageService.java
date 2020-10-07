@@ -1,2 +1,4 @@
-package com.message.service;public class MessageService {
+package com.message.service;
+
+public class MessageService {
 }
