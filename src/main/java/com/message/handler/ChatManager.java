@@ -20,18 +20,27 @@ public class ChatManager {
 
     //local DB, save data in memory
     private static HashMap<LocalTime, Message> DB = new HashMap<>();
+    private static HashMap<String, String> test_db = new HashMap<>();
 
-    private void PostMessage(String user, String message){
-        Message m = new Message(new User(user), message);
+    public static void postTestMessage(String msg1, String msg2){
+        test_db.put(msg1, msg2);
+    }
+
+    public static HashMap<String, String> listTestMessage(){
+        return test_db;
+    }
+
+    public static void postMessage(String user_name, String message){
+        Message m = new Message(new User(user_name), message);
         DB.put(m.getDate(), m);
     }
 
-    private HashMap<LocalTime, Message> ListMessages(Date... date){
+    public HashMap<LocalTime, Message> ListMessages(Date... date){
         //TODO get messages within date range
         return DB;
     }
 
-    private void ClearChat(Date... date){
+    private void clearChat(Date... date){
         DB.clear();
     }
 
