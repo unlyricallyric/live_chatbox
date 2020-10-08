@@ -48,6 +48,14 @@ public class ChatManager {
         DB.clear();
     }
 
+    private void clearChat(LocalTime from, LocalTime to){
+        for(LocalTime date : DB.keySet()){
+            if(date.compareTo(from) == 1 && date.compareTo(to) == -1){
+                DB.remove(date);
+            }
+        }
+    }
+
     public static void main(String args[]){
 
         ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
