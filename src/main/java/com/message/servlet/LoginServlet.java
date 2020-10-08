@@ -1,6 +1,5 @@
 package com.message.servlet;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import com.message.handler.User;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,10 @@ import java.io.IOException;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //cannot think of any scenario for getting user, leave for the moment
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User(request.getParameter("user_name"));
 
         String url = "/index.jsp";
