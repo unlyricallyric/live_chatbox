@@ -1,12 +1,13 @@
 package com.message.handler;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Message {
 
     private String userName;
     private String message;
-    private LocalDateTime date;
+    private LocalTime date;
 
     public Message(User user, String message){
         this.userName = user.getUsername();
@@ -22,21 +23,24 @@ public class Message {
         return this.message;
     }
 
-    public LocalDateTime getDate(){
+    public LocalTime getDate(){
         return this.date;
     }
 
-    public LocalDateTime getCurrentDate(){
+    public LocalTime getCurrentDate(){
         ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
-        return utc.toLocalDateTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time_string = utc.toLocalTime().format(formatter);
+        LocalTime time = LocalTime.parse(time_string, formatter);
+        return time;
     }
 
     public static void main(String args[]){
         ZonedDateTime utc1 = ZonedDateTime.now(ZoneOffset.UTC);
-        LocalDateTime lt1 = utc1.toLocalDateTime();
+        LocalTime lt1 = utc1.toLocalTime();
 
         ZonedDateTime utc2;
-        LocalDateTime lt2;
+        LocalTime lt2;
 
         try {
             Thread.sleep(2 * 1000);
@@ -44,11 +48,18 @@ public class Message {
             Thread.currentThread().interrupt();
         } finally {
             utc2 = ZonedDateTime.now(ZoneOffset.UTC);
-            lt2 = utc2.toLocalDateTime();
+            lt2 = utc2.toLocalTime();
         }
         //later : 1, earlier : -1
-        System.out.println(lt1);
+        /*System.out.println(lt1);
         System.out.println(lt2);
-        System.out.println(lt1.compareTo(lt2));
+        System.out.println(lt1.compareTo(lt2));*/
+
+        ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time_string = utc.toLocalTime().format(formatter);
+        LocalTime time = LocalTime.parse(time_string, formatter);
+
+        System.out.println(time);
     }
 }
