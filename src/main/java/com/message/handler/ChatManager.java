@@ -1,5 +1,7 @@
 package com.message.handler;
 
+import com.message.service.MessageService;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -44,13 +46,12 @@ public class ChatManager {
         return msgRange_DB;
     }
 
-    private void clearChat(){
+    public static void clearChat(){
         DB.clear();
     }
-
-    private void clearChat(LocalTime from, LocalTime to){
+    public static void clearChat(LocalTime start, LocalTime end){
         for(LocalTime date : DB.keySet()){
-            if(date.compareTo(from) == 1 && date.compareTo(to) == -1){
+            if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
                 DB.remove(date);
             }
         }
@@ -65,5 +66,8 @@ public class ChatManager {
         System.out.println("DATETIME = " + date);
 
         System.out.println("hello");
+
+        LocalTime time = LocalTime.of(10,43,12);
+        System.out.println(time);
     }
 }

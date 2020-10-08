@@ -18,4 +18,9 @@ public class MessageService {
 
         return DB;
     }
+
+    //check if msg is empty or null
+    public static boolean isNullOrEmpty(String str){
+        return (str == null || str.trim().isEmpty());
+    }
 }

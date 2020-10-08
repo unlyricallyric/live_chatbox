@@ -51,14 +51,17 @@ public class MessageServlet extends HttpServlet {
         String str_from = request.getParameter("from");
         String str_to = request.getParameter("to");
 
-        LocalTime from = MessageService.getDateFromString(str_from);
-        LocalTime to = MessageService.getDateFromString(str_to);
+        LocalTime from = (MessageService.isNullOrEmpty(str_from))?LocalTime.of(00,00,00):MessageService.getDateFromString(str_from);
+        LocalTime to = (MessageService.isNullOrEmpty(str_to))?LocalTime.of(23,59,59):MessageService.getDateFromString(str_to);
 
         //TODO implement logic while only one of the range is given
-
         TreeMap<LocalTime, Message> msg_db;
 
-        msg_db = ChatManager.ListMessages(from, to);
+        if(MessageService.isNullOrEmpty(str_from) && MessageService.isNullOrEmpty(str_to)){
+            msg_db = ChatManager.ListMessages();
+        }else{
+            msg_db = ChatManager.ListMessages(from, to);
+        }
 
         PrintWriter out = response.getWriter();
 
@@ -68,4 +71,6 @@ public class MessageServlet extends HttpServlet {
             out.println(msg_db.get(i).getUsername());
         }
     }
+
+
 }
