@@ -1,5 +1,7 @@
 package com.message.handler;
 
+import com.message.service.MessageService;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -65,5 +67,8 @@ public class ChatManager {
         System.out.println("DATETIME = " + date);
 
         System.out.println("hello");
+
+        LocalTime time = LocalTime.of(10,43,12);
+        System.out.println(time);
     }
 }
