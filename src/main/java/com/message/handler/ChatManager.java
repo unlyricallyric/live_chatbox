@@ -44,8 +44,16 @@ public class ChatManager {
         return msgRange_DB;
     }
 
-    private void clearChat(){
+    public static void clearChat(){
         DB.clear();
+    }
+
+    public static void clearChat(LocalTime start, LocalTime end){
+        for(LocalTime date : DB.keySet()){
+            if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
+                DB.remove(date);
+            }
+        }
     }
 
     public static void main(String args[]){
