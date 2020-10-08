@@ -19,7 +19,7 @@
     %>
 
     <div class="chatbox" style="width: 50%;margin: auto">
-        <h1 style="width:30%;margin: auto">Chat Messages</h1>
+        <h1 style="width:40%;margin: auto">Chat Messages</h1>
         <h2>Hello,
             ${user_name}
         </h2>
@@ -29,7 +29,7 @@
             <p>${message}</p>
         </div>
 
-        <form action="MessageServlet">
+        <form method="POST" action="MessageServlet">
             <div class="form-group">
                 Please enter your message here:
                 <input type="hidden" name="user_name" value="${user_name}">
