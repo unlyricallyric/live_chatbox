@@ -6,6 +6,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class ChatManager {
 
@@ -20,30 +21,21 @@ public class ChatManager {
     }*/
 
     //local DB, save data in memory
-    private static HashMap<LocalDateTime, Message> DB = new HashMap<>();
-    private static HashMap<String, String> test_db = new HashMap<>();
-
-    public static void postTestMessage(String msg1, String msg2){
-        test_db.put(msg1, msg2);
-    }
-
-    public static HashMap<String, String> listTestMessage(){
-        return test_db;
-    }
+    private static TreeMap<LocalTime, Message> DB = new TreeMap<>();
 
     public static void postMessage(String user_name, String message){
         Message m = new Message(new User(user_name), message);
         DB.put(m.getDate(), m);
     }
 
-    public static HashMap<LocalDateTime, Message> ListMessages(){
+    public static TreeMap<LocalTime, Message> ListMessages(){
         return DB;
     }
 
-    public static HashMap<LocalDateTime, Message> ListMessages(LocalDateTime start, LocalDateTime end){
-        HashMap<LocalDateTime, Message> msgRange_DB = new HashMap<>();
+    public static TreeMap<LocalTime, Message> ListMessages(LocalTime start, LocalTime end){
+        TreeMap<LocalTime, Message> msgRange_DB = new TreeMap<>();
 
-        for(LocalDateTime date : DB.keySet()){
+        for(LocalTime date : DB.keySet()){
             if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
                 msgRange_DB.put(date,DB.get(date));
             }
