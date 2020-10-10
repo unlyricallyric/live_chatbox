@@ -72,5 +72,20 @@ public class MessageServlet extends HttpServlet {
         }
     }
 
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //get from and to params
+        String str_from = request.getParameter("from");
+        String str_to = request.getParameter("to");
+
+        LocalTime from = (MessageService.isNullOrEmpty(str_from))?LocalTime.of(00,00,00):MessageService.getDateFromString(str_from);
+        LocalTime to = (MessageService.isNullOrEmpty(str_to))?LocalTime.of(23,59,59):MessageService.getDateFromString(str_to);
+
+        if(MessageService.isNullOrEmpty(str_from) && MessageService.isNullOrEmpty(str_to)){
+            ChatManager.clearChat();
+        }else{
+            ChatManager.clearChat(from, to);
+        }
+    }
+
 
 }
