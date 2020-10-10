@@ -8,6 +8,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class ChatManager {
@@ -38,7 +39,7 @@ public class ChatManager {
         TreeMap<LocalTime, Message> msgRange_DB = new TreeMap<>();
 
         for(LocalTime date : DB.keySet()){
-            if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
+            if(date.compareTo(start) >= 0 && date.compareTo(end) <= 0){
                 msgRange_DB.put(date,DB.get(date));
             }
         }
@@ -50,11 +51,11 @@ public class ChatManager {
         DB.clear();
     }
     public static void clearChat(LocalTime start, LocalTime end){
-        for(LocalTime date : DB.keySet()){
-            if(date.compareTo(start) == 1 && date.compareTo(end) == -1){
-                DB.remove(date);
-            }
-        }
+
+        DB.entrySet()
+                .removeIf(
+                        entry -> (entry.getKey().compareTo(start) >= 0 && entry.getKey().compareTo(end) <= 0)
+                );
     }
 
     public static void main(String args[]){
@@ -67,7 +68,24 @@ public class ChatManager {
 
         System.out.println("hello");
 
-        LocalTime time = LocalTime.of(10,43,12);
-        System.out.println(time);
+        LocalTime time = LocalTime.of(10,43,11);
+        LocalTime time1 = LocalTime.of(10,43,12);
+        System.out.println(time.compareTo(time1));
+
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(3, "val3");
+        map.put(2, "val2");
+        map.put(1, "val1");
+        map.put(5, "val5");
+        map.put(4, "val4");
+
+        map.remove(2);
+        map.remove(4);
+
+        for(Integer i : map.keySet()){
+            System.out.println(map.get(i));
+        }
+
+
     }
 }
