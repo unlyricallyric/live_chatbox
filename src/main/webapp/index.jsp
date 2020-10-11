@@ -173,7 +173,7 @@
         var date = new Date();
         var time = date.getTime();
         var record = user_name + " said: " + message + " " + date + "<br>";
-        document.getElementById('chatBox').innerHTML += record;
+        //document.getElementById('chatBox').innerHTML += record;
 
         //send the data to backend
         var xmlhttp;
@@ -183,7 +183,20 @@
         var parameters;
         parameters = "user_name=" + user_name + "&message=" + message;
         //xmlhttp.open('GET', "MessageService?" + parameters, true)
-        xmlhttp.send(parameters);
+        var msg_db;
+        msg_db = xmlhttp.send(parameters);
+        console.log(Object.keys(msg_db).length) ;
+        //display(msg_db);
+    }
+
+    function display(msg_db){
+        console.log(msg_db);
+        var i;
+        for(i = 0; i<msg_db.length;i++){
+            console.log(msg_db[i]);
+            document.getElementById('chatBox').innerHTML += msg_db[i];
+
+        }
     }
     //clear the msg of the chat box
     function clean(){
