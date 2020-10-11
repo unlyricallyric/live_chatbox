@@ -12,8 +12,9 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
 <head>
+    <link rel="stylesheet" type="text/css" href="style1.css">
     <title>Title</title>
 
     <base href="<%=basePath%>">
@@ -23,107 +24,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <style>
-        body {
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 0 40px;
-        }
-        .container {
-            border: 2px solid #dedede;
-            background-color: #f1f1f1;
-            border-radius: 30px;
-            padding: 20px;
-            margin: 10px 0;
-        }
-        #chatBox{
-            background-color: #aba6bf;
-            word-wrap: break-word;
-            border:10px;
-            solid: #00F;
-            height: 200px;
-            overflow-y: auto;
-        }
-        #selectedMsg{
-            background-color: #aba6bf;
-            word-wrap: break-word;
-            border:10px;
-            solid: #00F;
-            height: 200px;
-            overflow-y: auto;
-        }
-        input[type=text] {
-            width: 100%;
-            padding: 10px 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: none;
-            background-color: #dfd7d7;
-            color: black;
-        }
-        .button {
-            display: inline-block;
-            padding: 8px 10px;
-            font-size: 12px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            outline: none;
-            color: white;
-            background-color: #595775;
-            border: none;
-            border-radius: 13px;
-            box-shadow: 0 3px #999;
-        }
-        .button:active {
-            background-color: #595775;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-        #div{
-        }body {
-             margin: 0 auto;
-             max-width: 800px;
-             padding: 0 40px;
-         }
-        .container {
-            border: 2px solid #dedede;
-            background-color: #f1f1f1;
-            border-radius: 30px;
-            padding: 20px;
-            margin: 10px 0;
-        }
-        input[type=text] {
-            width: 100%;
-            padding: 10px 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: none;
-            background-color: #dfd7d7;
-            color: black;
-        }
-        .button {
-            display: inline-block;
-            padding: 8px 10px;
-            font-size: 12px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            outline: none;
-            color: white;
-            background-color: #595775;
-            border: none;
-            border-radius: 13px;
-            box-shadow: 0 3px #999;
-        }
-        .button:active {
-            background-color: #595775;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-        #div{
-        }
-    </style>
 </head>
 
 <body>
@@ -145,6 +45,7 @@
         <button class="button" type="button" onclick="send()" >Send</button>
         <button class="button" type="button" onclick="clean()">Clear</button>
 
+
     </form><br>
     <form>
         <label for="fname">From (Time):</label><br>
@@ -163,6 +64,10 @@
         </select>
         <input class = "button" type="submit" value="Download">
     </form><br>
+
+    <a href=" " onclick="changeCSS('style1.css', 0);">STYLE 1</a>
+    <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2</a>
+
 </div>
 <script type="text/javascript">
     //send the msg to chat box
@@ -202,6 +107,19 @@
     function clean(){
         console.log(record);
         document.getElementById('/servlet/selectedMsg').innerHTML = "";
+    }
+
+    //change the style css
+    function changeCSS(cssFile, cssLinkIndex) {
+
+        var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", cssFile);
+
+        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
     }
 </script>
 </body>
