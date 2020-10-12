@@ -31,16 +31,6 @@
         }
     %>
 
-    <table>
-        <c:forEach items="${msg_db.entrySet()}" var="entry" >
-            <tr>
-                <td>${entry.getKey()}</td>
-                <td>${entry.getValue().getUsername()}</td>
-                <td>${entry.value.getMessage()}</td>
-            </tr>
-        </c:forEach>
-    </table>
-
     <div class="chatbox" style="width: 50%;margin: auto">
         <h1 style="width:40%;margin: auto">Chat Messages</h1>
         <h2>Hello,
