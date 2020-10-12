@@ -171,7 +171,6 @@
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
     }
 </script>
->>>>>>> 5a49181fc5bf1fdbf9e05984fcf925a702b7026c
 </body>
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
