@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: johnsonhao
@@ -30,10 +31,8 @@
 
 <body>
 <%
-
     PrintWriter pout = response.getWriter();
     TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
-
     if(request.getAttribute("msg_db") != null) {
         msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
         for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
@@ -50,7 +49,6 @@
             pout.println("</html>");
         }
     }
-
 %>
 
 <div class="container">
@@ -66,8 +64,6 @@
         <input id="message" type="text"/><br>
         <button class="button" type="button" onclick="send()" >Send</button>
         <button class="button" type="button" onclick="clean()">Clear</button>
-
-
     </form><br>--%>
 
     <form>
@@ -77,15 +73,17 @@
         <input id="message" name="message" type="text"/><br>
         <%--<button type="submit" class="btn btn-primary">Submit</button>--%>
         <button class="button" type="button" onclick="send()" >Send</button>
+
     </form><br>
 
     <form>
         <label for="fname">From (Time):</label><br>
-        <input type="datetime-local" ><br>
+        <input type="time" step="1" ><br>
         <label for="lname">To (Time):</label><br>
-        <input type="datetime-local">
+        <input type="time" step="1">
         <div id="selectedMsg"></div><br>
         <input class = "button" type="submit" value="Filter">
+        <button class="button" type="button" onclick="clean()" >Clean</button>
     </form><br>
 
     <form action="/action_page.php">
@@ -111,7 +109,6 @@
         var time = date.getTime();
         var record = user_name + " said: " + message + " " + date + "<br>";
         document.getElementById('chatBox').innerHTML += record;
-
         //send the data to backend
         var xmlhttp;
         xmlhttp = new XMLHttpRequest();
@@ -124,39 +121,29 @@
         msg_db = xmlhttp.send(parameters);
         console.log(msg_db) ;
         //display(msg_db);
-
-
     }
-
     function display(msg_db){
         console.log(msg_db);
         var i;
         for(i = 0; i<msg_db.length;i++){
             console.log(msg_db[i]);
             document.getElementById('chatBox').innerHTML += msg_db[i];
-
         }
     }
     //clear the msg of the chat box
     //function clean(){
-     //   console.log(record);
-      //  document.getElementById('/servlet/selectedMsg').innerHTML = "";
+    //   console.log(record);
+    //  document.getElementById('/servlet/selectedMsg').innerHTML = "";
     //}
     function clean(){
-
     }
-
-
     //change the style css
     function changeCSS(cssFile, cssLinkIndex) {
-
         var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-
         var newlink = document.createElement("link");
         newlink.setAttribute("rel", "stylesheet");
         newlink.setAttribute("type", "text/css");
         newlink.setAttribute("href", cssFile);
-
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
     }
 </script>
