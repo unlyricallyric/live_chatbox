@@ -30,75 +30,51 @@
 </head>
 
 <body>
-    <%!
-        //PrintWriter pout = response.getWriter();
-        TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
-        String date;
-    %>
 
+<%!
+    //PrintWriter pout = response.getWriter();
+
+    TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
+        String date, message, user;
+%>
+
+<div class="container">
+    <h1 style="margin: auto; width: 20%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Howdy, ${user_name}</h1>
+    <div id="chatBox" class="alert alert-success">
     <%
         if(request.getAttribute("msg_db") != null) {
             msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
             for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
                 date = entry.getKey().toString();
+                user = entry.getValue().getUsername().toUpperCase();
+                message = entry.getValue().getMessage();
     %>
-                <p>Here goes testing messages: </p>
-                <p>${date}</p>
-                <p><%=date%></p>
-                <p>${entry.getValue().getUsername()}</p>
-                <p><%=entry.getValue().getUsername()%></p>
-                <p>${entry.getValue().getMessage()}</p>
-                <p><%=entry.getValue().getMessage()%></p>
+
+            <div class="alert alert-dark">
+                <p> <%=user%> : <span style="float: right"><%=date%></span><p><%=message%> </p> </p>
+            </div>
+
     <%
             }
         }
     %>
-
-    <div class="chatbox" style="width: 50%;margin: auto">
-        <h1 style="width:40%;margin: auto">Chat Messages</h1>
-        <h2>Hello,
-            ${user_name}
-        </h2>
-
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">${user_name}:</h4>
-            <p>${message}</p>
-        </div>
-
-        <form method="POST" action="MessageServlet">
-            <div class="form-group">
-                Please enter your message here:
-                <input type="hidden" name="user_name" value="${user_name}">
-                <textarea class="form-control" name="message" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
-<div class="container">
-    <h1>Welcome to Chatting Room</h1>
-
-    <div id="chatBox">
-
     </div><br>
-    <%--<form id="messageForm">
-        <label>Username：</label>
-        <input id="user_name" type="text"/><br>
+    <form method="POST" action="MessageServlet">
         <label>Text：</label>
-        <input id="message" type="text"/><br>
-        <button class="button" type="button" onclick="send()" >Send</button>
-        <button class="button" type="button" onclick="clean()">Clear</button>
-    </form><br>--%>
-
-    <form>
-        <label>Username：</label>
-        <input id="user_name" name="user_name" type="text"/><br>
-        <label>Text：</label>
-        <input id="message" name="message" type="text"/><br>
-        <%--<button type="submit" class="btn btn-primary">Submit</button>--%>
-        <button class="button" type="button" onclick="send()" >Send</button>
-
+        <input type="hidden" name="user_name" value="${user_name}">
+        <textarea class="form-control" name="message" rows="3"></textarea><br>
+        <button type="submit" class="btn btn-primary">Send</button>
     </form><br>
+
+<%--    <form>--%>
+<%--        <label>Username：</label>--%>
+<%--        <input id="user_name" name="user_name" type="text"/><br>--%>
+<%--        <label>Text：</label>--%>
+<%--        <input id="message" name="message" type="text"/><br>--%>
+<%--        &lt;%&ndash;<button type="submit" class="btn btn-primary">Submit</button>&ndash;%&gt;--%>
+<%--        <button class="button" type="button" onclick="send()" >Send</button>--%>
+
+<%--    </form><br>--%>
 
     <form>
         <label for="fname">From (Time):</label><br>
@@ -123,7 +99,7 @@
     <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2</a>
 
 </div>
-<script type="text/javascript">
+<%--<script type="text/javascript">
     //send the msg to chat box
     function send(){
         //alert('Hello World!');
@@ -170,7 +146,7 @@
         newlink.setAttribute("href", cssFile);
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
     }
-</script>
+</script>--%>
 </body>
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
