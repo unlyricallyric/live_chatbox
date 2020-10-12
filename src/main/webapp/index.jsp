@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import = "java.io.*,java.util.*,java.io.PrintWriter" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="com.message.handler.Message" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -78,7 +80,7 @@
         var date = new Date();
         var time = date.getTime();
         var record = user_name + " said: " + message + " " + date + "<br>";
-        //document.getElementById('chatBox').innerHTML += record;
+        document.getElementById('chatBox').innerHTML += record;
 
         //send the data to backend
         var xmlhttp;
@@ -90,8 +92,26 @@
         //xmlhttp.open('GET', "MessageService?" + parameters, true)
         var msg_db;
         msg_db = xmlhttp.send(parameters);
-        console.log(Object.keys(msg_db).length) ;
+
+        <%
+
+        PrintWriter pout = response.getWriter();
+        TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
+
+        if(request.getAttribute("msg_db") != null) {
+            msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
+            for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
+                pout.println("Testing message");
+                pout.println("Date : " + entry.getKey());
+                pout.println(" User : " + entry.getValue().getUsername());
+                pout.println("Message: " + entry.getValue().getMessage());
+            }
+        }
+    %>
+        console.log(msg_db) ;
         //display(msg_db);
+
+
     }
 
     function display(msg_db){
@@ -104,10 +124,14 @@
         }
     }
     //clear the msg of the chat box
+    //function clean(){
+     //   console.log(record);
+      //  document.getElementById('/servlet/selectedMsg').innerHTML = "";
+    //}
     function clean(){
-        console.log(record);
-        document.getElementById('/servlet/selectedMsg').innerHTML = "";
+
     }
+
 
     //change the style css
     function changeCSS(cssFile, cssLinkIndex) {
