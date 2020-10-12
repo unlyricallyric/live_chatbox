@@ -40,16 +40,25 @@ public class MessageServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String msg_arr[][] = new String[100][4];
+        int count = 0;
+
         for (LocalTime i : msg_db.keySet()){
-            out.println(msg_db.get(i).getDate());
-            out.println(msg_db.get(i).getMessage());
-            out.println(msg_db.get(i).getUsername());
+            //out.println(msg_db.get(i).getDate());
+            msg_arr[count++][0] = msg_db.get(i).getDate().toString();
+            //out.println(msg_db.get(i).getUsername());
+            msg_arr[count++][1] = msg_db.get(i).getUsername();
+            //out.println(msg_db.get(i).getMessage());
+            msg_arr[count++][2] = msg_db.get(i).getMessage();
         }
+
+        out.println(msg_arr.toString());
         /*====temporary for testing outcome====*/
 
         /*====keep for sending back message object to frontend====*/
         String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
+        request.setAttribute("msg_arr", msg_arr);
 
         getServletContext()
                 .getRequestDispatcher(url)

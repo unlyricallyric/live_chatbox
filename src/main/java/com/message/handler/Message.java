@@ -61,5 +61,16 @@ public class Message {
         LocalTime time = LocalTime.parse(time_string, formatter);
 
         System.out.println(time);
+
+        String test[][] = new String[2][3];
+
+        test[0][0] = "date1";
+        test[0][1] = "user1";
+        test[0][2] = "msg1";
+        test[1][0] = "date2";
+        test[1][1] = "user2";
+        test[1][2] = "msg2";
+
+        System.out.println(test.toString());
     }
 }
