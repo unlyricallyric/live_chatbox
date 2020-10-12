@@ -1,0 +1,83 @@
+body {
+    margin: 0 auto;
+    padding: 0 40px;
+
+}
+
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 30px;
+    padding: 20px;
+    width: 90%;
+
+}
+
+#chatBox{
+    background-color: #9eb3c2;
+    word-wrap: break-word;
+    border:10px;
+    solid: #00F;
+    width: 60%;
+    height: 85%;
+    overflow-y: auto;
+    float: right;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+#selectedMsg{
+    background-color: #9eb3c2;
+    word-wrap: break-word;
+    border:10px;
+    solid: #00F;
+    width: 38%;
+    height: 40%;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+input[type=text] {
+    width: 38%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #cddafd;
+    color: black;
+    border-radius: 10px;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: white;
+    background-color: #1b3b6f;
+    border: none;
+    border-radius: 13px;
+    box-shadow: 0 3px #999;
+}
+
+
+.button:active {
+    background-color: #595775;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+#select {
+    width: 85%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #cddafd;
+    color: black;
+    border-radius: 10px;
+}
