@@ -12,12 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.TreeMap;
 
 @WebServlet("/MessageServlet")
 public class MessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+            Referer Check
+         */
+        String refererHeader = request.getContextPath();
+        System.out.println("getHeader "+request.getHeader("referer"));
+        System.out.println("getContextPath "+request.getContextPath());
+        System.out.println("getPathInfo "+request.getPathInfo());
+        System.out.println("getHttpServletMapping "+request.getHttpServletMapping());
+        System.out.println("getRequestURI "+request.getRequestURI());
+        System.out.println("getRequestURL "+request.getRequestURL());
+
         String message = request.getParameter("message");
         String user_name = request.getParameter("user_name");
 
@@ -38,12 +48,12 @@ public class MessageServlet extends HttpServlet {
         /*====temporary for testing outcome====*/
 
         /*====keep for sending back message object to frontend====*/
-        /*String url = "/index.jsp";
+        String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
 
         getServletContext()
                 .getRequestDispatcher(url)
-                .forward(request, response);*/
+                .forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import = "java.io.*,java.util.*,java.io.PrintWriter" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="com.message.handler.Message" %>
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <head>
@@ -14,9 +16,30 @@
 </head>
 <body>
     <%
+
         PrintWriter pout = response.getWriter();
-        //pout.println(session.getId());
+        TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
+
+        if(request.getAttribute("msg_db") != null) {
+            msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
+            for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
+                pout.println("Testing message");
+                pout.println("Date : " + entry.getKey());
+                pout.println(" User : " + entry.getValue().getUsername());
+                pout.println("Message: " + entry.getValue().getMessage());
+            }
+        }
     %>
+
+    <table>
+        <c:forEach items="${msg_db.entrySet()}" var="entry" >
+            <tr>
+                <td>${entry.getKey()}</td>
+                <td>${entry.getValue().getUsername()}</td>
+                <td>${entry.value.getMessage()}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
     <div class="chatbox" style="width: 50%;margin: auto">
         <h1 style="width:40%;margin: auto">Chat Messages</h1>
@@ -35,7 +58,7 @@
                 <input type="hidden" name="user_name" value="${user_name}">
                 <textarea class="form-control" name="message" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" value="com.message.servlet.MessageServlet">Submit</button>
         </form>
     </div>
 </body>
