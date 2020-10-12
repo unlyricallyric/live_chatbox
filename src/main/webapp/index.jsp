@@ -15,25 +15,37 @@
     <title>Title</title>
 </head>
 <body>
-    <%
-
-        PrintWriter pout = response.getWriter();
+    <%!
+        //PrintWriter pout = response.getWriter();
         TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
+        String date;
+    %>
 
+    <%
         if(request.getAttribute("msg_db") != null) {
             msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
             for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
-                pout.println("<!DOCTYPE html>");
-                pout.println("<html>");
-                pout.println("<head>");
-                pout.println("<title>Servlet HelloWorldServlet</title>");
-                pout.println("</head>");
-                pout.println("<body>");
-                pout.println("<h1>Time : " + entry.getKey() + "</h1>");
-                pout.println("<h3>User : " + entry.getValue().getUsername() + "</h3>");
-                pout.println("<h3>Message : " + entry.getValue().getMessage() + "</h3>");
-                pout.println("</body>");
-                pout.println("</html>");
+                date = entry.getKey().toString();
+    %>
+<%--                pout.println("<!DOCTYPE html>");--%>
+<%--                pout.println("<html>");--%>
+<%--                pout.println("<head>");--%>
+<%--                pout.println("<title>Servlet HelloWorldServlet</title>");--%>
+<%--                pout.println("</head>");--%>
+<%--                pout.println("<body>");--%>
+<%--                pout.println("<h1>Time : " + entry.getKey() + "</h1>");--%>
+<%--                pout.println("<h3>User : " + entry.getValue().getUsername() + "</h3>");--%>
+<%--                pout.println("<h3>Message : " + entry.getValue().getMessage() + "</h3>");--%>
+<%--                pout.println("</body>");--%>
+<%--                pout.println("</html>");--%>
+                <p>Here goes testing messages: </p>
+                <p>${date}</p>
+                <p><%=date%></p>
+                <p>${entry.getValue().getUsername()}</p>
+                <p><%=entry.getValue().getUsername()%></p>
+                <p>${entry.getValue().getMessage()}</p>
+                <p><%=entry.getValue().getMessage()%></p>
+    <%
             }
         }
     %>
