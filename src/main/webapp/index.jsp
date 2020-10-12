@@ -30,16 +30,36 @@
 
 <body>
 <%
-    //PrintWriter pout = response.getWriter();
-    //pout.println(session.getId());
+
+    PrintWriter pout = response.getWriter();
+    TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
+
+    if(request.getAttribute("msg_db") != null) {
+        msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
+        for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
+            pout.println("<!DOCTYPE html>");
+            pout.println("<html>");
+            pout.println("<head>");
+            pout.println("<title>Servlet HelloWorldServlet</title>");
+            pout.println("</head>");
+            pout.println("<body>");
+            pout.println("<h1>Time : " + entry.getKey() + "</h1>");
+            pout.println("<h3>User : " + entry.getValue().getUsername() + "</h3>");
+            pout.println("<h3>Message : " + entry.getValue().getMessage() + "</h3>");
+            pout.println("</body>");
+            pout.println("</html>");
+        }
+    }
+
 %>
+
 <div class="container">
     <h1>Welcome to Chatting Room</h1>
 
     <div id="chatBox">
 
     </div><br>
-    <form id="messageForm">
+    <%--<form id="messageForm">
         <label>Username：</label>
         <input id="user_name" type="text"/><br>
         <label>Text：</label>
@@ -48,7 +68,17 @@
         <button class="button" type="button" onclick="clean()">Clear</button>
 
 
+    </form><br>--%>
+
+    <form>
+        <label>Username：</label>
+        <input id="user_name" name="user_name" type="text"/><br>
+        <label>Text：</label>
+        <input id="message" name="message" type="text"/><br>
+        <%--<button type="submit" class="btn btn-primary">Submit</button>--%>
+        <button class="button" type="button" onclick="send()" >Send</button>
     </form><br>
+
     <form>
         <label for="fname">From (Time):</label><br>
         <input type="datetime-local" ><br>
@@ -92,22 +122,6 @@
         //xmlhttp.open('GET', "MessageService?" + parameters, true)
         var msg_db;
         msg_db = xmlhttp.send(parameters);
-
-        <%
-
-        PrintWriter pout = response.getWriter();
-        TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
-
-        if(request.getAttribute("msg_db") != null) {
-            msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
-            for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
-                pout.println("Testing message");
-                pout.println("Date : " + entry.getKey());
-                pout.println(" User : " + entry.getValue().getUsername());
-                pout.println("Message: " + entry.getValue().getMessage());
-            }
-        }
-    %>
         console.log(msg_db) ;
         //display(msg_db);
 

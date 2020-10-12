@@ -23,6 +23,9 @@ public class MessageServlet extends HttpServlet {
         System.out.println(message);
         System.out.println(user_name);
 
+        System.out.println(message);
+        System.out.println(user_name);
+
         ChatManager.postMessage(user_name, message);
 
         /*====temporary for testing outcome====*/
@@ -42,6 +45,10 @@ public class MessageServlet extends HttpServlet {
         /*====keep for sending back message object to frontend====*/
         String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
+
+        //for testing params
+        String test = "hello world";
+        request.setAttribute("test", test);
 
         getServletContext()
                 .getRequestDispatcher(url)
