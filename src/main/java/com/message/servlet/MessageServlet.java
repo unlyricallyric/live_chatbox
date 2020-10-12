@@ -20,6 +20,8 @@ public class MessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String message = request.getParameter("message");
         String user_name = request.getParameter("user_name");
+        System.out.println(message);
+        System.out.println(user_name);
 
         ChatManager.postMessage(user_name, message);
 
@@ -38,12 +40,13 @@ public class MessageServlet extends HttpServlet {
         /*====temporary for testing outcome====*/
 
         /*====keep for sending back message object to frontend====*/
-        /*String url = "/index.jsp";
+        String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
 
         getServletContext()
                 .getRequestDispatcher(url)
-                .forward(request, response);*/
+                .forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
