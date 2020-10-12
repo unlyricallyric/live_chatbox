@@ -39,7 +39,7 @@
 %>
 
 <div class="container">
-    <h1 style="margin: auto; width: 20%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Howdy, ${user_name}</h1>
+    <h1 style="margin: auto; width: 30%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Howdy, ${user_name}</h1>
     <div id="chatBox" class="alert alert-success">
     <%
         if(request.getAttribute("msg_db") != null) {
@@ -60,34 +60,23 @@
     %>
     </div><br>
     <form method="POST" action="MessageServlet">
-        <label>Text：</label>
+        <label>Please Input Your Message : </label>
         <input type="hidden" name="user_name" value="${user_name}">
         <textarea class="form-control" name="message" rows="3"></textarea><br>
         <button type="submit" class="btn btn-primary">Send</button>
-    </form><br>
+    </form>
 
-<%--    <form>--%>
-<%--        <label>Username：</label>--%>
-<%--        <input id="user_name" name="user_name" type="text"/><br>--%>
-<%--        <label>Text：</label>--%>
-<%--        <input id="message" name="message" type="text"/><br>--%>
-<%--        &lt;%&ndash;<button type="submit" class="btn btn-primary">Submit</button>&ndash;%&gt;--%>
-<%--        <button class="button" type="button" onclick="send()" >Send</button>--%>
-
-<%--    </form><br>--%>
-
-    <form>
-        <label for="fname">From (Time):</label><br>
-        <input type="time" step="1" ><br>
-        <label for="lname">To (Time):</label><br>
-        <input type="time" step="1">
-        <div id="selectedMsg"></div><br>
-        <input class = "button" type="submit" value="Filter">
-        <button class="button" type="button" onclick="clean()" >Clean</button>
+    <form action="MessageServlet">
+        <label>From :</label><br>
+        <input type="text" name="from">
+        <label>To :</label><br>
+        <input type="text" name="to">
+        <input type="hidden" name="user_name" value="${user_name}">
+        <button type="submit" name="displayMessage" value="submit_show" class="btn btn-primary">Show Message</button>
+        <button type="submit" name="displayMessage" value="submit_delete" class="btn btn-primary">Delete Message</button>
     </form><br>
 
     <form action="/action_page.php">
-
         <select>
             <option value="xml">xml</option>
             <option value="text">text</option>
