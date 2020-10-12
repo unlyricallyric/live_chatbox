@@ -30,11 +30,6 @@ public class MessageServlet extends HttpServlet {
 
         String message = request.getParameter("message");
         String user_name = request.getParameter("user_name");
-        System.out.println(message);
-        System.out.println(user_name);
-
-        System.out.println(message);
-        System.out.println(user_name);
 
         ChatManager.postMessage(user_name, message);
 
@@ -64,10 +59,7 @@ public class MessageServlet extends HttpServlet {
         String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
         request.setAttribute("msg_arr", msg_arr);
-
-        //for testing params
-        String test = "hello world";
-        request.setAttribute("test", test);
+        request.setAttribute("user_name", user_name);
 
         getServletContext()
                 .getRequestDispatcher(url)
