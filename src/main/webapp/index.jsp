@@ -23,10 +23,17 @@
         if(request.getAttribute("msg_db") != null) {
             msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
             for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
-                pout.println("Testing message");
-                pout.println("Date : " + entry.getKey());
-                pout.println(" User : " + entry.getValue().getUsername());
-                pout.println("Message: " + entry.getValue().getMessage());
+                pout.println("<!DOCTYPE html>");
+                pout.println("<html>");
+                pout.println("<head>");
+                pout.println("<title>Servlet HelloWorldServlet</title>");
+                pout.println("</head>");
+                pout.println("<body>");
+                pout.println("<h1>Time : " + entry.getKey() + "</h1>");
+                pout.println("<h3>User : " + entry.getValue().getUsername() + "</h3>");
+                pout.println("<h3>Message : " + entry.getValue().getMessage() + "</h3>");
+                pout.println("</body>");
+                pout.println("</html>");
             }
         }
     %>
@@ -48,7 +55,7 @@
                 <input type="hidden" name="user_name" value="${user_name}">
                 <textarea class="form-control" name="message" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" value="com.message.servlet.MessageServlet">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </body>

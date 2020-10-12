@@ -45,7 +45,7 @@ public class MessageServlet extends HttpServlet {
 
         for (LocalTime i : msg_db.keySet()){
             //out.println(msg_db.get(i).getDate());
-            msg_arr[count++][0] = msg_db.get(i).getDate().toString();
+            msg_arr[count++][0] = i.toString();
             //out.println(msg_db.get(i).getUsername());
             msg_arr[count++][1] = msg_db.get(i).getUsername();
             //out.println(msg_db.get(i).getMessage());
