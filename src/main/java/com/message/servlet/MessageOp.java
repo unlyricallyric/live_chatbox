@@ -38,17 +38,18 @@ public class MessageOp extends HttpServlet {
         PrintWriter out = response.getWriter();
         String date, user, msg;
 
+        out.println("{");
         for (LocalTime i : msg_db.keySet()) {
             date = i.toString();
             user = msg_db.get(i).getUsername();
             msg = msg_db.get(i).getMessage();
-            out.println("{");
-            out.println("   date: "+date+",");
-            out.println("   user: "+user+",");
-            out.println("   message: "+msg+"");
-            out.println("}");
+            out.println("\t\"message\": {");
+            out.println("\t\t\"date\": "+date+",");
+            out.println("\t\t\"user\": "+user+",");
+            out.println("\t\t\"msg\": "+msg+"");
+            out.println("\t}");
         }
-
+        out.println("}");
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
