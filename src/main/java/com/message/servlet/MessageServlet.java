@@ -29,14 +29,14 @@ public class MessageServlet extends HttpServlet {
         System.out.println("getRequestURL "+request.getRequestURL());*/
 
         String refresh = request.getParameter("send");
-        String user_name = "", message = "";
+        String user_name = request.getParameter("user_name");
+        String message = request.getParameter("message");
+
         TreeMap<LocalTime, Message> msg_db;
 
         if(refresh.equals("refresh")){
             msg_db = ChatManager.ListMessages();
         }else {
-            message = request.getParameter("message");
-            user_name = request.getParameter("user_name");
 
             ChatManager.postMessage(user_name, message);
 

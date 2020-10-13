@@ -12,13 +12,19 @@
     <title>Title</title>
 </head>
 <body>
-<form action="LoginServlet" method="POST" style="width: 20%;margin: auto">
-    <div class="form-row">
-        <div class="col">
-            <input type="text" name="user_name" class="form-control" placeholder="Please enter your name: ">
+    <form action="LoginServlet" method="POST" style="position: absolute;top: 40%;left: 40%;">
+        <%--<div class="form-row">
+            <div class="col">
+                <input type="text" name="user_name" class="form-control" placeholder="Please enter your name: ">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>--%>
+        <div class="input-group">
+            <input type="text" name="user_name" class="form-control" placeholder="Your Name " aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Login</button>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    </form>
 </body>
 </html>
