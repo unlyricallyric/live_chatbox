@@ -63,7 +63,8 @@
         <label>Please Input Your Message : </label>
         <input type="hidden" name="user_name" value="${user_name}">
         <textarea class="form-control" name="message" rows="3"></textarea><br>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" name="send" value="send" class="btn btn-primary">Send</button>
+        <button type="submit" name="send" value="refresh" class="btn btn-primary">Refresh</button>
     </form>
 
     <form action="MessageServlet">
