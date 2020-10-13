@@ -77,8 +77,8 @@
         <button type="submit" name="displayMessage" value="submit_delete" class="btn btn-primary">Delete Message</button>
     </form><br>
 
-    <form action="/action_page.php">
-        <select>
+    <form action="DownloadServlet">
+        <select name="download">
             <option value="xml">xml</option>
             <option value="text">text</option>
         </select>
