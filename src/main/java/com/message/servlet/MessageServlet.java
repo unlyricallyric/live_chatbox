@@ -75,10 +75,6 @@ public class MessageServlet extends HttpServlet {
         String str_to = request.getParameter("to");
         String user_name = request.getParameter("user_name");
 
-        System.out.println(request.getParameter("displayMessage"));
-        System.out.println(str_from);
-        System.out.println(str_to);
-
         LocalTime from = (MessageService.isNullOrEmpty(str_from))?LocalTime.of(00,00,00):MessageService.getDateFromString(str_from);
         LocalTime to = (MessageService.isNullOrEmpty(str_to))?LocalTime.of(23,59,59):MessageService.getDateFromString(str_to);
 
