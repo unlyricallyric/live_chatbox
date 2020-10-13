@@ -30,64 +30,54 @@
 </head>
 
 <body>
-<%
-    PrintWriter pout = response.getWriter();
+
+<%!
+    //PrintWriter pout = response.getWriter();
+
     TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
-    if(request.getAttribute("msg_db") != null) {
-        msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
-        for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
-            pout.println("<!DOCTYPE html>");
-            pout.println("<html>");
-            pout.println("<head>");
-            pout.println("<title>Servlet HelloWorldServlet</title>");
-            pout.println("</head>");
-            pout.println("<body>");
-            pout.println("<h1>Time : " + entry.getKey() + "</h1>");
-            pout.println("<h3>User : " + entry.getValue().getUsername() + "</h3>");
-            pout.println("<h3>Message : " + entry.getValue().getMessage() + "</h3>");
-            pout.println("</body>");
-            pout.println("</html>");
-        }
-    }
+        String date, message, user;
 %>
 
 <div class="container">
-    <h1>Welcome to Chatting Room</h1>
+    <h1 style="margin: auto; width: 30%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Howdy, ${user_name}</h1>
+    <div id="chatBox" class="alert alert-success">
+    <%
+        if(request.getAttribute("msg_db") != null) {
+            msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
+            for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
+                date = entry.getKey().toString();
+                user = entry.getValue().getUsername().toUpperCase();
+                message = entry.getValue().getMessage();
+    %>
 
-    <div id="chatBox">
+            <div class="alert alert-dark">
+                <p> <%=user%> : <span style="float: right"><%=date%></span><p><%=message%> </p> </p>
+            </div>
 
+    <%
+            }
+        }
+    %>
     </div><br>
-    <%--<form id="messageForm">
-        <label>Username：</label>
-        <input id="user_name" type="text"/><br>
-        <label>Text：</label>
-        <input id="message" type="text"/><br>
-        <button class="button" type="button" onclick="send()" >Send</button>
-        <button class="button" type="button" onclick="clean()">Clear</button>
-    </form><br>--%>
+    <form method="POST" action="MessageServlet">
+        <label>Please Input Your Message : </label>
+        <input type="hidden" name="user_name" value="${user_name}">
+        <textarea class="form-control" name="message" rows="3"></textarea><br>
+        <button type="submit" name="send" value="send" class="btn btn-primary">Send</button>
+        <button type="submit" name="send" value="refresh" class="btn btn-primary">Refresh</button>
+    </form>
 
-    <form>
-        <label>Username：</label>
-        <input id="user_name" name="user_name" type="text"/><br>
-        <label>Text：</label>
-        <input id="message" name="message" type="text"/><br>
-        <%--<button type="submit" class="btn btn-primary">Submit</button>--%>
-        <button class="button" type="button" onclick="send()" >Send</button>
-
-    </form><br>
-
-    <form>
-        <label for="fname">From (Time):</label><br>
-        <input type="time" step="1" ><br>
-        <label for="lname">To (Time):</label><br>
-        <input type="time" step="1">
-        <div id="selectedMsg"></div><br>
-        <input class = "button" type="submit" value="Filter">
-        <button class="button" type="button" onclick="clean()" >Clean</button>
+    <form action="MessageServlet">
+        <label>From :</label><br>
+        <input type="text" name="from">
+        <label>To :</label><br>
+        <input type="text" name="to">
+        <input type="hidden" name="user_name" value="${user_name}">
+        <button type="submit" name="displayMessage" value="submit_show" class="btn btn-primary">Show Message</button>
+        <button type="submit" name="displayMessage" value="submit_delete" class="btn btn-primary">Delete Message</button>
     </form><br>
 
     <form action="/action_page.php">
-
         <select>
             <option value="xml">xml</option>
             <option value="text">text</option>
@@ -99,7 +89,7 @@
     <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2</a>
 
 </div>
-<script type="text/javascript">
+<%--<script type="text/javascript">
     //send the msg to chat box
     function send(){
         //alert('Hello World!');
@@ -146,7 +136,7 @@
         newlink.setAttribute("href", cssFile);
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
     }
-</script>
+</script>--%>
 </body>
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
