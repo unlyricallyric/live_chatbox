@@ -28,35 +28,40 @@ public class MessageServlet extends HttpServlet {
         System.out.println("getRequestURI "+request.getRequestURI());
         System.out.println("getRequestURL "+request.getRequestURL());*/
 
-        String message = request.getParameter("message");
-        String user_name = request.getParameter("user_name");
-
-        ChatManager.postMessage(user_name, message);
-
-        /*====temporary for testing outcome====*/
+        String refresh = request.getParameter("send");
+        String user_name = "", message = "";
         TreeMap<LocalTime, Message> msg_db;
 
-        msg_db = ChatManager.ListMessages();
+        if(refresh.equals("refresh")){
+            msg_db = ChatManager.ListMessages();
+        }else {
+            message = request.getParameter("message");
+            user_name = request.getParameter("user_name");
 
-        PrintWriter out = response.getWriter();
+            ChatManager.postMessage(user_name, message);
 
-        String msg_arr[][] = new String[100][4];
-        int count = 0;
+            msg_db = ChatManager.ListMessages();
 
-        for (LocalTime i : msg_db.keySet()){
-            //out.println(msg_db.get(i).getDate());
-            msg_arr[count++][0] = i.toString();
-            //out.println(msg_db.get(i).getUsername());
-            msg_arr[count++][1] = msg_db.get(i).getUsername();
-            //out.println(msg_db.get(i).getMessage());
-            msg_arr[count++][2] = msg_db.get(i).getMessage();
+            PrintWriter out = response.getWriter();
+
+            String msg_arr[][] = new String[100][4];
+            int count = 0;
+
+            for (LocalTime i : msg_db.keySet()) {
+                //out.println(msg_db.get(i).getDate());
+                msg_arr[count++][0] = i.toString();
+                //out.println(msg_db.get(i).getUsername());
+                msg_arr[count++][1] = msg_db.get(i).getUsername();
+                //out.println(msg_db.get(i).getMessage());
+                msg_arr[count++][2] = msg_db.get(i).getMessage();
+            }
         }
 
         /*====keep for sending back message object to frontend====*/
         String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
-        request.setAttribute("msg_arr", msg_arr);
         request.setAttribute("user_name", user_name);
+        //request.setAttribute("msg_arr", msg_arr);
 
         getServletContext()
                 .getRequestDispatcher(url)
