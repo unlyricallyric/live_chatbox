@@ -39,56 +39,67 @@
 %>
 
 <div class="container">
-    <h1 style="margin: auto; width: 30%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Howdy, ${user_name}</h1>
+    <h1 style="margin: auto; width: 30%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Chatting Time ${user_name}</h1>
     <div id="chatBox" class="alert alert-success">
-    <%
-        if(request.getAttribute("msg_db") != null) {
-            msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
-            for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
-                date = entry.getKey().toString();
-                user = entry.getValue().getUsername().toUpperCase();
-                message = entry.getValue().getMessage();
-    %>
+        <%
+            if(request.getAttribute("msg_db") != null) {
+                msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
+                for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
+                    date = entry.getKey().toString();
+                    user = entry.getValue().getUsername().toUpperCase();
+                    message = entry.getValue().getMessage();
+        %>
 
-            <div class="alert alert-dark">
-                <p> <%=user%> : <span style="float: right"><%=date%></span><p><%=message%> </p> </p>
-            </div>
+        <div class="alert alert-dark">
+            <p> <%=user%> : <span style="float: right"><%=date%></span><p><%=message%> </p> </p>
+        </div>
 
-    <%
+        <%
+                }
             }
-        }
-    %>
+        %>
     </div><br>
     <form method="POST" action="MessageServlet">
         <label>Please Input Your Message : </label>
         <input type="hidden" name="user_name" value="${user_name}">
-        <textarea class="form-control" name="message" rows="3"></textarea><br>
-        <button type="submit" name="send" value="send" class="btn btn-primary">Send</button>
-        <button type="submit" name="send" value="refresh" class="btn btn-primary">Refresh</button>
+        <textarea id="text" class="form-control" name="message" rows="3"></textarea><br>
+        <button type="submit" name="send" value="send" class="button">Send</button>
+        <button type="submit" name="send" value="refresh" class="button">Refresh</button>
     </form>
 
     <form action="MessageServlet">
         <label>From :</label><br>
-        <input type="text" name="from">
+        <input type="text" name="from"><br>
         <label>To :</label><br>
-        <input type="text" name="to">
-        <input type="hidden" name="user_name" value="${user_name}">
-        <button type="submit" name="displayMessage" value="submit_show" class="btn btn-primary">Show Message</button>
-        <button type="submit" name="displayMessage" value="submit_delete" class="btn btn-primary">Delete Message</button>
+        <input type="text" name="to"><br>
+        <input type="hidden" name="user_name" value="${user_name}"><br>
+        <button type="submit" name="displayMessage" value="submit_show" class="button">Show Message</button>
+        <button type="submit" name="displayMessage" value="submit_delete" class="button">Delete Message</button>
     </form><br>
 
     <form action="/action_page.php">
-        <select>
+        <select id="select">
             <option value="xml">xml</option>
             <option value="text">text</option>
         </select>
         <input class = "button" type="submit" value="Download">
     </form><br>
 
-    <a href=" " onclick="changeCSS('style1.css', 0);">STYLE 1</a>
+    <a href="#" onclick="changeCSS('style1.css', 0);">STYLE 1</a>
     <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2</a>
 
 </div>
+
+<script>
+    function changeCSS(cssFile, cssLinkIndex) {
+        var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", cssFile);
+        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+    }
+</script>
 <%--<script type="text/javascript">
     //send the msg to chat box
     function send(){

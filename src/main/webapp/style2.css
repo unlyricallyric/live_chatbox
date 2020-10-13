@@ -48,6 +48,17 @@ input[type=text] {
     border-radius: 10px;
 }
 
+#text {
+    width: 38%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #cddafd;
+    color: black;
+    border-radius: 10px;
+}
+
 .button {
     display: inline-block;
     padding: 8px 10px;
