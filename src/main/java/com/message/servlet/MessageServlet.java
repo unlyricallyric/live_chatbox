@@ -20,13 +20,8 @@ public class MessageServlet extends HttpServlet {
         /*
             Referer Check
          */
-        /*String refererHeader = request.getContextPath();
-        System.out.println("getHeader "+request.getHeader("referer"));
-        System.out.println("getContextPath "+request.getContextPath());
-        System.out.println("getPathInfo "+request.getPathInfo());
-        System.out.println("getHttpServletMapping "+request.getHttpServletMapping());
-        System.out.println("getRequestURI "+request.getRequestURI());
-        System.out.println("getRequestURL "+request.getRequestURL());*/
+        String refererHeader = request.getHeader("referer");
+        MessageService.csrfValidate(refererHeader, request, response);
 
         String refresh = request.getParameter("send");
         String user_name = request.getParameter("user_name");
@@ -68,6 +63,12 @@ public class MessageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+            Referer Check
+         */
+        String refererHeader = request.getHeader("referer");
+        MessageService.csrfValidate(refererHeader, request, response);
+
         //get from and to params
         String str_from = request.getParameter("from");
         String str_to = request.getParameter("to");
