@@ -9,6 +9,10 @@
 * <h4>Post Messages:
   - curl -d "user_name=Johnson&message=TestMessage" http://localhost:8080/MessageOp
   
+* <h4>Download Files:
+  - curl "http://localhost:8080/DownloadServlet?download=text" --output chatHistory.txt
+  - curl "http://localhost:8080/DownloadServlet?download=xml" --output chatHistory.xml
+  
 * <h4>Delete All Messages:
   - curl -X DELETE http://localhost:8080/MessageOp
   - curl -X DELETE "http://localhost:8080/MessageOp?from=19:47:53&to=19:47:56"
