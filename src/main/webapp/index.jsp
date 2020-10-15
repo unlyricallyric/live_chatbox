@@ -10,20 +10,26 @@
 <%@ page import = "java.io.*,java.util.*,java.io.PrintWriter" %>
 <%@ page import="java.time.LocalTime" %>
 <%@ page import="com.message.handler.Message" %>
+<%@ page import="com.message.service.MessageService" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String style_sheet = request.getParameter("style_sheet");
+    if(MessageService.isNullOrEmpty(style_sheet)){
+        style_sheet = "style1.css";
+    }
+    System.out.println("This is front end: "+style_sheet);
 %>
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="style1.css">
+    <link rel="stylesheet" type="text/css" href="<%=style_sheet%>">
     <title>Title</title>
 
     <base href="<%=basePath%>">
     <title>Welcome to Chat Room</title>
-    <link rel="stylesheet"   href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet"   href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -62,6 +68,7 @@
     <form method="POST" action="MessageServlet">
         <label>Please Input Your Message : </label>
         <input type="hidden" name="user_name" value="${user_name}">
+        <input type="hidden" name="style_sheet" value="${style_sheet}">
         <textarea id="text" class="form-control" name="message" rows="3"></textarea><br>
         <button type="submit" name="send" value="send" class="button">Send</button>
         <button type="submit" name="send" value="refresh" class="button">Refresh</button>
@@ -72,7 +79,8 @@
         <input type="text" name="from"><br>
         <label>To :</label><br>
         <input type="text" name="to"><br>
-        <input type="hidden" name="user_name" value="${user_name}"><br>
+        <input type="hidden" name="user_name" value="${user_name}">
+        <input type="hidden" name="style_sheet" value="${style_sheet}">
         <button type="submit" name="displayMessage" value="submit_show" class="button">Show Message</button>
         <button type="submit" name="displayMessage" value="submit_delete" class="button">Delete Message</button>
     </form><br>
@@ -85,8 +93,12 @@
         <input class = "button" type="submit" value="Download">
     </form><br>
 
-    <a href="#" onclick="changeCSS('style1.css', 0);">STYLE 1</a>
-    <a href="#" onclick="changeCSS('style2.css', 0);">STYLE 2</a>
+    <form method="POST" action="MessageServlet">
+        <input type="hidden" name="send" value="refresh">
+        <input type="hidden" name="user_name" value="${user_name}">
+        <button type="submit" name="style_sheet" value="style1.css">STYLE 1</button>
+        <button type="submit" name="style_sheet" value="style2.css">STYLE 2</button>
+    </form>
 
 </div>
 
