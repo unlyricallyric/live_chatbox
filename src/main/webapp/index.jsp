@@ -18,7 +18,6 @@
     if(MessageService.isNullOrEmpty(style_sheet)){
         style_sheet = "style1.css";
     }
-    System.out.println("This is front end: "+style_sheet);
 %>
 <html>
 
