@@ -31,6 +31,7 @@ public class MessageServlet extends HttpServlet {
         String refresh = request.getParameter("send");
         String user_name = request.getParameter("user_name");
         String message = request.getParameter("message");
+        String style_sheet = request.getParameter("style_sheet");
 
         TreeMap<LocalTime, Message> msg_db;
 
@@ -48,11 +49,8 @@ public class MessageServlet extends HttpServlet {
             int count = 0;
 
             for (LocalTime i : msg_db.keySet()) {
-                //out.println(msg_db.get(i).getDate());
                 msg_arr[count++][0] = i.toString();
-                //out.println(msg_db.get(i).getUsername());
                 msg_arr[count++][1] = msg_db.get(i).getUsername();
-                //out.println(msg_db.get(i).getMessage());
                 msg_arr[count++][2] = msg_db.get(i).getMessage();
             }
         }
@@ -61,7 +59,7 @@ public class MessageServlet extends HttpServlet {
         String url = "/index.jsp";
         request.setAttribute("msg_db", msg_db);
         request.setAttribute("user_name", user_name);
-        //request.setAttribute("msg_arr", msg_arr);
+        request.setAttribute("style_sheet", style_sheet);
 
         getServletContext()
                 .getRequestDispatcher(url)
@@ -74,6 +72,7 @@ public class MessageServlet extends HttpServlet {
         String str_from = request.getParameter("from");
         String str_to = request.getParameter("to");
         String user_name = request.getParameter("user_name");
+        String style_sheet = request.getParameter("style_sheet");
 
         LocalTime from = (MessageService.isNullOrEmpty(str_from))?LocalTime.of(00,00,00):MessageService.getDateFromString(str_from);
         LocalTime to = (MessageService.isNullOrEmpty(str_to))?LocalTime.of(23,59,59):MessageService.getDateFromString(str_to);
@@ -99,6 +98,7 @@ public class MessageServlet extends HttpServlet {
 
         request.setAttribute("msg_db", msg_db);
         request.setAttribute("user_name", user_name);
+        request.setAttribute("style_sheet", style_sheet);
 
         getServletContext()
                 .getRequestDispatcher(url)
