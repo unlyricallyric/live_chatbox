@@ -32,7 +32,6 @@ public class ChatManager {
     }
 
     public static TreeMap<LocalTime, Message> ListMessages(){
-        System.out.println(DB);
         return DB;
     }
 
