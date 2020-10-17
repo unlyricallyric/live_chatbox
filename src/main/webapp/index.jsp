@@ -44,7 +44,7 @@
 %>
 
 <div class="container">
-    <h1 style="margin: auto; width: 30%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Chatting Time ${user_name}</h1>
+    <h1 style="margin: auto; width: 35%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Chatting Time ${user_name}</h1>
     <div id="chatBox" class="alert alert-success">
         <%
             if(request.getAttribute("msg_db") != null) {
