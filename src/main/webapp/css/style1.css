@@ -1,6 +1,7 @@
 body {
     margin: 0 auto;
     padding: 0 40px;
+    background: linear-gradient(to right, #b92b27, #1565c0)
 }
 .container {
     border: 2px solid #dedede;
