@@ -112,9 +112,6 @@ public class MessageServlet extends HttpServlet {
         String str_from = request.getParameter("from");
         String str_to = request.getParameter("to");
 
-        System.out.println("This is from : "+str_from);
-        System.out.println("This is to : "+str_to);
-
         LocalTime from = (MessageService.isNullOrEmpty(str_from))?LocalTime.of(00,00,00):MessageService.getDateFromString(str_from);
         LocalTime to = (MessageService.isNullOrEmpty(str_to))?LocalTime.of(23,59,59):MessageService.getDateFromString(str_to);
 
