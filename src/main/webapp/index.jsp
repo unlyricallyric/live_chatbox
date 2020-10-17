@@ -22,7 +22,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="<%=style_sheet%>">
+    <link rel="stylesheet" type="text/css" href="css/<%=style_sheet%>">
     <title>Title</title>
 
     <base href="<%=basePath%>">
