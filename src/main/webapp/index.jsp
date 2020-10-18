@@ -85,11 +85,19 @@
     </form><br>
 
     <form action="DownloadServlet">
-        <select name="download">
-            <option value="xml">xml</option>
-            <option value="text">text</option>
-        </select>
-        <input class = "button" type="submit" value="Download">
+        <div class="row">
+            <div id="download" style="margin:0 auto">
+                <div class="col-md-2" style="float: left">
+                    <select name="download" class="form-control">
+                        <option value="text" selected="selected">text</option>
+                        <option value="xml">xml</option>
+                    </select>
+                </div>
+                <div style="margin-left: 120px">
+                    <input class = "button" type="submit" value="Download">
+                </div>
+            </div>
+        </div>
     </form><br>
 
     <form method="POST" action="MessageServlet">
