@@ -10,7 +10,7 @@ body {
     border-radius: 30px;
     padding: 20px;
     width: 90%;
-
+    margin-top: 5%;
 }
 
 #chatBox{
@@ -19,7 +19,7 @@ body {
     border:10px;
     solid: #00F;
     width: 60%;
-    height: 85%;
+    height: 66%;
     overflow-y: auto;
     float: right;
     margin-right: 5px;
@@ -74,13 +74,11 @@ input[type=text] {
     box-shadow: 0 3px #999;
 }
 
-
 .button:active {
     background-color: #595775;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
-
 
 #select {
     width: 85%;

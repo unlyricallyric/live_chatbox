@@ -9,13 +9,14 @@ body {
     border-radius: 30px;
     padding: 20px;
     width: 90%;
+    margin-top: 5%;
 }
 #chatBox{
     background-color: white;
     word-wrap: break-word;
     border:10px;
     solid: #00F;
-    height: 700px;
+    height: 500px;
     overflow-y: auto;
     border-radius: 10px;
 }
