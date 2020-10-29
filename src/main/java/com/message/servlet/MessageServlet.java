@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.time.LocalTime;
 import java.util.TreeMap;
 
@@ -27,6 +28,19 @@ public class MessageServlet extends HttpServlet {
         String user_name = request.getParameter("user_name");
         String message = request.getParameter("message");
         String style_sheet = request.getParameter("style_sheet");
+
+        /*
+            DB Connection
+         */
+        Connection con;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost";
+            String user = "";
+            String pass = "";
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         TreeMap<LocalTime, Message> msg_db;
 
