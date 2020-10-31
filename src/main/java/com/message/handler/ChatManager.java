@@ -1,27 +1,11 @@
 package com.message.handler;
 
-import com.message.service.MessageService;
-
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class ChatManager {
-
-    //leave for later composition structure
-
-    /*private final Message message;
-    private final User user;
-
-    public ChatManager(Message message, User user){
-        this.message = message;
-        this.user = user;
-    }*/
 
     //local DB, save data in memory
     private static TreeMap<LocalTime, Message> DB = new TreeMap<>();
