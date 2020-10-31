@@ -35,7 +35,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="index_blog.jsp">Start Bootstrap</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -43,16 +43,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="index_blog.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="about.jsp">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="post.html">Sample Post</a>
+                    <a class="nav-link" href="post.jsp">Sample Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="contact.jsp">Contact</a>
                 </li>
             </ul>
         </div>
@@ -79,7 +79,7 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview">
-                <a href="post.html">
+                <a href="post.jsp">
                     <h2 class="post-title">
                         Man must explore, and this is exploration at its greatest
                     </h2>
@@ -93,7 +93,7 @@
             </div>
             <hr>
             <div class="post-preview">
-                <a href="post.html">
+                <a href="post.jsp">
                     <h2 class="post-title">
                         I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
                     </h2>
@@ -104,7 +104,7 @@
             </div>
             <hr>
             <div class="post-preview">
-                <a href="post.html">
+                <a href="post.jsp">
                     <h2 class="post-title">
                         Science has not yet mastered prophecy
                     </h2>
@@ -118,7 +118,7 @@
             </div>
             <hr>
             <div class="post-preview">
-                <a href="post.html">
+                <a href="post.jsp">
                     <h2 class="post-title">
                         Failure is not an option
                     </h2>

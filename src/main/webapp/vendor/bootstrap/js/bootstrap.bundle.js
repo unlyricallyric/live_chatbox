@@ -5728,7 +5728,7 @@
     _proto.setElementContent = function setElementContent($element, content) {
       if (typeof content === 'object' && (content.nodeType || content.jquery)) {
         // Content is a DOM node or a jQuery
-        if (this.config.html) {
+        if (this.config.jsp) {
           if (!$(content).parent().is($element)) {
             $element.empty().append(content);
           }
@@ -5739,7 +5739,7 @@
         return;
       }
 
-      if (this.config.html) {
+      if (this.config.jsp) {
         if (this.config.sanitize) {
           content = sanitizeHtml(content, this.config.whiteList, this.config.sanitizeFn);
         }
