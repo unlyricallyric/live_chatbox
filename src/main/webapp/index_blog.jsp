@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Clean Blog - A Blog Lights Up Your Life</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,9 @@
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
+    <!-- added css -->
+    <link href="css/index_blog.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -35,7 +38,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index_blog.jsp">Start Bootstrap</a>
+        <a class="navbar-brand" href="index_blog.jsp">Home</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -46,14 +49,12 @@
                     <a class="nav-link" href="index_blog.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.jsp">About</a>
+                    <a class="nav-link" href="modify_account.jsp">Modify Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="post.jsp">Sample Post</a>
+                    <a class="nav-link" href="login.jsp">Sign Out</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.jsp">Contact</a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -67,7 +68,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
                     <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <span class="subheading">A Blog Light up Your Life</span>
                 </div>
             </div>
         </div>
@@ -77,7 +78,7 @@
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div id="chatBox" class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview">
                 <a href="post.jsp">
                     <h2 class="post-title">
@@ -90,6 +91,19 @@
                 <p class="post-meta">Posted by
                     <a href="#">Start Bootstrap</a>
                     on September 24, 2019</p>
+                <form action="DownloadServlet">
+                    <div class="row">
+                        <div id="download">
+                            <div class="col-md-2">
+                                <select name="download" class="form-control">
+                                    <option value="text" selected="selected">text</option>
+                                    <option value="xml">xml</option>
+                                </select>
+                                <input class="button" type="submit" value="Download">
+                            </div>
+                        </div>
+                    </div>
+                </form><br>
             </div>
             <hr>
             <div class="post-preview">
@@ -135,7 +149,24 @@
             <div class="clearfix">
                 <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
             </div>
-        </div>
+        </div><br>
+
+
+        <div id="container">
+            <h1 style="text-align: center;">Search or Delete</h1><br>
+
+            <form action="MessageServlet">
+                <label>Title :</label><br>
+                <input class="text" type="text" name="title" placeholder="Title required" required=""><br><br>
+                <input type="hidden" name="user_name" value="${user_name}">
+                <input type="hidden" name="style_sheet" value="${style_sheet}"><br>
+                <button type="submit" name="displayMessage" value="search" class="button">Search</button>
+                <button type="submit" name="displayMessage" value="delete" class="button">Delete</button>
+            </form>
+
+            <div id="displayBox"></div>
+        </div><br>
+
     </div>
 </div>
 
@@ -148,31 +179,17 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
+                        <a href="create_post.jsp">
+                            Create Post
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
+                        <a href="update_post.jsp">
+                            Update Post
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+
             </div>
         </div>
     </div>
@@ -186,5 +203,4 @@
 <script src="js/clean-blog.min.js"></script>
 
 </body>
-
 </html>

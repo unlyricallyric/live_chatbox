@@ -1,27 +1,21 @@
-body {
-    margin: 0 auto;
-    padding: 0 40px;
-    background: linear-gradient(to right, #212529, #777777);
-}
 #container {
-    border: 5px solid #dedede;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
+    border: 2px solid #dedede;
+    padding: 20px;
+    width: 90%;
+    margin-top: 5%;
 }
-input[type=text], input[type="name"], input[type="password"]{
+
+
+input[type=text] {
     width: 100%;
     padding: 10px 10px;
     margin: 8px 0;
     box-sizing: border-box;
     border: none;
-    background-color: #dfd7d7;
+    background-color: #A9A9A9;
     color: black;
     border-radius: 10px;
 }
-
 
 #text {
     width: 100%;
@@ -29,7 +23,7 @@ input[type=text], input[type="name"], input[type="password"]{
     margin: 8px 0;
     box-sizing: border-box;
     border: none;
-    background-color: #dfd7d7;
+    background-color: #A9A9A9;
     color: black;
     border-radius: 10px;
 }
@@ -37,19 +31,18 @@ input[type=text], input[type="name"], input[type="password"]{
 .button {
     display: inline-block;
     padding: 8px 10px;
-    font-size: 13px;
+    font-size: 14px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
-    background-color: #dfd7d7;
+    background-color: #A9A9A9;
     border: none;
     border-radius: 13px;
     box-shadow: 0 3px #999;
-    position: center;
 }
 .button:active {
-    background-color: #dfd7d7;
+    background-color: #A9A9A9;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }

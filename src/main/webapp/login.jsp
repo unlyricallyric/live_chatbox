@@ -8,32 +8,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>Chat Room</title>
+<%--        <link rel="stylesheet" type="text/css" href="css/<%=style_sheet%>">--%>
+        <title>LOGIN</title>
+
+<%--        <base href="<%=basePath%>">--%>
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     </head>
 
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <form action="LoginServlet" method="POST" class="box">
-                            <h1>Sign in</h1>
-                                <input type="text" name="user_name" class="form-control" placeholder="Your Name " aria-describedby="basic-addon2">
-                                <input class="btn btn-outline-secondary" type="submit">Login</input>
-                            <div class="col-md-12">
-                                <ul class="social-network social-circle">
-                                    <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
+    <div id="container">
+        <h1 style="text-align:center; color:white">LOGIN</h1><br>
+        <div>
+            <form action="#" method="post">
+                <input class="text" type="name" name="name" placeholder="Name" required="">
+                <input class="text" type="password" name="password" placeholder="Password" required=""><br><br>
+                <button type="submit" name="login" value="submit_show" class="button">LOGIN</button>
+            </form>
+        </div><br>
+        <p style="color: white">Don't Have an Account? <a href="sign_up.jsp"> Sign Up Now!</a></p>
+        <p style="color: white"><a href="forget_password.jsp">Forget password?</a></p>
+
+    </div>
+
+
     </body>
 </html>
