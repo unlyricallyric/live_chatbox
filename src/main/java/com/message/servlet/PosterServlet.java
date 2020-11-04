@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/")
+@WebServlet("/PosterServlet/*")
 public class PosterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -44,18 +44,26 @@ public class PosterServlet extends HttpServlet {
         }
     }
 
-    private void createPost(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
+    private void createPost(HttpServletRequest request, HttpServletResponse response){
         System.out.println("this is Create");
     }
 
-    private void listPost(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
+    private void listPost(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("this is Read");
-        UserController uc = new UserController();
-        String user_name = uc.findUser(1);
-        System.out.println("the user name is: " + user_name);
+
+
+        try{
+            UserController uc = new UserController();
+            String user_name = uc.findUser(1);
+
+            System.out.println("the user name is: " + user_name);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void updatePost(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
+    private void updatePost(HttpServletRequest request, HttpServletResponse response){
         System.out.println("this is update");
     }
 
