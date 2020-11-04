@@ -31,8 +31,6 @@ public class UserController implements UserDao {
     public String findUser(int id) throws SQLException {
         String sql = "select * from Users where user_id=" + id;
         String name = "";
-
-        System.out.println("client info: "+getCon().getClientInfo());
         try{
 
             Statement stmt = con.createStatement();
