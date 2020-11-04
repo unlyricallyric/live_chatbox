@@ -1,5 +1,7 @@
 package com.message.servlet;
 
+import com.message.controller.UserController;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +50,9 @@ public class PosterServlet extends HttpServlet {
 
     private void listPost(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
         System.out.println("this is Read");
+        UserController uc = new UserController();
+        String user_name = uc.findUser(1);
+        System.out.println("the user name is: " + user_name);
     }
 
     private void updatePost(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{

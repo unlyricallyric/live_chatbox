@@ -1,7 +1,6 @@
 /*Create database*/
 CREATE DATABASE IF NOT EXISTS Blog;
 
-
 CREATE TABLE Users (
     user_id int NOT NULL AUTO_INCREMENT,
     user_name VARCHAR(32) NOT NULL,
