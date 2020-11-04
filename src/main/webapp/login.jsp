@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <form action="LoginServlet" method="POST" class="box">
+                        <form action="PosterServlet/read" method="POST" class="box">
                             <h1>Sign in</h1>
                                 <input type="text" name="user_name" class="form-control" placeholder="Your Name " aria-describedby="basic-addon2">
                                 <input class="btn btn-outline-secondary" type="submit">Login</input>
