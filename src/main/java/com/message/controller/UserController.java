@@ -3,38 +3,44 @@ package com.message.controller;
 import com.message.DB.DBConnect;
 import com.message.Dao.UserDao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class UserController implements UserDao {
 
-    public Connection con;
+    private Connection con;
 
-    public UserController(){
+    public UserController() {
+        try {
+            DBConnect db = new DBConnect();
+            setCon(db.getConnection());
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
+    public void setCon(Connection c){
+        this.con = c;
+    }
+
+    public Connection getCon(){
+        return this.con;
     }
 
     @Override
     public String findUser(int id) throws SQLException {
         String sql = "select * from Users where user_id=" + id;
-        System.out.println("the sql statement is: " + sql);
         String name = "";
 
-
+        System.out.println("client info: "+getCon().getClientInfo());
         try{
-            DBConnect db = new DBConnect();
-            con = getConnection();
 
-            System.out.println(con.getClientInfo());
-
-            /*Statement stmt = con.createStatement();
+            Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 name = rs.getString("user_name");
-            }*/
+            }
 
         } catch (Exception e) {
 
@@ -42,22 +48,7 @@ public class UserController implements UserDao {
         return name;
     }
 
-    public Connection getConnection() throws SQLException {
-
-        Connection conn;
-
-        conn = DriverManager.getConnection("jdbc:mysql://192.99.246.175:3306/Blog", "root", "Concordia2020");
-
-        System.out.println("Connected to database");
-        return conn;
-    }
-
     public static void main(String args[]){
-        /*UserController uc = new UserController();
-        try {
-            System.out.println(uc.getConnection());
-        }catch(Exception e){
 
-        }*/
     }
 }
