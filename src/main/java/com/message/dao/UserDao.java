@@ -1,4 +1,4 @@
-package com.message.Dao;
+package com.message.dao;
 
 import java.io.IOException;
 import java.sql.SQLException;

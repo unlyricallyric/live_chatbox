@@ -1,4 +1,4 @@
-package com.message.Model;
+package com.message.model;
 
 public class User {
 
@@ -9,17 +9,21 @@ public class User {
     private String last_name = "";
     private String user_email = "";
 
-    public User(int id, String user_name, String password){
+    public User(int id){
         this.id = id;
-        this.user_name = user_name;
-        this.password = password;
     }
 
-    public User(int id, String user_name, String password, String first_name, String last_name, String user_email){
-        this(id, user_name, password);
+    public User(String user_name, String password, String first_name, String last_name, String user_email){
+        this.user_name = user_name;
+        this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
         this.user_email = user_email;
+    }
+
+    public User(int id, String user_name, String password, String first_name, String last_name, String user_email){
+        this(user_name, password, first_name, last_name, user_email);
+        this.id = id;
     }
 
     public int getId() {
@@ -69,6 +73,5 @@ public class User {
     public void setUser_email(String user_email) {
         this.user_email = user_email;
     }
-
 
 }
