@@ -1,4 +1,6 @@
-package com.message.DB;
+package com.message.db;
+
+import com.message.model.Post;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -32,6 +34,11 @@ public class DBConnect {
         String db_pass = prop.getProperty("db_pass");
 
         System.out.println("jdbc:mysql://" + host_ip + ":" + db_port + "/" + db);
+        /*try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(Exception e){
+            e.printStackTrace();
+        }*/
         this.con = DriverManager.getConnection("jdbc:mysql://" + host_ip + ":" + db_port + "/" + db, db_user, db_pass);
     }
 
@@ -39,7 +46,21 @@ public class DBConnect {
         return this.con;
     }
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
 
-    }
+        try{
+            DBConnect db = new DBConnect();
+            Connection con = db.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Persons");
+
+            while (rs.next()) {
+                String lastName = rs.getString("LastName");
+                System.out.println(lastName + "\n");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }*/
 }
