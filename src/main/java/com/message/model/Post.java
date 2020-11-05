@@ -1,23 +1,39 @@
-package com.message.Model;
+package com.message.model;
 
 public class Post {
 
-    private int id;
-    private String posted_by;
-    private String post_date;
-    private String last_modified;
-    private String message;
+    protected int id;
+    protected String posted_by;
+    protected String post_title;
+    protected String post_date;
+    protected String last_modified;
+    protected String message;
 
-    public Post(int id, String posted_by){
-        this.id = id;
+    public Post(String posted_by, String post_title, String message){
         this.posted_by = posted_by;
+        this.post_title = post_title;
+        this.message = message;
     }
 
-    public Post(int id, String posted_by, String post_date, String last_modified, String message){
-        this(id, posted_by);
+    public Post(String posted_by, String post_title, String post_date, String last_modified, String message){
+        this.posted_by = posted_by;
+        this.post_title = post_title;
         this.post_date = post_date;
         this.last_modified = last_modified;
         this.message = message;
+    }
+
+    public Post(int id, String posted_by, String post_title, String post_date, String last_modified, String message){
+        this(posted_by, post_title, post_date, last_modified, message);
+        this.id = id;
+    }
+
+    public String getPost_title() {
+        return post_title;
+    }
+
+    public void setPost_title(String post_title) {
+        this.post_title = post_title;
     }
 
     public int getId() {
