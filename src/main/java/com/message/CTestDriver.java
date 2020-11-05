@@ -28,13 +28,13 @@ public class CTestDriver
         String db = prop.getProperty("db");
         String db_user = prop.getProperty("db_user");
         String db_pass = prop.getProperty("db_pass");
-        
+        System.out.println("jdbc:mysql://" + host_ip + ":" + db_port + "/" + db);
         Connection con = DriverManager.getConnection("jdbc:mysql://" + host_ip + ":" + db_port + "/" + db, db_user, db_pass);
         System.out.println("jdbc:mysql://" + host_ip + ":" + db_port + "/" + db);
         return con;
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         
         Connection con = null;
         CTestDriver ct = new CTestDriver();
@@ -51,8 +51,6 @@ public class CTestDriver
             }
         }catch(Exception e){
 
-        }finally {
-            con.close();
         }
     }
 }
