@@ -17,22 +17,20 @@ public class PosterServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getServletPath();
-
-        System.out.println("this is the action: " + action);
+        String action = request.getPathInfo();
 
         try{
             switch (action) {
-                case "/PosterServlet/create":
+                case "/create":
                     createPost(request, response);
                     break;
-                case "/PosterServlet/read":
+                case "/read":
                     listPost(request, response);
                     break;
-                case "/PosterServlet/update":
+                case "/update":
                     updatePost(request, response);
                     break;
-                case "/PosterServlet/delete":
+                case "/delete":
                     deletePost(request, response);
                     break;
                 default:
@@ -51,8 +49,7 @@ public class PosterServlet extends HttpServlet {
     private void listPost(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("this is Read");
 
-
-        try{
+        /*try{
             UserController uc = new UserController();
             String user_name = uc.findUser(1);
 
@@ -60,7 +57,7 @@ public class PosterServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void updatePost(HttpServletRequest request, HttpServletResponse response){
