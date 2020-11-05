@@ -1,10 +1,9 @@
 package com.message.controller;
 
-import com.message.DB.DBConnect;
-import com.message.Dao.UserDao;
+import com.message.db.DBConnect;
+import com.message.dao.UserDao;
 
 import java.sql.*;
-import java.util.Properties;
 
 public class UserController implements UserDao {
 
@@ -28,7 +27,7 @@ public class UserController implements UserDao {
     }
 
     @Override
-    public String findUser(int id) throws SQLException {
+    public String findUser(int id) {
         String sql = "select * from Users where user_id=" + id;
         String name = "";
         try{
