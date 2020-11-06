@@ -78,7 +78,7 @@
         <div id="container">
             <h1 style="text-align: center;">Create Post</h1>
 
-            <form action="PosterServlet/create" method="POST">
+            <form action="PosterServlet/getPost" method="POST">
                 <input type="hidden" name="posted_by" value="Johnson">
                 <label>Title :</label><br>
                 <input class="text" type="text" name="post_title"><br><br>
