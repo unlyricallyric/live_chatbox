@@ -14,6 +14,7 @@ CREATE TABLE Users (
 CREATE TABLE Posts (
     id int NOT NULL AUTO_INCREMENT,
     posted_by VARCHAR(32) NOT NULL,
+    post_title VARCHAR(128) NOT NULL,
     post_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     message TEXT,
@@ -26,3 +27,7 @@ INSERT INTO Users VALUES (1, 'testuser', 'helloWorld', 'Sebastian', 'Jean', 'asd
 INSERT INTO
 Users (user_name, password, first_name, last_name, user_email)
 VALUES ('testuser1', 'IloveJava', 'Sebastian1', 'Jean1', 'asdf1@gmail.com');
+
+INSERT INTO
+Posts (posted_by, post_title, message)
+VALUES ('George', 'JavaScript Tutorial', 'Hello Worled JavaScript');

@@ -1,4 +1,4 @@
-package com.message.Dao;
+package com.message.dao;
 
 public interface FileDao {
 }

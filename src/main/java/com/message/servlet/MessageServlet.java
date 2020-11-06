@@ -65,7 +65,7 @@ public class MessageServlet extends HttpServlet {
         }
 
         /*====keep for sending back message object to frontend====*/
-        String url = "/index.jsp";
+        String url = "/index_blog.jsp";
         request.setAttribute("msg_db", msg_db);
         request.setAttribute("user_name", user_name);
         request.setAttribute("style_sheet", style_sheet);
@@ -99,7 +99,7 @@ public class MessageServlet extends HttpServlet {
         String url = "";
 
         if(msg_req.equals("submit_delete")){
-            url = "/index.jsp";
+            url = "/index_blog.jsp";
             ChatManager.clearChat(from, to);
         }else{
             url = "/show_message.jsp";

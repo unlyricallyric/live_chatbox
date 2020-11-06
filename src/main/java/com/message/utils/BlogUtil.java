@@ -1,7 +1,17 @@
 package com.message.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.message.model.User;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 public final class BlogUtil {
 
@@ -26,8 +36,26 @@ public final class BlogUtil {
         return generatedPassword;
     }
 
-    public static void main(String args[]) throws NoSuchAlgorithmException {
-        String password = "helloworld";
-        System.out.println(passEncoding(password));
+    public static Object getJsonObject(Object o) throws IOException {
+
+        JSONPObject jsonpObject = new JSONPObject("", o);   //convert the pass in object to json object
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.writeValue(new File("target/tester_1.json"), jsonpObject);
+
+        objectMapper.writeValue(new File("target/tester_2.json"), o);
+
+        return jsonpObject;
+    }
+
+    public static void main(String args[]) throws NoSuchAlgorithmException, IOException {
+//        String password = "helloworld";
+//        System.out.println(passEncoding(password));
+
+        User tester = new User("Tom", "Tom", "Tom", "Tom", "tom@gmail.com");
+
+        System.out.println(getJsonObject(tester));
+
     }
 }

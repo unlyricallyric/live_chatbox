@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User(request.getParameter("user_name"));
 
-        String url = "/index.jsp";
+        String url = "/index_blog.jsp";
         request.setAttribute("user_name", user.getUsername());
 
         getServletContext()
