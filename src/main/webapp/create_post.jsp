@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: SAMSUNG
-  Date: 2020-11-02
-  Time: 8:46 p.m.
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -27,14 +20,14 @@
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
     <!-- added css -->
-    <link href="css/commom.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index_blog.jsp">Create Post</a>
+        <a class="navbar-brand" href="create_post.jsp">Create Post</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -83,9 +76,16 @@
                 <label>Title :</label><br>
                 <input class="text" type="text" name="post_title"><br><br>
                 <label>Text :</label><br>
-                <textarea id="text" class="form-control" name="post_message" rows="3"></textarea><br>
-                <input type="checkbox" id="attachment" name="attachment" value="Attachment">
-                <label for="attachment"> Attachment</label><br><br>
+                <textarea id="text" class="form-control" name="text" rows="3" required=""></textarea><br>
+
+
+                <div class="file-drop-area">
+                    <span class="fake-btn">Choose files</span>
+                    <span class="file-msg">OR drag and drop files below:</span>
+                    <div id="drop">
+                        <input class="file-input" type="file" multiple>
+                    </div>
+                </div><br>
                 <button type="submit" name="create" value="create" class="button">Create</button>
             </form>
         </div><br>
@@ -117,6 +117,38 @@
         </div>
     </div>
 </footer>
+
+<script>
+
+    var $fileInput = $('.file-input');
+    var $droparea = $('.file-drop-area');
+
+    // highlight drag area
+    $fileInput.on('dragenter focus click', function() {
+        $droparea.addClass('is-active');
+    });
+
+    // back to normal state
+    $fileInput.on('dragleave blur drop', function() {
+        $droparea.removeClass('is-active');
+    });
+
+    // change inner text
+    $fileInput.on('change', function() {
+        var filesCount = $(this)[0].files.length;
+        var $textContainer = $(this).prev();
+
+        if (filesCount === 1) {
+            // if single file is selected, show file name
+            var fileName = $(this).val().split('\\').pop();
+            $textContainer.text(fileName);
+        } else {
+            // otherwise show number of files
+            $textContainer.text(filesCount + ' files selected');
+        }
+    });
+
+</script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
