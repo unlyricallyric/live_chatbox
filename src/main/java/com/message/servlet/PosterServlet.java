@@ -1,15 +1,95 @@
 package com.message.servlet;
 
-import javax.servlet.ServletException;
+import com.message.controller.PostController;
+import com.message.model.Post;
+import com.message.model.User;
+import com.message.controller.UserController;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @WebServlet("/PosterServlet/*")
 public class PosterServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        doGet(request, response);
+    }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        String action = request.getPathInfo();
+
+        System.out.println("this is the action: " + action);
+
+        switch (action) {
+            case "/create":
+                createPost(request, response);
+                break;
+            case "/getPost":
+                getSinglePost(request, response);
+                break;
+            case "/update":
+                updatePost(request, response);
+                break;
+            case "/delete":
+                deletePost(request, response);
+                break;
+        }
+    }
+
+    private void createPost(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("this is Create");
+
+        String posted_by = request.getParameter("posted_by");
+        String post_title = request.getParameter("post_title");
+        String post_message = request.getParameter("post_message");
+
+        Post post = new Post(posted_by, post_title, post_message);
+
+        try{
+            PostController pc = new PostController();
+            pc.createPost(post);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void getSinglePost(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("this is getPost");
+
+        try{
+            PostController pc = new PostController();
+            Post post = pc.getSinglePost(4);
+
+            System.out.println(post.getPosted_by());
+            System.out.println(post.getPost_title());
+            System.out.println(post.getMessage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updatePost(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("this is update");
+
+        try{
+            PostController pc = new PostController();
+            pc.updatePost(4, "updated title", " updated message ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void deletePost(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("this is delete");
+        //String post_id = request.getParameter("post_id");
+
+        try{
+           PostController pc = new PostController();
+           pc.deletePost(5);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

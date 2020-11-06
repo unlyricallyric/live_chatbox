@@ -71,11 +71,10 @@
         <div id="container">
             <h1 style="text-align: center;">Create Post</h1>
 
-            <form method="POST" action="MessageServlet">
-                <input type="hidden" name="user_name" value="${user_name}">
-                <input type="hidden" name="style_sheet" value="${style_sheet}">
+            <form action="PosterServlet/getPost" method="POST">
+                <input type="hidden" name="posted_by" value="Johnson">
                 <label>Title :</label><br>
-                <input class="text" type="text" name="title" required=""><br><br>
+                <input class="text" type="text" name="post_title"><br><br>
                 <label>Text :</label><br>
                 <textarea id="text" class="form-control" name="text" rows="3" required=""></textarea><br>
 
@@ -87,9 +86,6 @@
                         <input class="file-input" type="file" multiple>
                     </div>
                 </div><br>
-
-
-
                 <button type="submit" name="create" value="create" class="button">Create</button>
             </form>
         </div><br>
