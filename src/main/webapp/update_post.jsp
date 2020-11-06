@@ -27,14 +27,14 @@
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
     <!-- added css -->
-    <link href="css/commom.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index_blog.jsp">Update Post</a>
+        <a class="navbar-brand" href="update_post.jsp">Update Post</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -85,8 +85,11 @@
                 <input class="text" type="text" name="title" placeholder="Title required" required=""><br><br>
                 <label>Update Text Here :</label><br>
                 <textarea id="text" class="form-control" name="text" rows="3"></textarea><br>
-                <input type="checkbox" id="attachment" name="attachment" value="Attachment">
-                <label for="attachment">Attachment</label><br><br>
+
+
+                <button type="submit" name="deleteAttachent" value="deleteAttachment" class="button">Delete Attachment</button>
+
+
                 <button type="submit" name="update" value="update" class="button">Update</button>
             </form>
         </div><br>
