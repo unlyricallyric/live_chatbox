@@ -5,13 +5,10 @@ import com.message.model.Post;
 import com.message.model.User;
 import com.message.controller.UserController;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/PosterServlet/*")
 public class PosterServlet extends HttpServlet {
@@ -28,17 +25,14 @@ public class PosterServlet extends HttpServlet {
             case "/create":
                 createPost(request, response);
                 break;
-            case "/read":
-                listPost(request, response);
+            case "/getPost":
+                getSinglePost(request, response);
                 break;
             case "/update":
                 updatePost(request, response);
                 break;
             case "/delete":
                 deletePost(request, response);
-                break;
-            default:
-                listPost(request, response);
                 break;
         }
     }
@@ -60,15 +54,16 @@ public class PosterServlet extends HttpServlet {
         }
     }
 
-    private void listPost(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("this is Read");
+    private void getSinglePost(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("this is getPost");
 
         try{
-            User user = new User(1);
-            UserController uc = new UserController();
-            String user_name = uc.findUser(user.getId());
+            PostController pc = new PostController();
+            Post post = pc.getSinglePost(4);
 
-            System.out.println("the user name is: " + user_name);
+            System.out.println(post.getPosted_by());
+            System.out.println(post.getPost_title());
+            System.out.println(post.getMessage());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,9 +72,24 @@ public class PosterServlet extends HttpServlet {
 
     private void updatePost(HttpServletRequest request, HttpServletResponse response){
         System.out.println("this is update");
+
+        try{
+            PostController pc = new PostController();
+            pc.updatePost(4, "updated title", " updated message ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void deletePost(HttpServletRequest request, HttpServletResponse response){
         System.out.println("this is delete");
+        //String post_id = request.getParameter("post_id");
+
+        try{
+           PostController pc = new PostController();
+           pc.deletePost(5);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
