@@ -1,5 +1,8 @@
 package com.message.servlet;
 
+import com.message.model.User;
+import com.message.utils.BlogUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 //import org.json.simple.JSONObject ;
@@ -57,8 +62,19 @@ public class JsonServlet extends HttpServlet {
         json += "\"Name-2\":\"Louis\", \"Message-2\":\"Json2 comes\",\"Date-2\":\"2020-11-04\",";
         json += "\"Name-3\":\"Adam\", \"Message-3\":\"Json3 comes\",\"Date-3\":\"2020-11-02\"}";
         //json += "{\"Name-4\":\"Mortimer\", \"Message-4\":\"Json4 comes\",\"Date-4\":\"2020-11-01\"}";
-        out.write(json);
-        //out.write("{\"Name-1\":\"Matt\", \"Message-1\":\"Json comes\",\"Date-1\":\"2020-11-05\"}");
+
+
+        User tester = new User(1,"user1", "password1", "firstname1", "lastname1", "tom@gmail.com");
+        User tester1 = new User(2,"user2", "password2", "firstname2", "lastname2", "tom@gmail.com");
+        User tester2 = new User(3,"user3", "password3", "firstname3", "lastname3", "tom@gmail.com");
+
+        List<Object> object_list = new ArrayList<>();
+        object_list.add(tester);
+        object_list.add(tester1);
+        object_list.add(tester2);
+
+
+        out.write(BlogUtil.getJson(object_list));
 
     }
 
