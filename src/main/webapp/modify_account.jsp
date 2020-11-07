@@ -77,9 +77,13 @@
         <div id="container">
             <h1 style="text-align: center;">Change Your Information</h1><br>
 
-            <form method="POST" action="MessageServlet">
-                <label>Full Name :</label><br>
-                <input type="text" name="fullname"><br>
+            <form method="POST" action="UserServlet/update">
+                <label>User Name :</label><br>
+                <input type="text" name="username"><br>
+                <label>First Name :</label><br>
+                <input type="text" name="firstname"><br>
+                <label>Last Name :</label><br>
+                <input type="text" name="lastname"><br>
                 <label>Email :</label><br>
                 <input type="text" name="email"><br>
                 <label>Password :</label><br>

@@ -24,10 +24,12 @@ CREATE TABLE Posts (
 /*Insert dummy data to Users table*/
 INSERT INTO Users VALUES (1, 'testuser', 'helloWorld', 'Sebastian', 'Jean', 'asdf@gmail.com');
 
-INSERT INTO
-Users (user_name, password, first_name, last_name, user_email)
+INSERT INTO Users
+(user_name, password, first_name, last_name, user_email)
 VALUES ('testuser1', 'IloveJava', 'Sebastian1', 'Jean1', 'asdf1@gmail.com');
 
-INSERT INTO
-Posts (posted_by, post_title, message)
+INSERT INTO Posts
+(posted_by, post_title, message)
 VALUES ('George', 'JavaScript Tutorial', 'Hello Worled JavaScript');
+
+UPDATE Users SET user_name='testuser_update', password='password', first_name='test_first', last_name='test_last', user_email='test@email.com' WHERE user_name='testuser';

@@ -27,9 +27,9 @@
         <form action="UserServlet/create" method="POST">
             <input class="text" type="text" name="username" placeholder="Please enter a user name" required="">
             <input class="text" type="text" name="password" placeholder="Please enter a password" required="">
-            <input class="text" type="email" name="firstname" placeholder="Please enter your first name" required="">
+            <input class="text" type="text" name="firstname" placeholder="Please enter your first name" required="">
             <input class="text" type="text" name="lastname" placeholder="Please enter your last name" required="">
-            <input class="text" type="text" name="email" placeholder="Please enter your email" required="">
+            <input class="text" type="email" name="email" placeholder="Please enter your email" required="">
             <button type="submit" name="SignUp" value="submit_show" class="button">Sign Up</button>
         </form>
     </div><br>
