@@ -1,6 +1,8 @@
 package com.message.servlet;
 
 import com.message.controller.UserController;
+import com.message.model.User;
+import com.message.utils.BlogUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,12 +40,16 @@ public class UserServlet extends HttpServlet {
 
     private void createUser(HttpServletRequest request, HttpServletResponse response){
         System.out.println("this is Create");
+        String username = request.getParameter("username");
+        String password = BlogUtil.passEncoding(request.getParameter("password"));
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
 
+        User user = new User(username, password, firstname, lastname, email);
         try{
             UserController uc = new UserController();
-            //String user_name = uc.findUser(1);
-
-            //System.out.println("the user name is: " + user_name);
+            uc.createUser(user);
 
         } catch (Exception e) {
             e.printStackTrace();
