@@ -1,5 +1,6 @@
 package com.message.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.message.model.User;
@@ -12,6 +13,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class BlogUtil {
 
@@ -36,26 +39,31 @@ public final class BlogUtil {
         return generatedPassword;
     }
 
-    public static Object getJsonObject(Object o) throws IOException {
+    public static String getJson(List<Object> o) throws IOException {
+        String json = "";
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            json = mapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
-        JSONPObject jsonpObject = new JSONPObject("", o);   //convert the pass in object to json object
+        return json;
 
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.writeValue(new File("target/tester_1.json"), jsonpObject);
-
-        objectMapper.writeValue(new File("target/tester_2.json"), o);
-
-        return jsonpObject;
     }
 
     public static void main(String args[]) throws NoSuchAlgorithmException, IOException {
-//        String password = "helloworld";
-//        System.out.println(passEncoding(password));
 
-        User tester = new User("Tom", "Tom", "Tom", "Tom", "tom@gmail.com");
+        User tester = new User(1,"user1", "password1", "firstname1", "lastname1", "tom@gmail.com");
+        User tester1 = new User(2,"user2", "password2", "firstname2", "lastname2", "tom@gmail.com");
+        User tester2 = new User(3,"user3", "password3", "firstname3", "lastname3", "tom@gmail.com");
 
-        System.out.println(getJsonObject(tester));
+        List<Object> l = new ArrayList<>();
+        l.add(tester);
+        l.add(tester1);
+        l.add(tester2);
+
+        System.out.println(getJson(l));
 
     }
 }

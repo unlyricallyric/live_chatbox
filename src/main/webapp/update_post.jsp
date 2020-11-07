@@ -78,17 +78,14 @@
         <div id="container">
             <h1 style="text-align: center;">Update Post</h1><br>
 
-            <form method="POST" action="MessageServlet">
+            <form method="POST" action="PosterServlet/update">
                 <input type="hidden" name="user_name" value="${user_name}">
-                <input type="hidden" name="style_sheet" value="${style_sheet}">
                 <label>Original Title :</label><br>
-                <input class="text" type="text" name="title" placeholder="Title required" required=""><br><br>
+                <input class="text" type="text" name="post_title" placeholder="Title required"><br><br>
                 <label>Update Text Here :</label><br>
-                <textarea id="text" class="form-control" name="text" rows="3"></textarea><br>
-
+                <textarea id="text" class="form-control" name="message" rows="3"></textarea><br>
 
                 <button type="submit" name="deleteAttachent" value="deleteAttachment" class="button">Delete Attachment</button>
-
 
                 <button type="submit" name="update" value="update" class="button">Update</button>
             </form>
