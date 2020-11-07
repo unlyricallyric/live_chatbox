@@ -306,8 +306,10 @@
             success:function(data){
                 $.each(data, function (key, val){
                     mp.set(key,val);
+                    $("#Message-1").text(key);
+                    $("#Author-1").text(val);
                 });
-                $("#Message-1").text(mp.get("Message-1"));
+                /*$("#Message-1").text(mp.get("Message-1"));
                 $("#Author-1").text(mp.get("Name-1"));
                 $("#Date-1").text(mp.get("Date-1"));
 
@@ -317,13 +319,14 @@
 
                 $("#Message-3").text(mp.get("Message-3"));
                 $("#Author-3").text(mp.get("Name-3"));
-                $("#Date-3").text(mp.get("Date-3"));
+                $("#Date-3").text(mp.get("Date-3"));*/
             }
         })
     }
 </script>
 <script language="javascript">
-    setTimeout("self.location.reload();",10000);
+    //setTimeout("self.location.reload();",10000);
+    setTimeout("my_function();",10000);
 </script>
 </body>
 </html>
