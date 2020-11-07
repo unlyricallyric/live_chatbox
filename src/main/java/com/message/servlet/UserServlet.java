@@ -32,6 +32,27 @@ public class UserServlet extends HttpServlet {
                 case "/delete":
                     deleteUser(request, response);
                     break;
+                case "/login":
+                    userLogin(request, response);
+                    break;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void userLogin(HttpServletRequest request, HttpServletResponse response){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean validate_user = false;
+
+        try{
+            UserController uc = new UserController();
+            validate_user = uc.findUser(username, password);
+            if(validate_user){
+                System.out.println("User successfully validated!");
+            }else{
+                System.out.println("Wrong username or password!");
             }
         }catch(Exception e){
             e.printStackTrace();

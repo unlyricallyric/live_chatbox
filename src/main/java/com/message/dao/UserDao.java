@@ -8,6 +8,6 @@ import java.sql.SQLException;
 public interface UserDao {
 
     int createUser(User user);
-    String findUser(int id) throws SQLException, IOException;
+    boolean findUser(String username, String password);
 
 }

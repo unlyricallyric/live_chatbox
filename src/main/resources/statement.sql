@@ -3,9 +3,9 @@ CREATE DATABASE IF NOT EXISTS Blog;
 
 CREATE TABLE Users (
     user_id int NOT NULL AUTO_INCREMENT,
-    user_name VARCHAR(32) NOT NULL,
+    user_name VARCHAR(32) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    user_email VARCHAR(32),
+    user_email VARCHAR(32) NOT NULL UNIQUE,
     first_name VARCHAR(32),
     last_name VARCHAR(32),
     PRIMARY KEY (user_id)

@@ -26,9 +26,9 @@
 <div id="container">
     <h1 style="text-align:center; color:white">LOGIN</h1><br>
     <div>
-        <form action="PosterServlet/create" method="POST">
-            <input class="text" type="name" name="name" placeholder="Name" required="">
-            <input class="text" type="password" name="password" placeholder="Password" required=""><br><br>
+        <form action="UserServlet/login" method="POST">
+            <input class="text" type="name" name="username" placeholder="Please enter your username/email" required="">
+            <input class="text" type="password" name="password" placeholder="Please enter your password" required=""><br><br>
             <button type="submit" name="login" value="submit_show" class="button">LOGIN</button>
         </form>
     </div><br>
