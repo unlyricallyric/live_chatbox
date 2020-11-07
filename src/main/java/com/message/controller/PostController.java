@@ -3,6 +3,7 @@ package com.message.controller;
 import com.message.dao.PostDao;
 import com.message.db.DBConnect;
 import com.message.model.Post;
+import com.message.model.PostJson;
 import com.message.utils.BlogUtil;
 import com.mysql.cj.x.protobuf.MysqlxPrepare;
 
@@ -102,7 +103,8 @@ public class PostController implements PostDao {
                 String last_modified = rs.getString("last_modified");
                 String message = rs.getString("message");
                 Post post = new Post(post_id, posted_by, post_title, post_date, last_modified, message);
-                post_list.add(post);
+                PostJson postJson = new PostJson(post);
+                post_list.add(postJson);
             }
 
         }catch(SQLException e){
