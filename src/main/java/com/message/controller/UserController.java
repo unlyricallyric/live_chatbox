@@ -2,10 +2,16 @@ package com.message.controller;
 
 import com.message.db.DBConnect;
 import com.message.dao.UserDao;
+import com.message.model.User;
+import com.message.utils.BlogUtil;
 
 import java.sql.*;
 
 public class UserController implements UserDao {
+
+    private final String INSERT_USER = "INSERT INTO Users" +
+            " (user_name, password, first_name, last_name, user_email) VALUES " + "(?, ?, ?, ?, ?);";
+    private final String FIND_USER = "SELECT password FROM Users where user_name=?;";
 
     private Connection con;
 
@@ -27,25 +33,39 @@ public class UserController implements UserDao {
     }
 
     @Override
-    public String findUser(int id) {
-        String sql = "select * from Users where user_id=" + id;
-        String name = "";
-        try{
+    public int createUser(User user) {
+        int response_code = 0;
 
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+        try(PreparedStatement ps = con.prepareStatement(INSERT_USER)) {
 
-            while (rs.next()) {
-                name = rs.getString("user_name");
-            }
+            ps.setString(1, user.getUser_name());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getFirst_name());
+            ps.setString(4, user.getLast_name());
+            ps.setString(5, user.getUser_email());
 
-        } catch (Exception e) {
+            response_code = ps.executeUpdate();
 
+        }catch(SQLException e){
+            e.printStackTrace();
         }
-        return name;
+        return response_code;
     }
 
-    public static void main(String args[]){
+    @Override
+    public boolean findUser(String username, String password) {
+        String passFromDb="";
 
+        try(PreparedStatement ps = con.prepareStatement(FIND_USER)){
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                passFromDb = rs.getString("password");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return passFromDb.equals(BlogUtil.passEncoding(password));
     }
 }

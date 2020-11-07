@@ -24,11 +24,12 @@
 <div id="container">
     <h1 style="text-align:center; color:white">SIGN UP</h1><br>
     <div>
-        <form action="#" method="post">
-            <input class="text" type="id" name="id" placeholder="ID" required="">
-            <input class="text" type="text" name="Username" placeholder="Username" required="">
-            <input class="text" type="email" name="email" placeholder="Email" required="">
-            <input class="text" type="password" name="password" placeholder="Password" required=""><br><br>
+        <form action="UserServlet/create" method="POST">
+            <input class="text" type="text" name="username" placeholder="Please enter a user name" required="">
+            <input class="text" type="text" name="password" placeholder="Please enter a password" required="">
+            <input class="text" type="email" name="firstname" placeholder="Please enter your first name" required="">
+            <input class="text" type="text" name="lastname" placeholder="Please enter your last name" required="">
+            <input class="text" type="text" name="email" placeholder="Please enter your email" required="">
             <button type="submit" name="SignUp" value="submit_show" class="button">Sign Up</button>
         </form>
     </div><br>

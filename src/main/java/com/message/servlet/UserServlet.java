@@ -1,6 +1,8 @@
 package com.message.servlet;
 
 import com.message.controller.UserController;
+import com.message.model.User;
+import com.message.utils.BlogUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +32,27 @@ public class UserServlet extends HttpServlet {
                 case "/delete":
                     deleteUser(request, response);
                     break;
+                case "/login":
+                    userLogin(request, response);
+                    break;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void userLogin(HttpServletRequest request, HttpServletResponse response){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean validate_user = false;
+
+        try{
+            UserController uc = new UserController();
+            validate_user = uc.findUser(username, password);
+            if(validate_user){
+                System.out.println("User successfully validated!");
+            }else{
+                System.out.println("Wrong username or password!");
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -38,12 +61,16 @@ public class UserServlet extends HttpServlet {
 
     private void createUser(HttpServletRequest request, HttpServletResponse response){
         System.out.println("this is Create");
+        String username = request.getParameter("username");
+        String password = BlogUtil.passEncoding(request.getParameter("password"));
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
 
+        User user = new User(username, password, firstname, lastname, email);
         try{
             UserController uc = new UserController();
-            //String user_name = uc.findUser(1);
-
-            //System.out.println("the user name is: " + user_name);
+            uc.createUser(user);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,8 +1,13 @@
 package com.message.dao;
 
+import com.message.model.User;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
 public interface UserDao {
-    String findUser(int id) throws SQLException, IOException;
+
+    int createUser(User user);
+    boolean findUser(String username, String password);
+
 }
