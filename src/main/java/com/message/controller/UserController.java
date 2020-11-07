@@ -12,6 +12,7 @@ public class UserController implements UserDao {
     private final String INSERT_USER = "INSERT INTO Users" +
             " (user_name, password, first_name, last_name, user_email) VALUES " + "(?, ?, ?, ?, ?);";
     private final String FIND_USER = "SELECT password FROM Users where user_name=?;";
+    private final String UPDATE_USER = "UPDATE Users SET password=?, first_name=?, last_name=?, user_email=? WHERE user_name=?;";
 
     private Connection con;
 
@@ -67,5 +68,25 @@ public class UserController implements UserDao {
         }
 
         return passFromDb.equals(BlogUtil.passEncoding(password));
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        int success = 0;
+
+        try(PreparedStatement ps = con.prepareStatement(UPDATE_USER)) {
+
+            ps.setString(1, BlogUtil.passEncoding(user.getPassword()));
+            ps.setString(2, user.getFirst_name());
+            ps.setString(3, user.getLast_name());
+            ps.setString(4, user.getUser_email());
+            ps.setString(5, user.getUser_name());
+
+            success = ps.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return (1 == success);
     }
 }
