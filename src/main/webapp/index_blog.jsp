@@ -6,6 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "java.io.*,java.util.*,java.io.PrintWriter" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="com.message.handler.Message" %>
+<%@ page import="com.message.service.MessageService" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String style_sheet = request.getParameter("style_sheet");
+    if(MessageService.isNullOrEmpty(style_sheet)){
+        style_sheet = "style1.css";
+    }
+%>
 <html lang="en">
 
 <head>
@@ -30,10 +42,67 @@
 
     <!-- added css -->
     <link href="css/index_blog.css" rel="stylesheet">
+    <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        $(document).ready(function () {
+            //$('firstRecord').html('Updated Div Value due to Title');
+            window.alert("test");
+        });
+    </script>
+
+    <script language="JavaScript" type="text/JavaScript">
+        <!--
+        var refreshtime = 1000;
+        function refpage(values){
+            document.getElementById("showmsg").innerHTML='<br>请...';
+
+            var url = "refreshpage.asp?id="+values;
+            request.open("POST", url, false);
+            request.send();
+            var retVal = request.responseText;
+
+            document.getElementById("showmsg").innerHTML='......';
+        }
+
+        function focusbody(){
+            refreshtime=90000;
+            show2()
+        }
+
+        function show2(){
+            if(refreshtime>0){
+                sendstate(1); //假设的参数
+                setTimeout("show2()",refreshtime); //循环计数
+            }
+        }
+        //-->
+    </script>
+
+    <script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        function ajax() {
+            //ajax请求在这.
+            $.ajax({
+                type:"get",
+                url:"JsonServlet",
+                success:function (result) {
+                    $("#ajax").val(result);
+                }
+            })
+        }
+    </script>
+
 
 </head>
 
-<body>
+<body onload="my_function()">
+<script>
+    function fun(){
+        //alert("fun");
+
+    }
+ //   window.onload=function(){fun();}
+</script>
+
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -79,19 +148,18 @@
 <div class="container">
     <div class="row">
         <div id="chatBox" class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
+            <div class="post-preview" id="firstRecord">
                 <a href="post.jsp">
                     <h2 class="post-title">
-                        Man must explore, and this is exploration at its greatest
+                        <div id = "Message-1">
+                        </div>
                     </h2>
-                    <h3 class="post-subtitle">
-                        Problems look mighty small from 150 miles up
-                    </h3>
                 </a>
                 <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 24, 2019</p>
-                <form action="DownloadServlet">
+                    <a id="Author-1" href="#">Start Bootstrap</a>
+                    <a id="Date-1" href="#"></a>
+                </p>
+                <form action="JsonServlet">
                     <div class="row">
                         <div id="download">
                             <div class="col-md-2">
@@ -109,40 +177,40 @@
             <div class="post-preview">
                 <a href="post.jsp">
                     <h2 class="post-title">
-                        I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                        <div id = "Message-2">
+                        </div>
                     </h2>
                 </a>
                 <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 18, 2019</p>
+                    <a id="Author-2" href="#">Start Bootstrap</a>
+                    <a id="Date-2" href="#"></a>
+                </p>
             </div>
             <hr>
             <div class="post-preview">
                 <a href="post.jsp">
                     <h2 class="post-title">
-                        Science has not yet mastered prophecy
+                        <div id = "Message-3">
+                        </div>
                     </h2>
-                    <h3 class="post-subtitle">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
                 </a>
                 <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on August 24, 2019</p>
+                    <a id="Author-3" href="#">Start Bootstrap</a>
+                    <a id="Date-3" href="#"></a>
+                </p>
             </div>
             <hr>
             <div class="post-preview">
                 <a href="post.jsp">
                     <h2 class="post-title">
-                        Failure is not an option
+                        <div id = "Message-4">
+                        </div>
                     </h2>
-                    <h3 class="post-subtitle">
-                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                    </h3>
                 </a>
                 <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on July 8, 2019</p>
+                    <a id="Author-4" href="#">Start Bootstrap</a>
+                    <a id="Date-4" href="#"></a>
+                </p>
             </div>
             <hr>
             <!-- Pager -->
@@ -168,6 +236,7 @@
         </div><br>
 
     </div>
+
 </div>
 
 <hr>
@@ -202,5 +271,59 @@
 <!-- Custom scripts for this template -->
 <script src="js/clean-blog.min.js"></script>
 
+<script>
+    function myFunction() {
+
+        var ourRequest = new XMLHttpRequest();
+        ourRequest.open('GET', 'JsonServlet');
+        ourRequest.onload = function(){
+            $.ajax({
+                url:"JsonServlet",
+                data:{},
+                type:"GET",
+                dataType:"json",
+                success:function(js2){
+                    console.log(js2.name);
+                    alert("test");
+                }
+
+            })
+        }
+        alert("Hello! I am an alert box!");
+    }
+
+    //document.getElementById("firstRecord").innerHTML+="wait..";
+</script>
+
+<script type="text/javascript">
+    function my_function() {
+        var mp = new Map();
+        $.ajax({
+            url:"JsonServlet",
+            data:{},
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                $.each(data, function (key, val){
+                    mp.set(key,val);
+                });
+                $("#Message-1").text(mp.get("Message-1"));
+                $("#Author-1").text(mp.get("Name-1"));
+                $("#Date-1").text(mp.get("Date-1"));
+
+                $("#Message-2").text(mp.get("Message-2"));
+                $("#Author-2").text(mp.get("Name-2"));
+                $("#Date-2").text(mp.get("Date-2"));
+
+                $("#Message-3").text(mp.get("Message-3"));
+                $("#Author-3").text(mp.get("Name-3"));
+                $("#Date-3").text(mp.get("Date-3"));
+            }
+        })
+    }
+</script>
+<script language="javascript">
+    setTimeout("self.location.reload();",10000);
+</script>
 </body>
 </html>
