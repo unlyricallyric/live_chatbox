@@ -9,5 +9,6 @@ public interface UserDao {
 
     int createUser(User user);
     boolean findUser(String username, String password);
+    boolean updateUser(User user);
 
 }

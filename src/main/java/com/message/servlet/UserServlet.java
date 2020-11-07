@@ -29,9 +29,6 @@ public class UserServlet extends HttpServlet {
                 case "/update":
                     updateUser(request, response);
                     break;
-                case "/delete":
-                    deleteUser(request, response);
-                    break;
                 case "/login":
                     userLogin(request, response);
                     break;
@@ -71,6 +68,7 @@ public class UserServlet extends HttpServlet {
         try{
             UserController uc = new UserController();
             uc.createUser(user);
+            System.out.println("User successfully created!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,10 +76,22 @@ public class UserServlet extends HttpServlet {
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("this is Create");
-    }
+        System.out.println("this is Update");
+        String username = request.getParameter("username");
+        String password = BlogUtil.passEncoding(request.getParameter("password"));
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
 
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("this is Create");
+        User user = new User(username, password, firstname, lastname, email);
+
+        try{
+            UserController uc = new UserController();
+            uc.updateUser(user);
+            System.out.println("User successfully updated!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
