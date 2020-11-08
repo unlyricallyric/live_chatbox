@@ -1,5 +1,7 @@
 package com.message.servlet;
 
+import com.google.gson.Gson;
+import com.message.model.Post;
 import com.message.model.User;
 import com.message.utils.BlogUtil;
 
@@ -49,8 +51,8 @@ public class JsonServlet extends HttpServlet {
         options.put("value1", "label1");
         options.put("value2", "label2");
         options.put("value3", "label3");
-        //Gson gson = new Gson();
-       // String json = gson.toJson(options);
+        Gson gson = new Gson();
+
        // JSONObject json = new JSONObject(options);
 
         response.setContentType("application/json");
@@ -58,23 +60,29 @@ public class JsonServlet extends HttpServlet {
         //out.print("userJsonString");
         //out.write(json.toString());
         LocalDateTime date = LocalDateTime.now();
-        String json = "{\"Name-1\":\"Matt\", \"Message-1\":\"Json comes\",\"Date-1\":\"2020-11-05\",";
-        json += "\"Name-2\":\"Louis\", \"Message-2\":\"Json2 comes\",\"Date-2\":\"2020-11-04\",";
-        json += "\"Name-3\":\"Adam\", \"Message-3\":\"Json3 comes\",\"Date-3\":\"2020-11-02\"}";
+     //  String json = "{\"Name-1\":\"Matt\", \"Message-1\":\"Json comes\",\"Date-1\":\"2020-11-05\",";
+     //   json += "\"Name-2\":\"Louis\", \"Message-2\":\"Json2 comes\",\"Date-2\":\"2020-11-04\",";
+     //  json += "\"Name-3\":\"Adam\", \"Message-3\":\"Json3 comes\",\"Date-3\":\"2020-11-02\"}";
         //json += "{\"Name-4\":\"Mortimer\", \"Message-4\":\"Json4 comes\",\"Date-4\":\"2020-11-01\"}";
 
 
-        User tester = new User(1,"user1", "password1", "firstname1", "lastname1", "tom@gmail.com");
-        User tester1 = new User(2,"user2", "password2", "firstname2", "lastname2", "tom@gmail.com");
-        User tester2 = new User(3,"user3", "password3", "firstname3", "lastname3", "tom@gmail.com");
+      //  User tester = new User(1,"user1", "password1", "firstname1", "lastname1", "tom@gmail.com");
+      //  User tester1 = new User(2,"user2", "password2", "firstname2", "lastname2", "tom@gmail.com");
+      //  User tester2 = new User(3,"user3", "password3", "firstname3", "lastname3", "tom@gmail.com");
+        // Post(String posted_by, String post_title, String post_date, String last_modified, String message)
+        Post p1 = new Post(1,"Matthew","display","2020-11-07","2020-11-06","what's result");
+        Post p2 = new Post(2,"Matthew-2","display-2","2020-11-07-2","2020-11-06-2","what's result-2");
+        Post p3 = new Post(3,"Matthew-3","display-3","2020-11-07-3","2020-11-06-3","what's result-3");
+        Post p4 = new Post(4,"Matthew-4","display-4","2020-11-07-4","2020-11-06-4","what's result-4");
 
         List<Object> object_list = new ArrayList<>();
-        object_list.add(tester);
-        object_list.add(tester1);
-        object_list.add(tester2);
-
-
+        object_list.add(p1);
+        object_list.add(p2);
+        object_list.add(p3);
+        object_list.add(p4);
         out.write(BlogUtil.getJson(object_list));
+       // String json = gson.toJson(object_list);
+        //out.write(json);
 
     }
 

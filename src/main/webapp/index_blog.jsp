@@ -42,67 +42,9 @@
 
     <!-- added css -->
     <link href="css/index_blog.css" rel="stylesheet">
-    <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        $(document).ready(function () {
-            //$('firstRecord').html('Updated Div Value due to Title');
-            window.alert("test");
-        });
-    </script>
-
-    <script language="JavaScript" type="text/JavaScript">
-        <!--
-        var refreshtime = 1000;
-        function refpage(values){
-            document.getElementById("showmsg").innerHTML='<br>请...';
-
-            var url = "refreshpage.asp?id="+values;
-            request.open("POST", url, false);
-            request.send();
-            var retVal = request.responseText;
-
-            document.getElementById("showmsg").innerHTML='......';
-        }
-
-        function focusbody(){
-            refreshtime=90000;
-            show2()
-        }
-
-        function show2(){
-            if(refreshtime>0){
-                sendstate(1); //假设的参数
-                setTimeout("show2()",refreshtime); //循环计数
-            }
-        }
-        //-->
-    </script>
-
-    <script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-        function ajax() {
-            //ajax请求在这.
-            $.ajax({
-                type:"get",
-                url:"JsonServlet",
-                success:function (result) {
-                    $("#ajax").val(result);
-                }
-            })
-        }
-    </script>
-
-
 </head>
 
 <body onload="my_function()">
-<script>
-    function fun(){
-        //alert("fun");
-
-    }
- //   window.onload=function(){fun();}
-</script>
-
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -271,61 +213,37 @@
 <!-- Custom scripts for this template -->
 <script src="js/clean-blog.min.js"></script>
 
-<script>
-    function myFunction() {
-
-        var ourRequest = new XMLHttpRequest();
-        ourRequest.open('GET', 'JsonServlet');
-        ourRequest.onload = function(){
-            $.ajax({
-                url:"JsonServlet",
-                data:{},
-                type:"GET",
-                dataType:"json",
-                success:function(js2){
-                    console.log(js2.name);
-                    alert("test");
-                }
-
-            })
+<script type="text/javascript">
+    function getJsonInfo(item) {
+        var mp = new Map();
+        for (var key in item) {
+            mp.set(key,item[key]);
         }
-        alert("Hello! I am an alert box!");
+        return mp;
     }
 
-    //document.getElementById("firstRecord").innerHTML+="wait..";
-</script>
-
-<script type="text/javascript">
     function my_function() {
-        var mp = new Map();
+        //var mp = new Map();
         $.ajax({
+            //url:"PosterServlet/getAllPost",
             url:"JsonServlet",
             data:{},
             type:"get",
             dataType:"json",
             success:function(data){
-                $.each(data, function (key, val){
-                    mp.set(key,val);
-                    $("#Message-1").text(key);
-                    $("#Author-1").text(val);
-                });
-                /*$("#Message-1").text(mp.get("Message-1"));
-                $("#Author-1").text(mp.get("Name-1"));
-                $("#Date-1").text(mp.get("Date-1"));
+                var postInfo = data.map(getJsonInfo);
+                $("#Message-1").text(postInfo[0].get("message"));
+                $("#Date-1").text(postInfo[0].get("post_date"));
+                $("#Author-1").text(postInfo[0].get("posted_by"));
 
-                $("#Message-2").text(mp.get("Message-2"));
-                $("#Author-2").text(mp.get("Name-2"));
-                $("#Date-2").text(mp.get("Date-2"));
+                $("#Message-2").text(postInfo[1].get("message"));
 
-                $("#Message-3").text(mp.get("Message-3"));
-                $("#Author-3").text(mp.get("Name-3"));
-                $("#Date-3").text(mp.get("Date-3"));*/
             }
         })
     }
 </script>
-<script language="javascript">
-    //setTimeout("self.location.reload();",10000);
+
+<script>
     setTimeout("my_function();",10000);
 </script>
 </body>

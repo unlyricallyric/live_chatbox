@@ -82,6 +82,7 @@ public class PosterServlet extends HttpServlet {
             String result = pc.getAllPost();
 
             System.out.println(result);
+            response.getWriter().write(result);
 
         } catch (Exception e) {
             e.printStackTrace();
