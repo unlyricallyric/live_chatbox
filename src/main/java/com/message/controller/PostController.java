@@ -103,8 +103,8 @@ public class PostController implements PostDao {
                 String last_modified = rs.getString("last_modified");
                 String message = rs.getString("message");
                 Post post = new Post(post_id, posted_by, post_title, post_date, last_modified, message);
-                PostJson postJson = new PostJson(post);
-                post_list.add(postJson);
+                //PostJson postJson = new PostJson(post);
+                post_list.add(post);
             }
 
         }catch(SQLException e){

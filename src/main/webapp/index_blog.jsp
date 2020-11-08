@@ -89,78 +89,19 @@
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-        <div id="chatBox" class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview" id="firstRecord">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-1">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-1" href="#">Start Bootstrap</a>
-                    <a id="Date-1" href="#"></a>
-                </p>
-                <form action="JsonServlet">
-                    <div class="row">
-                        <div id="download">
-                            <div class="col-md-2">
-                                <select name="download" class="form-control">
-                                    <option value="text" selected="selected">text</option>
-                                    <option value="xml">xml</option>
-                                </select>
-                                <input class="button" type="submit" value="Download">
-                            </div>
-                        </div>
+        <div class="post-preview" id="PostRecords">
+            <a href="post.jsp">
+                <h2 class="post-title">
+                    <div id = "Message-1">
                     </div>
-                </form><br>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-2">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-2" href="#">Start Bootstrap</a>
-                    <a id="Date-2" href="#"></a>
-                </p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-3">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-3" href="#">Start Bootstrap</a>
-                    <a id="Date-3" href="#"></a>
-                </p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-4">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-4" href="#">Start Bootstrap</a>
-                    <a id="Date-4" href="#"></a>
-                </p>
-            </div>
-            <hr>
-            <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-            </div>
-        </div><br>
-
+                </h2>
+            </a>
+            <p class="post-meta">Posted by
+                <a id="Author-1" href="#">Start Bootstrap</a>
+                <a id="Date-1" href="#"></a>
+            </p>
+        </div>
+        <hr>
 
         <div id="container">
             <h1 style="text-align: center;">Search or Delete</h1><br>
@@ -222,21 +163,46 @@
         return mp;
     }
 
+    function clearPost(){
+        document.getElementById("listPosts").remove();
+    }
+
     function my_function() {
-        //var mp = new Map();
+        setTimeout("clearPost();", 9999)
         $.ajax({
-            //url:"PosterServlet/getAllPost",
-            url:"JsonServlet",
+            url:"PosterServlet/getAllPost",
             data:{},
             type:"get",
             dataType:"json",
             success:function(data){
                 var postInfo = data.map(getJsonInfo);
-                $("#Message-1").text(postInfo[0].get("message"));
-                $("#Date-1").text(postInfo[0].get("post_date"));
-                $("#Author-1").text(postInfo[0].get("posted_by"));
 
-                $("#Message-2").text(postInfo[1].get("message"));
+                let div = document.createElement('div');
+                div.id = 'listPosts';
+                document.getElementById("PostRecords").appendChild(div);
+
+                for(const v of postInfo.values()) {
+
+                    var title = document.createElement("H2");
+                    var posted_by = document.createElement("P");
+                    var post_date = document.createElement("P");
+                    var message = document.createElement("P");
+
+                    title.id = "post_title";
+                    posted_by.id = "posted_by";
+                    post_date.id = "post_date";
+                    message.id = "post_message";
+
+                    title.innerText = v.get("post_title");
+                    posted_by.innerText = v.get("posted_by");
+                    post_date.innerText = v.get("post_date");
+                    message.innerText = v.get("message");
+
+                    document.getElementById("listPosts").appendChild(title);
+                    document.getElementById("listPosts").appendChild(posted_by);
+                    document.getElementById("listPosts").appendChild(post_date);
+                    document.getElementById("listPosts").appendChild(message);
+                }
 
             }
         })
@@ -244,7 +210,7 @@
 </script>
 
 <script>
-    setTimeout("my_function();",10000);
+    setInterval("my_function();",10000);
 </script>
 </body>
 </html>
