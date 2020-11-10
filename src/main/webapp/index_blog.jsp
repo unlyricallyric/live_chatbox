@@ -6,17 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import = "java.io.*,java.util.*,java.io.PrintWriter" %>
-<%@ page import="java.time.LocalTime" %>
-<%@ page import="com.message.handler.Message" %>
-<%@ page import="com.message.service.MessageService" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String style_sheet = request.getParameter("style_sheet");
-    if(MessageService.isNullOrEmpty(style_sheet)){
-        style_sheet = "style1.css";
-    }
+
 %>
 <html lang="en">
 
@@ -30,18 +21,18 @@
     <title>Clean Blog - A Blog Lights Up Your Life</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="/css/clean-blog.min.css" rel="stylesheet">
 
     <!-- added css -->
-    <link href="css/index_blog.css" rel="stylesheet">
+    <link href="/css/index_blog.css" rel="stylesheet">
 </head>
 
 <body onload="my_function()">
@@ -72,7 +63,7 @@
 </nav>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -148,11 +139,11 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="js/clean-blog.min.js"></script>
+<script src="/js/clean-blog.min.js"></script>
 
 <script type="text/javascript">
     function getJsonInfo(item) {
@@ -168,9 +159,9 @@
     }
 
     function my_function() {
-        setTimeout("clearPost();", 9999)
+        setTimeout("clearPost();", 29990)
         $.ajax({
-            url:"PosterServlet/getAllPost",
+            url:"/PosterServlet/getAllPost",
             data:{},
             type:"get",
             dataType:"json",
@@ -180,28 +171,34 @@
                 let div = document.createElement('div');
                 div.id = 'listPosts';
                 document.getElementById("PostRecords").appendChild(div);
+                div.style.wordWrap = "break-word";
+                div.style.border = "10pxd";
+                div.style.solid = "#00F";
+                div.style.width = "150%";
+                div.style.margin = "auto";
+                div.style.borderRadius = "10px";
 
                 for(const v of postInfo.values()) {
 
                     var title = document.createElement("H2");
-                    var posted_by = document.createElement("P");
-                    var post_date = document.createElement("P");
                     var message = document.createElement("P");
+                    var posted_by = document.createElement("P");
 
                     title.id = "post_title";
-                    posted_by.id = "posted_by";
-                    post_date.id = "post_date";
                     message.id = "post_message";
+                    posted_by.id = "posted_by";
+
+                    title.style.marginTop = "50px";
+                    message.style.paddingBottom = "20px";
+                    message.style.borderBottom = "6px solid #4499c9"
 
                     title.innerText = v.get("post_title");
-                    posted_by.innerText = v.get("posted_by");
-                    post_date.innerText = v.get("post_date");
                     message.innerText = v.get("message");
+                    posted_by.innerText = "Posted by: " + v.get("posted_by") + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"+ " Posted At: " + v.get("post_date");
 
                     document.getElementById("listPosts").appendChild(title);
-                    document.getElementById("listPosts").appendChild(posted_by);
-                    document.getElementById("listPosts").appendChild(post_date);
                     document.getElementById("listPosts").appendChild(message);
+                    document.getElementById("listPosts").appendChild(posted_by);
                 }
 
             }
@@ -210,7 +207,7 @@
 </script>
 
 <script>
-    setInterval("my_function();",10000);
+    setInterval("my_function();",30000);
 </script>
 </body>
 </html>

@@ -3,9 +3,7 @@ package com.message.controller;
 import com.message.dao.PostDao;
 import com.message.db.DBConnect;
 import com.message.model.Post;
-import com.message.model.PostJson;
 import com.message.utils.BlogUtil;
-//import com.mysql.cj.x.protobuf.MysqlxPrepare;
 
 import java.io.IOException;
 import java.sql.Connection;
