@@ -67,9 +67,6 @@ public class PosterServlet extends HttpServlet {
             System.out.println(post.getPost_title());
             System.out.println(post.getMessage());
 
-
-            //response.getWriter().write(BlogUtil.getJsonObject(post).toString());
-
         } catch (Exception e) {
             e.printStackTrace();
         }

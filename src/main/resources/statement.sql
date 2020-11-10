@@ -30,6 +30,6 @@ VALUES ('testuser1', 'IloveJava', 'Sebastian1', 'Jean1', 'asdf1@gmail.com');
 
 INSERT INTO Posts
 (posted_by, post_title, message)
-VALUES ('George3', 'JavaScript Tutorial3', 'Hello Worled JavaScript3');
+VALUES ('George5', 'JavaScript Tutorial5', 'Hello Worled JavaScript5');
 
 UPDATE Users SET user_name='testuser_update', password='password', first_name='test_first', last_name='test_last', user_email='test@email.com' WHERE user_name='testuser';

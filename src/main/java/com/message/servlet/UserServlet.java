@@ -4,17 +4,19 @@ import com.message.controller.UserController;
 import com.message.model.User;
 import com.message.utils.BlogUtil;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet("/UserServlet/*")
 public class UserServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         doGet(request, response);
     }
 
@@ -38,21 +40,36 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void userLogin(HttpServletRequest request, HttpServletResponse response){
+    private void userLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String url = "";
         boolean validate_user = false;
+        PrintWriter pw = response.getWriter();
 
         try{
             UserController uc = new UserController();
             validate_user = uc.findUser(username, password);
+            request.setAttribute("validate_user", validate_user);
+
             if(validate_user){
+                pw.print("User successfully validated!");
+                url = "/index_blog.jsp";
                 System.out.println("User successfully validated!");
+
             }else{
+                pw.print("Username or password is wrong!");
+                url = "/login.jsp";
                 System.out.println("Wrong username or password!");
             }
+
         }catch(Exception e){
             e.printStackTrace();
+        }finally{
+            System.out.println("url : " + url);
+            getServletContext()
+                    .getRequestDispatcher(url)
+                    .forward(request, response);
         }
     }
 
