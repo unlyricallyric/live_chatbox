@@ -87,98 +87,106 @@
 </header>
 
 <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div id="chatBox" class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview" id="firstRecord">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-1">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-1" href="#">Start Bootstrap</a>
-                    <a id="Date-1" href="#"></a>
-                </p>
-                <form action="JsonServlet">
-                    <div class="row">
-                        <div id="download">
-                            <div class="col-md-2">
-                                <select name="download" class="form-control">
-                                    <option value="text" selected="selected">text</option>
-                                    <option value="xml">xml</option>
-                                </select>
-                                <input class="button" type="submit" value="Download">
-                            </div>
-                        </div>
-                    </div>
-                </form><br>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-2">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-2" href="#">Start Bootstrap</a>
-                    <a id="Date-2" href="#"></a>
-                </p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-3">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-3" href="#">Start Bootstrap</a>
-                    <a id="Date-3" href="#"></a>
-                </p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.jsp">
-                    <h2 class="post-title">
-                        <div id = "Message-4">
-                        </div>
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a id="Author-4" href="#">Start Bootstrap</a>
-                    <a id="Date-4" href="#"></a>
-                </p>
-            </div>
-            <hr>
-            <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-            </div>
-        </div><br>
+<div id= "outContainer">
+    
+	
+	<!-- recent post box -->
+	<div id="recentPost"> 
+		<h1 style="text-align: center; padding-top: 5px;">Recent Posts:</h1><br>
+		
+	</div>
+	
+	<div id="allPosts">
+		<!-- all posts box -->
+		<h1 style="text-align: center;padding-top: 5px;">All Posts:</h1><br>
+		<div id="chatBox" class="col-lg-8 col-md-10 mx-auto">
+			<div class="post-preview">
+				<a href="post.jsp">
+					<h2 class="post-title">
+						Man must explore, and this is exploration at its greatest
+					</h2>
+					<h3 class="post-subtitle">
+						Problems look mighty small from 150 miles up
+					</h3>
+				</a>
+				<p class="post-meta">Posted by
+					<a href="#">Start Bootstrap</a>
+					on September 24, 2019</p>
+				<form action="DownloadServlet">
+					<div class="row">
+						<div id="download">
+							<div class="col-md-2">
+								<select name="download" class="form-control">
+									<option value="text" selected="selected">text</option>
+									<option value="xml">xml</option>
+								</select>
+								<input class="button" type="submit" value="Download">
+							</div>
+						</div>
+					</div>
+				</form><br>
+			</div>
+			<hr>
+			<div class="post-preview">
+				<a href="post.jsp">
+					<h2 class="post-title">
+						I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+					</h2>
+				</a>
+				<p class="post-meta">Posted by
+					<a href="#">Start Bootstrap</a>
+					on September 18, 2019</p>
+			</div>
+			<hr>
+			<div class="post-preview">
+				<a href="post.jsp">
+					<h2 class="post-title">
+						Science has not yet mastered prophecy
+					</h2>
+					<h3 class="post-subtitle">
+						We predict too much for the next year and yet far too little for the next ten.
+					</h3>
+				</a>
+				<p class="post-meta">Posted by
+					<a href="#">Start Bootstrap</a>
+					on August 24, 2019</p>
+			</div>
+			<hr>
+			<div class="post-preview">
+				<a href="post.jsp">
+					<h2 class="post-title">
+						Failure is not an option
+					</h2>
+					<h3 class="post-subtitle">
+						Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+					</h3>
+				</a>
+				<p class="post-meta">Posted by
+					<a href="#">Start Bootstrap</a>
+					on July 8, 2019</p>
+			</div>
+			<hr>
+		   
+		</div><br>
 
+		<!-- search or delect form -->
+		<div id="container">
+			<h1 style="text-align: center;">Search or Delete</h1><br>
 
-        <div id="container">
-            <h1 style="text-align: center;">Search or Delete</h1><br>
+			<form action="MessageServlet">
+				<label>Title :</label><br>
+				<input class="text" type="text" name="title" placeholder="Title required" required=""><br><br>
+				<input type="hidden" name="user_name" value="${user_name}">
+				<input type="hidden" name="style_sheet" value="${style_sheet}"><br>
+				<button type="submit" name="displayMessage" value="search" class="button">Search</button>
+				<button type="submit" name="displayMessage" value="delete" class="button">Delete</button>
+			</form>
 
-            <form action="MessageServlet">
-                <label>Title :</label><br>
-                <input class="text" type="text" name="title" placeholder="Title required" required=""><br><br>
-                <input type="hidden" name="user_name" value="${user_name}">
-                <input type="hidden" name="style_sheet" value="${style_sheet}"><br>
-                <button type="submit" name="displayMessage" value="search" class="button">Search</button>
-                <button type="submit" name="displayMessage" value="delete" class="button">Delete</button>
-            </form>
-
-            <div id="displayBox"></div>
-        </div><br>
-
-    </div>
-
+			<div id="displayBox"></div>
+		</div><br>
+	</div>
+	
+    
 </div>
 
 <hr>

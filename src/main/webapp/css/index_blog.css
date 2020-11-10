@@ -1,18 +1,59 @@
+#outContainer {
+    border: 2px;
+    width: 90%;
+	height: auto;
+	margin: auto;
+    margin-top: 10%;
+}
+
 #container {
     border: 2px solid #dedede;
     padding: 20px;
-    width: 90%;
-    margin-top: 10%;
+    width: 83%;
+    margin-top: 5%;
+	margin-left: 10%;
 }
 #chatBox{
     background-color: white;
     word-wrap: break-word;
     border:10px;
     solid: #00F;
-    height: 500px;
+    height: 60%;
     overflow-y: auto;
     border-radius: 10px;
 }
+
+#allPosts{
+    background-color: white;
+    border:2px;
+    solid: #00F;
+	width: 74%;
+    border-radius: 10px;
+}
+
+#recentPost{
+    background-color: #A9A9A9;
+    word-wrap: break-word;
+    border:2px;
+    solid: #00F;
+	width: 24%;
+	height: 90%;
+    overflow-y: auto;
+	float: right;
+    border-radius: 10px;
+}
+
+#postContent{
+    background-color: #A9A9A9;
+    word-wrap: break-word;
+    border:2px;
+    solid: #00F;
+	width: 74%;
+	height: 140%;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
 #displayBox{
     word-wrap: break-word;
     border:10px;

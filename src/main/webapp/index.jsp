@@ -1,174 +1,122 @@
-
-<%--
-  Created by IntelliJ IDEA.
-  User: johnsonhao
-  Date: 2020-09-25
-  Time: 10:22 p.m.
-  To change this template use File | Settings | File Templates. test
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import = "java.io.*,java.util.*,java.io.PrintWriter" %>
-<%@ page import="java.time.LocalTime" %>
-<%@ page import="com.message.handler.Message" %>
-<%@ page import="com.message.service.MessageService" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String style_sheet = request.getParameter("style_sheet");
-    if(MessageService.isNullOrEmpty(style_sheet)){
-        style_sheet = "style1.css";
-    }
-%>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/<%=style_sheet%>">
-    <title>Title</title>
 
-    <base href="<%=basePath%>">
-    <title>Welcome to Chat Room</title>
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - A Blog Lights Up Your Life</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- added css -->
+    <link href="css/index_blog.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<%!
-    //PrintWriter pout = response.getWriter();
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="index.jsp">Post Content</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index_blog.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="modify_account.jsp">Modify Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.jsp">Sign Out</a>
+                </li>
 
-    TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
-        String date, message, user;
-%>
-
-<div class="container">
-    <h1 style="margin: auto; width: 35%; margin-bottom: 15px;font-family: Impact, Charcoal, sans-serif;">Chatting Time ${user_name}</h1>
-    <div id="chatBox" class="alert alert-success">
-        <%
-            if(request.getAttribute("msg_db") != null) {
-                msg_db = (TreeMap<LocalTime, Message>) request.getAttribute("msg_db");
-                for (Map.Entry<LocalTime, Message> entry : msg_db.entrySet()) {
-                    date = entry.getKey().toString();
-                    user = entry.getValue().getUsername().toUpperCase();
-                    message = entry.getValue().getMessage();
-        %>
-
-        <div class="alert alert-dark">
-            <p> <%=user%> : <span style="float: right"><%=date%></span><p><%=message%> </p> </p>
+            </ul>
         </div>
+    </div>
+</nav>
 
-        <%
-                }
-            }
-        %>
-    </div><br>
-    <form method="POST" action="MessageServlet">
-        <label>Please Input Your Message : </label>
-        <input type="hidden" name="user_name" value="${user_name}">
-        <input type="hidden" name="style_sheet" value="${style_sheet}">
-        <textarea id="text" class="form-control" name="message" rows="3"></textarea><br>
-        <button type="submit" name="send" value="send" class="button">Send</button>
-        <button type="submit" name="send" value="refresh" class="button">Refresh</button>
-    </form>
-
-    <form action="MessageServlet">
-        <label>From :</label><br>
-        <input type="text" name="from"><br>
-        <label>To :</label><br>
-        <input type="text" name="to"><br>
-        <input type="hidden" name="user_name" value="${user_name}">
-        <input type="hidden" name="style_sheet" value="${style_sheet}">
-        <button type="submit" name="displayMessage" value="submit_show" class="button">Show Message</button>
-        <button type="submit" name="displayMessage" value="submit_delete" class="button">Delete Message</button>
-    </form><br>
-
-    <form action="DownloadServlet">
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
         <div class="row">
-            <div id="download" style="margin:0 auto">
-                <div class="col-md-2" style="float: left">
-                    <select name="download" class="form-control">
-                        <option value="text" selected="selected">text</option>
-                        <option value="xml">xml</option>
-                    </select>
-                </div>
-                <div style="margin-left: 120px">
-                    <input class = "button" type="submit" value="Download">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Clean Blog</h1>
+                    <span class="subheading">Post Content</span>
                 </div>
             </div>
         </div>
-    </form><br>
+    </div>
+</header>
 
-    <form method="POST" action="MessageServlet">
-        <input type="hidden" name="send" value="refresh">
-        <input type="hidden" name="user_name" value="${user_name}">
-        <button type="submit" name="style_sheet" value="style1.css">STYLE 1</button>
-        <button type="submit" name="style_sheet" value="style2.css">STYLE 2</button>
-    </form>
-
+<!-- Main Content -->
+<div id= "outContainer">
+    
+	
+		<!-- recent post box -->
+		<div id="recentPost"> 
+			<h1 style="text-align: center; padding-top: 5px;">Recent Posts:</h1><br>
+			
+		</div>
+		
+		<div id="postContent">
+			<!-- post content box -->
+			<h1 style="text-align: center;padding-top: 5px;">Post Content:</h1><br>
+			
+		</div>
+		
+    
 </div>
 
-<script>
-    function changeCSS(cssFile, cssLinkIndex) {
-        var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-        var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("href", cssFile);
-        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-    }
-</script>
-<%--<script type="text/javascript">
-    //send the msg to chat box
-    function send(){
-        //alert('Hello World!');
-        var user_name = document.getElementById('user_name').value;
-        var message = document.getElementById('message').value;
-        var date = new Date();
-        var time = date.getTime();
-        var record = user_name + " said: " + message + " " + date + "<br>";
-        document.getElementById('chatBox').innerHTML += record;
-        //send the data to backend
-        var xmlhttp;
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST', "MessageServlet", true);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        var parameters;
-        parameters = "user_name=" + user_name + "&message=" + message;
-        //xmlhttp.open('GET', "MessageService?" + parameters, true)
-        var msg_db;
-        msg_db = xmlhttp.send(parameters);
-        console.log(msg_db) ;
-        //display(msg_db);
-    }
-    function display(msg_db){
-        console.log(msg_db);
-        var i;
-        for(i = 0; i<msg_db.length;i++){
-            console.log(msg_db[i]);
-            document.getElementById('chatBox').innerHTML += msg_db[i];
-        }
-    }
-    //clear the msg of the chat box
-    //function clean(){
-    //   console.log(record);
-    //  document.getElementById('/servlet/selectedMsg').innerHTML = "";
-    //}
-    function clean(){
-    }
-    //change the style css
-    function changeCSS(cssFile, cssLinkIndex) {
-        var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-        var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("href", cssFile);
-        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-    }
-</script>--%>
-</body>
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<hr>
 
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <a href="create_post.jsp">
+                            Create Post
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="update_post.jsp">
+                            Update Post
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/clean-blog.min.js"></script>
+
+</body>
 </html>
