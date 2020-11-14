@@ -16,3 +16,17 @@
 * <h4>Delete All Messages:
   - curl -X DELETE http://localhost:8080/MessageOp
   - curl -X DELETE "http://localhost:8080/MessageOp?from=19:47:53&to=19:47:56"
+
+----------------------------------------------------------------------------------------------
+
+* <h4>Description:
+  - implementation of a simplied Message Board System. A message board is an online discussion 
+  site where people can hold conversations in the form of posted messages. The messages are normally 
+  longer than chat messages and may have attachments.
+
+* <h4>Release Note:
+  - download and import project from GitHub to the IDE
+  - set tomcat server to the run configurations
+  - put jsch-0.1.55.jar file to the src folder
+  - put mysql-connector-java-8.0.22.jar to the tomcat lab folder
+  - compile the application
