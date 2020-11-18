@@ -1,6 +1,5 @@
 package com.message.servlet;
 
-import com.google.gson.Gson;
 import com.message.model.Post;
 import com.message.model.User;
 import com.message.utils.BlogUtil;
@@ -37,7 +36,6 @@ public class JsonServlet extends HttpServlet {
         options.put("value1", "label1");
         options.put("value2", "label2");
         options.put("value3", "label3");
-        Gson gson = new Gson();
 
        // JSONObject json = new JSONObject(options);
 
