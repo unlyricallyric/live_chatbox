@@ -70,12 +70,12 @@
         <div id="container">
             <h1 style="text-align: center;">Create Post</h1>
 
-            <form action="PosterServlet/getPost" method="POST">
+            <form action="PosterServlet/createPost" method="POST">
                 <input type="hidden" name="posted_by" value="Johnson">
                 <label>Title :</label><br>
                 <input class="text" type="text" name="post_title"><br><br>
                 <label>Text :</label><br>
-                <textarea id="text" class="form-control" name="text" rows="3" required=""></textarea><br>
+                <textarea id="text" class="form-control" name="post_message" rows="3" required=""></textarea><br>
                 <!-- change <div to <form WILL PROCESS THE FILE VIA AJAX with action="#"-->
                 <div id="file-upload-form">
                     <input id="file-upload" type="file" name="fileUpload" />

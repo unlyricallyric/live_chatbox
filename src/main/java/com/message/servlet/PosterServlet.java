@@ -23,7 +23,7 @@ public class PosterServlet extends HttpServlet {
         System.out.println("this is the action: " + action);
 
         switch (action) {
-            case "/create":
+            case "/createPost":
                 createPost(request, response);
                 break;
             case "/getPost":

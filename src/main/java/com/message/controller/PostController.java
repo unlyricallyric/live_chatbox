@@ -51,7 +51,6 @@ public class PostController implements PostDao {
             ps.setString(3, post.getMessage());
             System.out.println(ps);
             response_code = ps.executeUpdate();
-            System.out.println(ps.executeUpdate());
         }catch(SQLException e){
             e.printStackTrace();
         }
