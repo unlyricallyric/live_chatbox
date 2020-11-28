@@ -7,7 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    session = request.getSession();
+    Boolean user_authentication = (Boolean) session.getAttribute("user_authentication");
 
+    if(user_authentication == null || (user_authentication != null && !user_authentication)){
+        response.sendRedirect("login.jsp");
+    }
 %>
 <html lang="en">
 
@@ -94,7 +99,7 @@
         </div>
         <hr>
 
-        <div id="container">
+        <%--<div id="container">
             <h1 style="text-align: center;">Search or Delete</h1><br>
 
             <form action="MessageServlet">
@@ -107,7 +112,7 @@
             </form>
 
             <div id="displayBox"></div>
-        </div><br>
+        </div><br>--%>
 
     </div>
 

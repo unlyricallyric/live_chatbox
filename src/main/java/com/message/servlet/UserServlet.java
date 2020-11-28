@@ -7,9 +7,7 @@ import com.message.utils.BlogUtil;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -45,8 +43,8 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String url = "";
         String err_message = "Either username or password is invalid! Please try again!";
+        HttpSession session = request.getSession();
         boolean validate_user = false;
-        PrintWriter pw = response.getWriter();
 
         try{
             UserController uc = new UserController();
@@ -54,20 +52,18 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("validate_user", validate_user);
 
             if(validate_user){
-                pw.print("User successfully validated!");
                 url = "/index_blog.jsp";
-                System.out.println("User successfully validated!");
+                session.setAttribute("username", username);
+                session.setAttribute("user_authentication", true);
 
             }else{
-                pw.print("Username or password is wrong!");
                 url = "/login.jsp";
-                System.out.println("Wrong username or password!");
             }
 
         }catch(Exception e){
             e.printStackTrace();
         }finally{
-            System.out.println("url : " + url);
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
             request.setAttribute("err_message", err_message);
             getServletContext()
                     .getRequestDispatcher(url)

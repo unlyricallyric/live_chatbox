@@ -20,8 +20,6 @@ public class PosterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getPathInfo();
 
-        System.out.println("this is the action: " + action);
-
         switch (action) {
             case "/createPost":
                 createPost(request, response);

@@ -6,6 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    session = request.getSession();
+    Boolean user_authentication = (Boolean) session.getAttribute("user_authentication");
+
+    if(user_authentication == null || (user_authentication != null && !user_authentication)){
+        response.sendRedirect("login.jsp");
+    }
+%>
 <html>
 <head>
     <meta charset="utf-8">
