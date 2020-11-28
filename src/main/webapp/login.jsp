@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.message.service.MessageService" %><%--
   Created by IntelliJ IDEA.
   User: johnsonhao
   Date: 2020-10-01
@@ -6,9 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    String err_message = (String) request.getAttribute("err_message");
+
+    if(MessageService.isNullOrEmpty(err_message)){
+        err_message = "";
+    }
+%>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%--        <link rel="stylesheet" type="text/css" href="css/<%=style_sheet%>">--%>
@@ -26,6 +34,7 @@
 <div id="container">
     <h1 style="text-align:center; color:white">LOGIN</h1><br>
     <div>
+        <p style="color: red"><%=err_message%></p>
         <form action="UserServlet/login" method="POST">
             <input class="text" type="name" name="username" placeholder="Please enter your username/email" required="">
             <input class="text" type="password" name="password" placeholder="Please enter your password" required=""><br><br>

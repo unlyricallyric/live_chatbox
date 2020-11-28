@@ -24,7 +24,7 @@
 <div style="width: 40%; margin:auto;">
     <%!
         TreeMap<LocalTime, Message> msg_db = new TreeMap<>();
-            String showDate, showUser, showMsg;
+        String showDate, showUser, showMsg;
     %>
     <%
         if(request.getAttribute("msg_db") != null) {

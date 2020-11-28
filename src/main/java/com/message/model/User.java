@@ -8,6 +8,7 @@ public class User {
     private String first_name = "";
     private String last_name = "";
     private String user_email = "";
+    private String user_group = "0";
 
     public User(int id){
         this.id = id;
@@ -21,8 +22,13 @@ public class User {
         this.user_email = user_email;
     }
 
-    public User(int id, String user_name, String password, String first_name, String last_name, String user_email){
+    public User(String user_name, String password, String first_name, String last_name, String user_email, String user_group){
         this(user_name, password, first_name, last_name, user_email);
+        this.user_group = user_group;
+    }
+
+    public User(int id, String user_name, String password, String first_name, String last_name, String user_email, String user_group){
+        this(user_name, password, first_name, last_name, user_email, user_group);
         this.id = id;
     }
 
@@ -72,6 +78,14 @@ public class User {
 
     public void setUser_email(String user_email) {
         this.user_email = user_email;
+    }
+
+    public String getUser_group() {
+        return user_group;
+    }
+
+    public void setUser_group(String user_group) {
+        this.user_group = user_group;
     }
 
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -17,6 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class BlogUtil {
+
+    public static void printMessage(HttpServletResponse response, String message) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h3>" + message + "</h3>");
+    }
 
     public static String passEncoding(String password) {
         String passwordToHash = password;
@@ -54,9 +61,9 @@ public final class BlogUtil {
 
     public static void main(String args[]) throws NoSuchAlgorithmException, IOException {
 
-        User tester = new User(1,"user1", "password1", "firstname1", "lastname1", "tom@gmail.com");
-        User tester1 = new User(2,"user2", "password2", "firstname2", "lastname2", "tom@gmail.com");
-        User tester2 = new User(3,"user3", "password3", "firstname3", "lastname3", "tom@gmail.com");
+        User tester = new User(1,"user1", "password1", "firstname1", "lastname1", "tom@gmail.com", "0");
+        User tester1 = new User(2,"user2", "password2", "firstname2", "lastname2", "tom@gmail.com", "0");
+        User tester2 = new User(3,"user3", "password3", "firstname3", "lastname3", "tom@gmail.com", "0");
 
         List<Object> l = new ArrayList<>();
         l.add(tester);

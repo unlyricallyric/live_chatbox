@@ -10,7 +10,7 @@ import java.sql.*;
 public class UserController implements UserDao {
 
     private final String INSERT_USER = "INSERT INTO Users" +
-            " (user_name, password, first_name, last_name, user_email) VALUES " + "(?, ?, ?, ?, ?);";
+            " (user_name, password, first_name, last_name, user_email, user_group) VALUES " + "(?, ?, ?, ?, ?, ?);";
     private final String FIND_USER = "SELECT password FROM Users where user_name=?;";
     private final String UPDATE_USER = "UPDATE Users SET password=?, first_name=?, last_name=?, user_email=? WHERE user_name=?;";
 
@@ -44,6 +44,7 @@ public class UserController implements UserDao {
             ps.setString(3, user.getFirst_name());
             ps.setString(4, user.getLast_name());
             ps.setString(5, user.getUser_email());
+            ps.setString(6, user.getUser_group());
 
             response_code = ps.executeUpdate();
 

@@ -8,6 +8,7 @@ CREATE TABLE Users (
     user_email VARCHAR(32) NOT NULL UNIQUE,
     first_name VARCHAR(32),
     last_name VARCHAR(32),
+    user_group int DEFAULT 0,
     PRIMARY KEY (user_id)
 );
 

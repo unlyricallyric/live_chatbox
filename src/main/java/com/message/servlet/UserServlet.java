@@ -44,6 +44,7 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String url = "";
+        String err_message = "Either username or password is invalid! Please try again!";
         boolean validate_user = false;
         PrintWriter pw = response.getWriter();
 
@@ -67,6 +68,7 @@ public class UserServlet extends HttpServlet {
             e.printStackTrace();
         }finally{
             System.out.println("url : " + url);
+            request.setAttribute("err_message", err_message);
             getServletContext()
                     .getRequestDispatcher(url)
                     .forward(request, response);
@@ -74,18 +76,23 @@ public class UserServlet extends HttpServlet {
     }
 
     private void createUser(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("this is Create");
         String username = request.getParameter("username");
         String password = BlogUtil.passEncoding(request.getParameter("password"));
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
+        String user_group = (request.getParameter("admin_user") == null)?"0":"1";
 
-        User user = new User(username, password, firstname, lastname, email);
+        User user = new User(username, password, firstname, lastname, email, user_group);
         try{
             UserController uc = new UserController();
             uc.createUser(user);
-            System.out.println("User successfully created!");
+            BlogUtil.printMessage(response,"User successfully created! Redirecting to home page in 2 s.");
+
+            String url = "/index_blog.jsp";
+            getServletContext()
+                    .getRequestDispatcher(url)
+                    .forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +100,6 @@ public class UserServlet extends HttpServlet {
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("this is Update");
         String username = request.getParameter("username");
         String password = BlogUtil.passEncoding(request.getParameter("password"));
         String firstname = request.getParameter("firstname");
