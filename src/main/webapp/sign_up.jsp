@@ -30,10 +30,14 @@
             <input class="text" type="text" name="firstname" placeholder="Please enter your first name" required="">
             <input class="text" type="text" name="lastname" placeholder="Please enter your last name" required="">
             <input class="text" type="email" name="email" placeholder="Please enter your email" required="">
-            <input type="radio" id="admin_user" name="admin_user" value="male">
-            <label for="admin_user">Admin User</label><br>
-            <input type="radio" id="general_user" name="general_user" value="female">
-            <label for="general_user">General User</label><br>
+            <input type="radio" id="concordia" name="group" value="concordia">
+            <label for="concordia">concordia</label><br>
+            <input type="radio" id="encs" name="group" value="encs">
+            <label for="encs">encs</label><br>
+            <input type="radio" id="comp" name="group" value="comp">
+            <label for="comp">comp</label><br>
+            <input type="radio" id="soen" name="group" value="soen">
+            <label for="soen">soen</label><br>
             <button type="submit" name="SignUp" value="submit_show" class="button">Sign Up</button>
         </form>
     </div><br>

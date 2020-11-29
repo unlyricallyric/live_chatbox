@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String err_message = (String) request.getAttribute("err_message");
+    String err_message = (String) session.getAttribute("err_message");
 
     if(MessageService.isNullOrEmpty(err_message)){
         err_message = "";

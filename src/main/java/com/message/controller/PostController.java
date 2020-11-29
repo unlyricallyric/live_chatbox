@@ -59,7 +59,7 @@ public class PostController implements PostDao {
 
     @Override
     public Post getSinglePost(int post_id) {
-        Post post = null;
+        /*Post post = null;
 
         try(PreparedStatement ps = con.prepareStatement(GET_SINGLE_POST)){
             ps.setInt(1, post_id);
@@ -71,13 +71,15 @@ public class PostController implements PostDao {
                 String post_date = rs.getString("post_date");
                 String last_modified = rs.getString("last_modified");
                 String message = rs.getString("message");
-                post = new Post(post_id, posted_by, post_title, post_date, last_modified, message);
+                String post_group = rs.getString("post_group");
+                post = new Post(post_id, posted_by, post_title, post_date, last_modified, message, post_group);
             }
 
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return post;
+        return post;*/
+        return null;
     }
 
     @Override
@@ -91,6 +93,7 @@ public class PostController implements PostDao {
 
         try(PreparedStatement ps = con.prepareStatement(GET_ALL_POST)){
             ResultSet rs = ps.executeQuery();
+            //System.out.println("the session value for group is: " + );
 
             while(rs.next()){
                 int post_id = rs.getInt("id");
@@ -99,7 +102,8 @@ public class PostController implements PostDao {
                 String post_date = rs.getString("post_date");
                 String last_modified = rs.getString("last_modified");
                 String message = rs.getString("message");
-                Post post = new Post(post_id, posted_by, post_title, post_date, last_modified, message);
+                String post_group = rs.getString("post_group");
+                Post post = new Post(post_id, posted_by, post_title, post_date, last_modified, message, post_group);
                 //PostJson postJson = new PostJson(post);
                 post_list.add(post);
             }

@@ -8,7 +8,7 @@ public class User {
     private String first_name = "";
     private String last_name = "";
     private String user_email = "";
-    private String user_group = "0";
+    private String user_group = "encs";
 
     public User(int id){
         this.id = id;
