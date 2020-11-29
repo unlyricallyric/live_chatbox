@@ -52,6 +52,10 @@ public class UserServlet extends HttpServlet {
         try{
             UserController uc = new UserController();
             validate_user = uc.findUser(username, password);
+            if(validate_user){
+                String user_group = uc.getUserGroup(username);
+                session.setAttribute("user_group", user_group);
+            }
             request.setAttribute("validate_user", validate_user);
 
             if(validate_user){

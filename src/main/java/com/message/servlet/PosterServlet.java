@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/PosterServlet/*")
 public class PosterServlet extends HttpServlet {
@@ -75,9 +76,12 @@ public class PosterServlet extends HttpServlet {
 
     private void getAllPost(HttpServletRequest request, HttpServletResponse response) {
 
+        HttpSession session = request.getSession();
+        String user_group = (String) session.getAttribute("user_group");
+
         try{
             PostController pc = new PostController();
-            String result = pc.getAllPost();
+            String result = pc.getAllPost(user_group);
 
             System.out.println(result);
             response.getWriter().write(result);

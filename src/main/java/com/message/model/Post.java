@@ -51,6 +51,14 @@ public class Post {
         this.id = id;
     }
 
+    public String getPost_group() {
+        return post_group;
+    }
+
+    public void setPost_group(String post_group) {
+        this.post_group = post_group;
+    }
+
     public String getPosted_by() {
         return posted_by;
     }
