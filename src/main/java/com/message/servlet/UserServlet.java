@@ -32,6 +32,9 @@ public class UserServlet extends HttpServlet {
                 case "/login":
                     userLogin(request, response);
                     break;
+                case "/signout":
+                    userSignout(request, response);
+                    break;
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -49,35 +52,50 @@ public class UserServlet extends HttpServlet {
         try{
             UserController uc = new UserController();
             validate_user = uc.findUser(username, password);
+            if(validate_user){
+                String user_group = uc.getUserGroup(username);
+                session.setAttribute("user_group", user_group);
+            }
             request.setAttribute("validate_user", validate_user);
 
             if(validate_user){
                 url = "/index_blog.jsp";
                 session.setAttribute("username", username);
                 session.setAttribute("user_authentication", true);
+                getServletContext()
+                        .getRequestDispatcher(url)
+                        .forward(request, response);
 
             }else{
                 url = "/login.jsp";
+                session.setAttribute("err_message", err_message);
+                response.sendRedirect(url);
             }
 
         }catch(Exception e){
             e.printStackTrace();
-        }finally{
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-            request.setAttribute("err_message", err_message);
-            getServletContext()
-                    .getRequestDispatcher(url)
-                    .forward(request, response);
         }
     }
 
+    private void userSignout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("im signing out!");
+        HttpSession session = request.getSession();
+        session.removeAttribute("user_authentication");
+        session.removeAttribute("username");
+        session.invalidate();
+
+        String url = "/login.jsp";
+        response.sendRedirect(url);
+    }
+
     private void createUser(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = BlogUtil.passEncoding(request.getParameter("password"));
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
-        String user_group = (request.getParameter("admin_user") == null)?"0":"1";
+        String user_group = request.getParameter("group");
 
         User user = new User(username, password, firstname, lastname, email, user_group);
         try{
@@ -85,10 +103,11 @@ public class UserServlet extends HttpServlet {
             uc.createUser(user);
             BlogUtil.printMessage(response,"User successfully created! Redirecting to home page in 2 s.");
 
-            String url = "/index_blog.jsp";
-            getServletContext()
-                    .getRequestDispatcher(url)
-                    .forward(request, response);
+            String err_message = "You have successfully registered, please login";
+
+            String url = "/login.jsp";
+            session.setAttribute("err_message",err_message);
+            response.sendRedirect(url);
 
         } catch (Exception e) {
             e.printStackTrace();

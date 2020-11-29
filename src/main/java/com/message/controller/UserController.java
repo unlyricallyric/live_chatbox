@@ -13,6 +13,7 @@ public class UserController implements UserDao {
             " (user_name, password, first_name, last_name, user_email, user_group) VALUES " + "(?, ?, ?, ?, ?, ?);";
     private final String FIND_USER = "SELECT password FROM Users where user_name=?;";
     private final String UPDATE_USER = "UPDATE Users SET password=?, first_name=?, last_name=?, user_email=? WHERE user_name=?;";
+    private final String GET_USER_GROUP = "SELECT user_group FROM Users where user_name=?;";
 
     private Connection con;
 
@@ -89,5 +90,22 @@ public class UserController implements UserDao {
             e.printStackTrace();
         }
         return (1 == success);
+    }
+
+    @Override
+    public String getUserGroup(String username) {
+        String user_group = "";
+
+        try(PreparedStatement ps = con.prepareStatement(GET_USER_GROUP)){
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                user_group = rs.getString("user_group");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return user_group;
     }
 }

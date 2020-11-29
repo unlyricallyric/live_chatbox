@@ -8,7 +8,7 @@ CREATE TABLE Users (
     user_email VARCHAR(32) NOT NULL UNIQUE,
     first_name VARCHAR(32),
     last_name VARCHAR(32),
-    user_group int DEFAULT 0,
+    user_group VARCHAR(32),
     PRIMARY KEY (user_id)
 );
 
@@ -18,6 +18,7 @@ CREATE TABLE Posts (
     post_title VARCHAR(128) NOT NULL,
     post_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    post_group VARCHAR(128),
     message TEXT,
     PRIMARY KEY (id)
 );

@@ -71,11 +71,19 @@
             <h1 style="text-align: center;">Create Post</h1>
 
             <form action="PosterServlet/createPost" method="POST">
-                <input type="hidden" name="posted_by" value="Johnson">
+                <input type="hidden" name="posted_by" value="<%=session.getAttribute("username")%>">
                 <label>Title :</label><br>
                 <input class="text" type="text" name="post_title"><br><br>
                 <label>Text :</label><br>
                 <textarea id="text" class="form-control" name="post_message" rows="3" required=""></textarea><br>
+                <input type="radio" id="concordia" name="post_group" value="concordia">
+                <label for="concordia">concordia</label><br>
+                <input type="radio" id="encs" name="post_group" value="encs">
+                <label for="encs">encs</label><br>
+                <input type="radio" id="comp" name="post_group" value="comp">
+                <label for="comp">comp</label><br>
+                <input type="radio" id="soen" name="post_group" value="soen">
+                <label for="soen">soen</label><br>
                 <!-- change <div to <form WILL PROCESS THE FILE VIA AJAX with action="#"-->
                 <div id="file-upload-form">
                     <input id="file-upload" type="file" name="fileUpload" />
@@ -89,14 +97,6 @@
 
                     <output for="file-upload" id="messages"></output>
                 </div>
-
-                <%--<div class="file-drop-area">
-                    <span class="fake-btn">Choose files</span>
-                    <span class="file-msg">OR drag and drop files below:</span>
-                    <div id="drop">
-                        <input class="file-input" type="file" multiple>
-                    </div>
-                </div><br>--%>
                 <button type="submit" name="create" value="create" class="button">Create</button>
             </form>
         </div><br>
@@ -113,12 +113,12 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="create_post.jsp">
+                        <a href="/create_post.jsp">
                             Create Post
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="update_post.jsp">
+                        <a href="/update_post.jsp">
                             Update Post
                         </a>
                     </li>

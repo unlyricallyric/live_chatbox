@@ -11,6 +11,8 @@
     Boolean user_authentication = (Boolean) session.getAttribute("user_authentication");
 
     if(user_authentication == null || (user_authentication != null && !user_authentication)){
+        String err_message = "Please login to check Blog content!";
+        session.setAttribute("err_message", err_message);
         response.sendRedirect("login.jsp");
     }
 %>
@@ -59,7 +61,7 @@
                     <a class="nav-link" href="modify_account.jsp">Modify Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Sign Out</a>
+                    <a class="nav-link" href="/UserServlet/signout">Sign Out</a>
                 </li>
 
             </ul>
@@ -92,9 +94,8 @@
                     </div>
                 </h2>
             </a>
-            <p class="post-meta">Posted by
-                <a id="Author-1" href="#">Start Bootstrap</a>
-                <a id="Date-1" href="#"></a>
+            <p class="post-meta">Howdy,
+                <a id="Author-1" href="#"><%=session.getAttribute("username")%></a>
             </p>
         </div>
         <hr>
@@ -127,12 +128,12 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="create_post.jsp">
+                        <a href="/create_post.jsp">
                             Create Post
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="update_post.jsp">
+                        <a href="/update_post.jsp">
                             Update Post
                         </a>
                     </li>

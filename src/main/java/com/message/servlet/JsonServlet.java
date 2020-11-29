@@ -41,10 +41,10 @@ public class JsonServlet extends HttpServlet {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        Post p1 = new Post(1,"Matthew","display","2020-11-07","2020-11-06","what's result");
-        Post p2 = new Post(2,"Matthew-2","display-2","2020-11-07-2","2020-11-06-2","what's result-2");
-        Post p3 = new Post(3,"Matthew-3","display-3","2020-11-07-3","2020-11-06-3","what's result-3");
-        Post p4 = new Post(4,"Matthew-4","display-4","2020-11-07-4","2020-11-06-4","what's result-4");
+        Post p1 = new Post(1,"Matthew","display","2020-11-07","2020-11-06","what's result", "encs");
+        Post p2 = new Post(2,"Matthew-2","display-2","2020-11-07-2","2020-11-06-2","what's result-2", "encs");
+        Post p3 = new Post(3,"Matthew-3","display-3","2020-11-07-3","2020-11-06-3","what's result-3", "encs");
+        Post p4 = new Post(4,"Matthew-4","display-4","2020-11-07-4","2020-11-06-4","what's result-4", "encs");
 
         List<Object> object_list = new ArrayList<>();
         object_list.add(p1);

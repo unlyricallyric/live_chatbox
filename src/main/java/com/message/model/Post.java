@@ -8,6 +8,7 @@ public class Post {
     protected String post_date;
     protected String last_modified;
     protected String message;
+    protected String post_group;
 
     public Post(String posted_by, String post_title, String message){
         this.posted_by = posted_by;
@@ -15,16 +16,22 @@ public class Post {
         this.message = message;
     }
 
-    public Post(String posted_by, String post_title, String post_date, String last_modified, String message){
+    public Post(String posted_by, String post_title, String message, String post_group){
+        this(posted_by, post_title, message);
+        this.post_group = post_group;
+    }
+
+    public Post(String posted_by, String post_title, String post_date, String last_modified, String message, String post_group){
         this.posted_by = posted_by;
         this.post_title = post_title;
         this.post_date = post_date;
         this.last_modified = last_modified;
         this.message = message;
+        this.post_group = post_group;
     }
 
-    public Post(int id, String posted_by, String post_title, String post_date, String last_modified, String message){
-        this(posted_by, post_title, post_date, last_modified, message);
+    public Post(int id, String posted_by, String post_title, String post_date, String last_modified, String message, String post_group){
+        this(posted_by, post_title, post_date, last_modified, message, post_group);
         this.id = id;
     }
 
@@ -42,6 +49,14 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPost_group() {
+        return post_group;
+    }
+
+    public void setPost_group(String post_group) {
+        this.post_group = post_group;
     }
 
     public String getPosted_by() {

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/PosterServlet/*")
 public class PosterServlet extends HttpServlet {
@@ -44,12 +45,15 @@ public class PosterServlet extends HttpServlet {
         String posted_by = request.getParameter("posted_by");
         String post_title = request.getParameter("post_title");
         String post_message = request.getParameter("post_message");
+        String post_group = request.getParameter("post_group");
 
-        Post post = new Post(posted_by, post_title, post_message);
+        Post post = new Post(posted_by, post_title, post_message, post_group);
 
         try{
             PostController pc = new PostController();
             pc.createPost(post);
+            String url = "/index_blog.jsp";
+            response.sendRedirect(url);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -72,9 +76,12 @@ public class PosterServlet extends HttpServlet {
 
     private void getAllPost(HttpServletRequest request, HttpServletResponse response) {
 
+        HttpSession session = request.getSession();
+        String user_group = (String) session.getAttribute("user_group");
+
         try{
             PostController pc = new PostController();
-            String result = pc.getAllPost();
+            String result = pc.getAllPost(user_group);
 
             System.out.println(result);
             response.getWriter().write(result);
