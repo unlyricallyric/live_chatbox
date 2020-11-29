@@ -1,3 +1,39 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: SAMSUNG
+  Date: 2020-11-02
+  Time: 8:40 p.m.
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    session = request.getSession();
+    Boolean user_authentication = (Boolean) session.getAttribute("user_authentication");
+
+    if(user_authentication == null || (user_authentication != null && !user_authentication)){
+        response.sendRedirect("login.jsp");
+    }
+
+    String post_group = (String) session.getAttribute("user_group");
+    String username = (String) session.getAttribute("username");
+    String concordia_group = "<input type=\"radio\" id=\"encs\" name=\"post_group\" value=\"encs\">\n<label for=\"concordia\">concordia</label><br>";
+    String encs_group = "<input type=\"radio\" id=\"encs\" name=\"post_group\" value=\"encs\">\n<label for=\"encs\">encs</label><br>";
+    String comp_group = "<input type=\"radio\" id=\"comp\" name=\"post_group\" value=\"comp\">\n<label for=\"comp\">comp</label><br>";
+    String soen_group = "<input type=\"radio\" id=\"soen\" name=\"post_group\" value=\"soen\">\n<label for=\"soen\">soen</label><br>";
+    String html_tag = "";
+
+    switch(post_group){
+        case "admin":
+        case "concordia":
+            html_tag += concordia_group;
+        case "encs":
+            html_tag += encs_group;
+        case "comp":
+            html_tag += comp_group;
+        case "soen":
+            html_tag += soen_group;
+    }
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -71,19 +107,12 @@
             <h1 style="text-align: center;">Create Post</h1>
 
             <form action="PosterServlet/createPost" method="POST">
-                <input type="hidden" name="posted_by" value="<%=session.getAttribute("username")%>">
+                <input type="hidden" name="posted_by" value="<%=username%>">
                 <label>Title :</label><br>
                 <input class="text" type="text" name="post_title"><br><br>
                 <label>Text :</label><br>
                 <textarea id="text" class="form-control" name="post_message" rows="3" required=""></textarea><br>
-                <input type="radio" id="concordia" name="post_group" value="concordia">
-                <label for="concordia">concordia</label><br>
-                <input type="radio" id="encs" name="post_group" value="encs">
-                <label for="encs">encs</label><br>
-                <input type="radio" id="comp" name="post_group" value="comp">
-                <label for="comp">comp</label><br>
-                <input type="radio" id="soen" name="post_group" value="soen">
-                <label for="soen">soen</label><br>
+                <%=html_tag%>
                 <!-- change <div to <form WILL PROCESS THE FILE VIA AJAX with action="#"-->
                 <div id="file-upload-form">
                     <input id="file-upload" type="file" name="fileUpload" />
