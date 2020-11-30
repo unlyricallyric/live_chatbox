@@ -94,13 +94,27 @@ public class PosterServlet extends HttpServlet {
 
     private void updatePost(HttpServletRequest request, HttpServletResponse response){
 
+        String delete = request.getParameter("delete");
+        String update = request.getParameter("update");
+
+        String command = (delete!=null)?delete:update;
+
         String post_id = request.getParameter("post_id");
         String post_title = request.getParameter("post_title");
-        String message = request.getParameter("message");
+        String post_message = request.getParameter("post_message");
 
         try{
             PostController pc = new PostController();
-            pc.updatePost(post_id, post_title, message);
+
+            switch(command){
+                case "delete":
+                    pc.deletePost(response, post_id);
+                    break;
+                case "update":
+                    pc.updatePost(response, post_id, post_title, post_message);
+                    break;
+            }
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -108,13 +122,13 @@ public class PosterServlet extends HttpServlet {
 
     private void deletePost(HttpServletRequest request, HttpServletResponse response){
 
-        String post_id = request.getParameter("post_id");
+       /* String post_id = request.getParameter("post_id");
 
         try{
            PostController pc = new PostController();
            pc.deletePost(post_id);
         }catch(Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 }

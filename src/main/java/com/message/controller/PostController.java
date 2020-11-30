@@ -5,6 +5,7 @@ import com.message.db.DBConnect;
 import com.message.model.Post;
 import com.message.utils.BlogUtil;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,7 +22,6 @@ public class PostController implements PostDao {
     private final String INSERT_POST = "INSERT INTO Posts" + " (posted_by, post_title, message, post_group) VALUES " + "(?, ?, ?, ?);";
     private final String DELETE_POST = "DELETE FROM Posts WHERE id = ?;";
     private final String UPDATE_POST = "UPDATE Posts Set post_title=?, message=? WHERE id=?";
-    private final String GET_SINGLE_POST = "SELECT * FROM Posts WHERE id=?";
     private final String GET_ALL_POST = "SELECT * FROM Posts;";
     private final String GET_CONCORDIA_POST = "SELECT * FROM Posts where post_group IN('concordia','encs', 'comp', 'soen');";
     private final String GET_ENCS_POST = "SELECT * FROM Posts where post_group IN('encs', 'comp', 'soen');";
@@ -136,33 +136,37 @@ public class PostController implements PostDao {
     }
 
     @Override
-    public int updatePost(String post_id, String post_title, String message) {
-        int response_code = 0;
+    public void updatePost(HttpServletResponse response, String post_id, String post_title, String message) {
+
+        System.out.println("post title: " + " message: "+message + " id: "+post_id);
 
         try(PreparedStatement ps = con.prepareStatement(UPDATE_POST)){
             ps.setString(1, post_title);
             ps.setString(2, message);
             ps.setString(3, post_id);
-            response_code = ps.executeUpdate();
-        }catch(SQLException e){
+            ps.executeUpdate();
+
+            String url = "/index_blog.jsp";
+            response.sendRedirect(url);
+
+        }catch(SQLException | IOException e){
             e.printStackTrace();
         }
 
-        return response_code;
     }
 
     @Override
-    public int deletePost(String post_id) {
-        int response_code = 0;
+    public void deletePost(HttpServletResponse response, String post_id) {
 
         try(PreparedStatement ps = con.prepareStatement(DELETE_POST)){
             ps.setString(1, post_id);
-            System.out.println(ps);
-            response_code = ps.executeUpdate();
-            System.out.println(" successfully deleted post " + post_id);
-        }catch(SQLException e){
+            ps.executeUpdate();
+
+            String url = "/index_blog.jsp";
+            response.sendRedirect(url);
+
+        }catch(SQLException | IOException e){
             e.printStackTrace();
         }
-        return response_code;
     }
 }

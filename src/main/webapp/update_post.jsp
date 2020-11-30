@@ -13,6 +13,10 @@
     if(user_authentication == null || (user_authentication != null && !user_authentication)){
         response.sendRedirect("login.jsp");
     }
+
+    String post_id = request.getParameter("post_id");
+    String post_title = request.getParameter("post_title");
+    String post_message = request.getParameter("post_message");
 %>
 <html>
 <head>
@@ -87,13 +91,13 @@
             <h1 style="text-align: center;">Update Post</h1><br>
 
             <form method="POST" action="PosterServlet/update">
-                <input type="hidden" name="user_name" value="${user_name}">
+                <input type="hidden" name="post_id" value="<%=post_id%>">
                 <label>Original Title :</label><br>
-                <input class="text" type="text" name="post_title" placeholder="Title required"><br><br>
+                <input class="text" type="text" name="post_title" value="<%=post_title%>"><br><br>
                 <label>Update Text Here :</label><br>
-                <textarea id="text" class="form-control" name="message" rows="3"></textarea><br>
+                <textarea id="text" class="form-control" name="post_message" rows="3"><%=post_message%></textarea><br>
 
-                <button type="submit" name="deleteAttachent" value="deleteAttachment" class="button">Delete Attachment</button>
+                <button type="submit" name="delete" value="delete" class="button">Delete</button>
 
                 <button type="submit" name="update" value="update" class="button">Update</button>
             </form>

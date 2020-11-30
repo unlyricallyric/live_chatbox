@@ -180,7 +180,7 @@
                 div.style.wordWrap = "break-word";
                 div.style.border = "10pxd";
                 div.style.solid = "#00F";
-                div.style.width = "150%";
+                div.style.width = "100%";
                 div.style.margin = "auto";
                 div.style.borderRadius = "10px";
 
@@ -190,6 +190,16 @@
                     var message = document.createElement("P");
                     var posted_by = document.createElement("P");
 
+                    //create link tag to edit post
+                    var edit = document.createElement("A");
+                    var link = document.createTextNode("edit");
+                    edit.appendChild(link);
+                    edit.title = "edit post";
+                    var post_id = v.get("id");
+                    var post_title = v.get("post_title");
+                    var post_message = v.get("message");
+                    edit.href = "/update_post.jsp?post_id="+post_id+"&post_title="+post_title+"&post_message="+post_message;
+
                     title.id = "post_title";
                     message.id = "post_message";
                     posted_by.id = "posted_by";
@@ -198,13 +208,14 @@
                     message.style.paddingBottom = "20px";
                     message.style.borderBottom = "6px solid #4499c9"
 
-                    title.innerText = v.get("post_title");
-                    message.innerText = v.get("message");
+                    title.innerText = post_title;
+                    message.innerText = post_message;
                     posted_by.innerText = "Posted by: " + v.get("posted_by") + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"+ " Posted At: " + v.get("post_date");
 
                     document.getElementById("listPosts").appendChild(title);
                     document.getElementById("listPosts").appendChild(message);
                     document.getElementById("listPosts").appendChild(posted_by);
+                    document.getElementById("listPosts").appendChild(edit);
                 }
 
             }
