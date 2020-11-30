@@ -34,9 +34,6 @@ public class PosterServlet extends HttpServlet {
             case "/update":
                 updatePost(request, response);
                 break;
-            case "/delete":
-                deletePost(request, response);
-                break;
         }
     }
 
@@ -82,8 +79,6 @@ public class PosterServlet extends HttpServlet {
         try{
             PostController pc = new PostController();
             String result = pc.getAllPost(user_group);
-
-            System.out.println(result);
             response.getWriter().write(result);
 
         } catch (Exception e) {
@@ -118,17 +113,5 @@ public class PosterServlet extends HttpServlet {
         }catch(Exception e){
             e.printStackTrace();
         }
-    }
-
-    private void deletePost(HttpServletRequest request, HttpServletResponse response){
-
-       /* String post_id = request.getParameter("post_id");
-
-        try{
-           PostController pc = new PostController();
-           pc.deletePost(post_id);
-        }catch(Exception e){
-            e.printStackTrace();
-        }*/
     }
 }

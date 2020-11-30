@@ -14,9 +14,24 @@
         response.sendRedirect("login.jsp");
     }
 
+    String username = (String)session.getAttribute("username");
     String post_id = request.getParameter("post_id");
     String post_title = request.getParameter("post_title");
     String post_message = request.getParameter("post_message");
+    String posted_by = request.getParameter("posted_by");
+    Boolean isEditable = username.equals(posted_by);
+    String cannotEdit = "";
+    String delete_button = "<button type=\"submit\" name=\"delete\" value=\"delete\" class=\"button\">Delete</button>";
+    String update_button = "<button type=\"submit\" name=\"update\" value=\"update\" class=\"button\">Update</button>";
+
+    if(!username.equals("admin")){
+        if(!isEditable) {
+            cannotEdit = "<p style=\"color: red\">You're not allowed to modify this post!</p>";
+            delete_button = "";
+            update_button = "";
+        }
+    }
+
 %>
 <html>
 <head>
@@ -47,6 +62,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="update_post.jsp">Update Post</a>
+
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -89,7 +105,7 @@
 
         <div id="container">
             <h1 style="text-align: center;">Update Post</h1><br>
-
+            <%=cannotEdit%>
             <form method="POST" action="PosterServlet/update">
                 <input type="hidden" name="post_id" value="<%=post_id%>">
                 <label>Original Title :</label><br>
@@ -97,9 +113,8 @@
                 <label>Update Text Here :</label><br>
                 <textarea id="text" class="form-control" name="post_message" rows="3"><%=post_message%></textarea><br>
 
-                <button type="submit" name="delete" value="delete" class="button">Delete</button>
-
-                <button type="submit" name="update" value="update" class="button">Update</button>
+                <%=delete_button%>
+                <%=update_button%>
             </form>
         </div><br>
 
@@ -117,11 +132,6 @@
                     <li class="list-inline-item">
                         <a href="create_post.jsp">
                             Create Post
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="update_post.jsp">
-                            Update Post
                         </a>
                     </li>
                 </ul>

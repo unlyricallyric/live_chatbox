@@ -198,7 +198,9 @@
                     var post_id = v.get("id");
                     var post_title = v.get("post_title");
                     var post_message = v.get("message");
-                    edit.href = "/update_post.jsp?post_id="+post_id+"&post_title="+post_title+"&post_message="+post_message;
+                    var author = v.get("posted_by");
+                    var post_date = v.get("post_date");
+                    edit.href = "/update_post.jsp?post_id="+post_id+"&post_title="+post_title+"&post_message="+post_message+"&posted_by="+author;
 
                     title.id = "post_title";
                     message.id = "post_message";
