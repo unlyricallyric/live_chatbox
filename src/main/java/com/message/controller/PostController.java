@@ -64,36 +64,6 @@ public class PostController implements PostDao {
     }
 
     @Override
-    public Post getSinglePost(int post_id) {
-        /*Post post = null;
-
-        try(PreparedStatement ps = con.prepareStatement(GET_SINGLE_POST)){
-            ps.setInt(1, post_id);
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()){
-                String posted_by = rs.getString("posted_by");
-                String post_title = rs.getString("post_title");
-                String post_date = rs.getString("post_date");
-                String last_modified = rs.getString("last_modified");
-                String message = rs.getString("message");
-                String post_group = rs.getString("post_group");
-                post = new Post(post_id, posted_by, post_title, post_date, last_modified, message, post_group);
-            }
-
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return post;*/
-        return null;
-    }
-
-    @Override
-    public Post getRecentPost() {
-        return null;
-    }
-
-    @Override
     public String getAllPost(String user_group) throws IOException {
         List<Object> post_list = new ArrayList<>();
         String query = GET_ALL_POST;

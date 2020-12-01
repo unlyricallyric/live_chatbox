@@ -2,8 +2,7 @@ package com.message.dao;
 
 import com.message.model.User;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import java.util.LinkedHashMap;
 
 public interface UserDao {
 
@@ -11,5 +10,5 @@ public interface UserDao {
     boolean findUser(String username, String password);
     boolean updateUser(User user);
     String getUserGroup(String username);
-
+    LinkedHashMap getAllUserGroups();
 }

@@ -25,9 +25,6 @@ public class PosterServlet extends HttpServlet {
             case "/createPost":
                 createPost(request, response);
                 break;
-            case "/getPost":
-                getSinglePost(request, response);
-                break;
             case "/getAllPost":
                 getAllPost(request, response);
                 break;
@@ -52,21 +49,6 @@ public class PosterServlet extends HttpServlet {
             String url = "/index_blog.jsp";
             response.sendRedirect(url);
         } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    private void getSinglePost(HttpServletRequest request, HttpServletResponse response) {
-
-        try{
-            PostController pc = new PostController();
-            Post post = pc.getSinglePost(4);
-
-            System.out.println(post.getPosted_by());
-            System.out.println(post.getPost_title());
-            System.out.println(post.getMessage());
-
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -6,6 +6,8 @@ import com.message.model.User;
 import com.message.utils.BlogUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class UserController implements UserDao {
 
@@ -14,6 +16,7 @@ public class UserController implements UserDao {
     private final String FIND_USER = "SELECT password FROM Users where user_name=?;";
     private final String UPDATE_USER = "UPDATE Users SET password=?, first_name=?, last_name=?, user_email=? WHERE user_name=?;";
     private final String GET_USER_GROUP = "SELECT user_group FROM Users where user_name=?;";
+    private final String GET_ALL_USER_GROUPS = "SELECT user_id, user_group FROM Users;";
 
     private Connection con;
 
@@ -107,5 +110,25 @@ public class UserController implements UserDao {
         }
 
         return user_group;
+    }
+
+    @Override
+    public LinkedHashMap getAllUserGroups() {
+        LinkedHashMap<Integer, String> groups = new LinkedHashMap<>();
+
+        try(PreparedStatement ps = con.prepareStatement(GET_ALL_USER_GROUPS)){
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int user_id = Integer.parseInt(rs.getString("user_id"));
+                String user_group = rs.getString("user_group");
+                groups.put(user_id, user_group);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return groups;
     }
 }
