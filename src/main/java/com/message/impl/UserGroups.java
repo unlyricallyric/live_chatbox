@@ -5,17 +5,12 @@ import com.message.dao.UserManager;
 
 import java.util.LinkedHashMap;
 
-public class UserManagerImpl implements UserManager {
-    public static UserManagerImpl userManager;
-    public static LinkedHashMap<Integer, String> groups;
+public class UserGroups implements UserManager {
+    public static UserGroups userManager;
 
-    private UserManagerImpl(){
-        groups = getGroups();
-    }
-
-    public static UserManagerImpl getInstance(){
+    public static UserGroups getInstance(){
         if(userManager == null){
-            userManager = new UserManagerImpl();
+            userManager = new UserGroups();
         }
 
         return userManager;
@@ -27,7 +22,7 @@ public class UserManagerImpl implements UserManager {
     }
 
     public static void main(String args[]){
-        UserManagerImpl um = UserManagerImpl.getInstance();
+        UserGroups um = UserGroups.getInstance();
 
         System.out.println(um.getGroups());
     }
