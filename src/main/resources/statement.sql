@@ -23,6 +23,31 @@ CREATE TABLE Posts (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE Group1 (
+    id int NOT NULL AUTO_INCREMENT,
+    user_group VARCHAR(16),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Group2 (
+    id int NOT NULL AUTO_INCREMENT,
+    user_group VARCHAR(16),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Group3 (
+    id int NOT NULL AUTO_INCREMENT,
+    user_group VARCHAR(16),
+    PRIMARY KEY (id)
+);
+
+INSERT INTO Group1 (user_group) VALUES ('admin');
+INSERT INTO Group2 (user_group) VALUES ('concordia');
+INSERT INTO Group3 (user_group) VALUES ('encs');
+INSERT INTO Group3 (user_group) VALUES ('comp');
+INSERT INTO Group3 (user_group) VALUES ('soen');
+INSERT INTO Group2 (user_group) VALUES ('unkonwn');
+
 /*Insert dummy data to Users table*/
 INSERT INTO Users VALUES (1, 'testuser', 'helloWorld', 'Sebastian', 'Jean', 'asdf@gmail.com');
 

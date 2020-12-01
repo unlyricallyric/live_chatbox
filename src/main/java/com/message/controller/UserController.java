@@ -17,6 +17,9 @@ public class UserController implements UserDao {
     private final String UPDATE_USER = "UPDATE Users SET password=?, first_name=?, last_name=?, user_email=? WHERE user_name=?;";
     private final String GET_USER_GROUP = "SELECT user_group FROM Users where user_name=?;";
     private final String GET_ALL_USER_GROUPS = "SELECT user_id, user_group FROM Users;";
+    private final String GET_GROUP1 = "SELECT id, user_group FROM Group1;";
+    private final String GET_GROUP2 = "SELECT id, user_group FROM Group2;";
+    private final String GET_GROUP3 = "SELECT id, user_group FROM Group3;";
 
     private Connection con;
 
@@ -121,6 +124,66 @@ public class UserController implements UserDao {
 
             while(rs.next()){
                 int user_id = Integer.parseInt(rs.getString("user_id"));
+                String user_group = rs.getString("user_group");
+                groups.put(user_id, user_group);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return groups;
+    }
+
+    @Override
+    public LinkedHashMap getGroup1() {
+        LinkedHashMap<Integer, String> groups = new LinkedHashMap<>();
+
+        try(PreparedStatement ps = con.prepareStatement(GET_GROUP1)){
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int user_id = Integer.parseInt(rs.getString("id"));
+                String user_group = rs.getString("user_group");
+                groups.put(user_id, user_group);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return groups;
+    }
+
+    @Override
+    public LinkedHashMap getGroup2() {
+        LinkedHashMap<Integer, String> groups = new LinkedHashMap<>();
+
+        try(PreparedStatement ps = con.prepareStatement(GET_GROUP2)){
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int user_id = Integer.parseInt(rs.getString("id"));
+                String user_group = rs.getString("user_group");
+                groups.put(user_id, user_group);
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return groups;
+    }
+
+    @Override
+    public LinkedHashMap getGroup3() {
+        LinkedHashMap<Integer, String> groups = new LinkedHashMap<>();
+
+        try(PreparedStatement ps = con.prepareStatement(GET_GROUP3)){
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int user_id = Integer.parseInt(rs.getString("id"));
                 String user_group = rs.getString("user_group");
                 groups.put(user_id, user_group);
             }
