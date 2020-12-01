@@ -1,4 +1,15 @@
 package com.message.impl;
 
-public class DB2 {
+import com.message.controller.UserController;
+import com.message.dao.UserManager;
+
+import java.util.LinkedHashMap;
+
+public class Group2 implements UserManager {
+
+    @Override
+    public LinkedHashMap<Integer, String> getGroups() {
+        UserController uc = new UserController();
+        return uc.getGroup1();
+    }
 }
