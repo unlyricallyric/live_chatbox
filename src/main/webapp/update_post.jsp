@@ -19,10 +19,12 @@
     String post_title = request.getParameter("post_title");
     String post_message = request.getParameter("post_message");
     String posted_by = request.getParameter("posted_by");
+    String post_date = request.getParameter("post_date");
     Boolean isEditable = username.equals(posted_by);
     String cannotEdit = "";
     String delete_button = "<button type=\"submit\" name=\"delete\" value=\"delete\" class=\"button\">Delete</button>";
     String update_button = "<button type=\"submit\" name=\"update\" value=\"update\" class=\"button\">Update</button>";
+    String download = "<button type=\"submit\" name=\"download\" value=\"download\" class=\"button\">Download</button>";
 
     if(!username.equals("admin")){
         if(!isEditable) {
@@ -31,6 +33,12 @@
             update_button = "";
         }
     }
+
+    session.setAttribute("download_id", post_id);
+    session.setAttribute("download_title", post_title);
+    session.setAttribute("download_message", post_message);
+    session.setAttribute("download_author", posted_by);
+    session.setAttribute("download_date", post_date);
 
 %>
 <html>
@@ -112,9 +120,12 @@
                 <input class="text" type="text" name="post_title" value="<%=post_title%>"><br><br>
                 <label>Update Text Here :</label><br>
                 <textarea id="text" class="form-control" name="post_message" rows="3"><%=post_message%></textarea><br>
-
                 <%=delete_button%>
                 <%=update_button%>
+
+            </form>
+            <form method="POST" action="PosterServlet/download">
+                <%=download%>
             </form>
         </div><br>
 
