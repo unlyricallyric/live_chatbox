@@ -11,4 +11,7 @@ public interface UserDao {
     boolean updateUser(User user);
     String getUserGroup(String username);
     LinkedHashMap getAllUserGroups();
+    LinkedHashMap getGroup1();
+    LinkedHashMap getGroup2();
+    LinkedHashMap getGroup3();
 }
