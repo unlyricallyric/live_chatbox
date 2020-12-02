@@ -100,21 +100,6 @@
         </div>
         <hr>
 
-        <%--<div id="container">
-            <h1 style="text-align: center;">Search or Delete</h1><br>
-
-            <form action="MessageServlet">
-                <label>Title :</label><br>
-                <input class="text" type="text" name="title" placeholder="Title required" required=""><br><br>
-                <input type="hidden" name="user_name" value="${user_name}">
-                <input type="hidden" name="style_sheet" value="${style_sheet}"><br>
-                <button type="submit" name="displayMessage" value="search" class="button">Search</button>
-                <button type="submit" name="displayMessage" value="delete" class="button">Delete</button>
-            </form>
-
-            <div id="displayBox"></div>
-        </div><br>--%>
-
     </div>
 
 </div>
@@ -130,11 +115,6 @@
                     <li class="list-inline-item">
                         <a href="/create_post.jsp">
                             Create Post
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="/update_post.jsp">
-                            Update Post
                         </a>
                     </li>
                 </ul>
