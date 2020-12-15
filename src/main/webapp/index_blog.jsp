@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index_blog.jsp">Home</a>
+                    <a class="nav-link" href="http://localhost:8080/index_blog.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="modify_account.jsp">Modify Account</a>
@@ -172,7 +172,7 @@
 
                     //create link tag to edit post
                     var edit = document.createElement("A");
-                    var link = document.createTextNode("edit");
+                    var link = document.createTextNode("detail");
                     edit.appendChild(link);
                     edit.title = "edit post";
                     var post_id = v.get("id");
